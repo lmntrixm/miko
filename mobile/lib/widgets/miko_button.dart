@@ -112,11 +112,15 @@ class MikoIconButton extends StatelessWidget {
     this.size = 44,
     this.filled = true,
     this.badge = false,
+    this.primary = false,
   });
   final IconData icon;
 
   /// Small red dot for unread state.
   final bool badge;
+
+  /// Brand-gradient fill (the one filled red action on a screen, e.g. send).
+  final bool primary;
   final String semanticLabel;
   final VoidCallback? onPressed;
   final double size;
@@ -136,14 +140,15 @@ class MikoIconButton extends StatelessWidget {
           width: size,
           height: size,
           decoration: BoxDecoration(
-            color: filled ? c.surface3 : null,
+            color: primary ? null : (filled ? c.surface3 : null),
+            gradient: primary ? mrBrandGradient : null,
             borderRadius: BorderRadius.circular(MRRadius.radiusMd),
           ),
           child: Stack(
             clipBehavior: Clip.none,
             alignment: Alignment.center,
             children: [
-              Icon(icon, size: 22, color: c.textPrimary),
+              Icon(icon, size: 22, color: primary ? c.onBrand : c.textPrimary),
               if (badge)
                 PositionedDirectional(
                   top: 8,

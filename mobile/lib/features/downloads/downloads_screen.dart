@@ -278,13 +278,14 @@ class _StorageCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
+          Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               Text(
                 'فضای استفاده‌شده',
                 style: MRText.body.copyWith(color: c.textPrimary),
               ),
-              const Spacer(),
               Text(
                 '${faSize(usedMb)} از ${faSize(downloadQuotaMb)} مجاز',
                 style: MRText.caption.copyWith(color: c.textMuted),

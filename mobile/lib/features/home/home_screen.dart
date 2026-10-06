@@ -15,6 +15,7 @@ import '../../widgets/cover_placeholder.dart';
 import '../../widgets/miko_badge.dart';
 import '../../widgets/miko_button.dart';
 import '../../widgets/miko_chip.dart';
+import '../../widgets/play_glyph.dart';
 import '../../widgets/pressable.dart';
 import '../../widgets/rank_card.dart';
 
@@ -150,7 +151,8 @@ class _Body extends ConsumerWidget {
         ),
         const SizedBox(height: MRSpacing.space3),
         SizedBox(
-          height: 236,
+          // Cover 150 + two text lines that grow with the system font size.
+          height: 150 + MediaQuery.textScalerOf(context).scale(52) + 16,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: latest.length,
@@ -237,7 +239,8 @@ class _Hero extends ConsumerWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(MRRadius.radiusXl),
         child: SizedBox(
-          height: 170,
+          // Grows with the system font size so the title never clips.
+          height: MediaQuery.textScalerOf(context).scale(120) + 50,
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -362,7 +365,7 @@ class _ContinueCard extends StatelessWidget {
                 color: c.red500,
                 borderRadius: BorderRadius.circular(MRRadius.radiusMd),
               ),
-              child: Icon(Icons.play_arrow_rounded, color: c.onBrand),
+              child: PlayGlyph(color: c.onBrand),
             ),
           ],
         ),
@@ -396,6 +399,8 @@ class _WorkTile extends StatelessWidget {
             ),
             Text(
               '${work.type.unit} ${faDigits(work.chapterCount)}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: MRText.caption.copyWith(color: c.textMuted),
             ),
           ],

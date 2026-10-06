@@ -15,6 +15,7 @@ import '../../theme/miko_tokens.dart';
 import '../../widgets/async_view.dart';
 import '../../widgets/cover_placeholder.dart';
 import '../../widgets/miko_button.dart';
+import '../../widgets/play_glyph.dart';
 import '../../widgets/pressable.dart';
 import '../downloads/downloads_screen.dart';
 import 'offline_banner.dart';
@@ -88,7 +89,9 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
               border: Border(bottom: BorderSide(color: c.border1)),
             ),
             padding: const EdgeInsets.symmetric(horizontal: MRSpacing.space4),
-            child: Row(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
               children: [
                 for (final (i, t) in _tabs.indexed)
                   Semantics(
@@ -127,6 +130,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
                     ),
                   ),
               ],
+            ),
             ),
           ),
           Expanded(
@@ -331,7 +335,7 @@ class _ReadingCard extends ConsumerWidget {
                 gradient: mrBrandGradient,
                 borderRadius: BorderRadius.circular(MRRadius.radiusMd),
               ),
-              child: Icon(Icons.play_arrow_rounded, color: c.onBrand),
+              child: PlayGlyph(color: c.onBrand),
             ),
           ],
         ),

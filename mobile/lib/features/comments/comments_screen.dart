@@ -47,6 +47,16 @@ class _CommentsScreenState extends ConsumerState<CommentsScreen> {
     });
   }
 
+  String _subtitle(int? count) {
+    final cref = ChapterRef.tryParse(widget.chapterId);
+    final work = cref == null ? null : ref.watch(workProvider(cref.workId)).asData?.value;
+    return [
+      if (work != null) work.nameFa,
+      if (cref != null) '${work?.type.unit ?? 'چپتر'} ${faDigits(cref.number)}',
+      if (count != null) '${faDigits(count)} نظر',
+    ].join(' · ');
+  }
+
   @override
   Widget build(BuildContext context) {
     final c = context.mr;
@@ -58,9 +68,7 @@ class _CommentsScreenState extends ConsumerState<CommentsScreen> {
           children: [
             _Header(
               title: 'نظرات',
-              subtitle: comments.asData == null
-                  ? ''
-                  : '${faDigits(comments.asData!.value.length)} نظر',
+              subtitle: _subtitle(comments.asData?.value.length),
             ),
             Divider(height: 1, color: c.border1),
             Expanded(
@@ -473,6 +481,7 @@ class _Composer extends StatelessWidget {
                 icon: Icons.send,
                 semanticLabel: 'ارسال نظر',
                 size: 48,
+                primary: true,
                 onPressed: sending ? null : onSend,
               ),
               const SizedBox(width: MRSpacing.space3),

@@ -9,6 +9,7 @@ import '../../theme/miko_colors.dart';
 import '../../theme/miko_tokens.dart';
 import '../../widgets/async_view.dart';
 import '../../widgets/cover_placeholder.dart';
+import '../../widgets/miko_button.dart';
 import '../../widgets/miko_chip.dart';
 import '../../widgets/pressable.dart';
 import '../account/account_widgets.dart';
@@ -26,6 +27,7 @@ class ListAllScreen extends ConsumerStatefulWidget {
 
 class _ListAllScreenState extends ConsumerState<ListAllScreen> {
   ListBy _by = ListBy.popular;
+  int _cols = 3;
   int _range = 0; // this week / this month / all time (backend filters by range; the mock ignores it)
   static const _titles = {ListBy.popular: 'محبوب‌ترین‌ها', ListBy.updated: 'بروزترین‌ها', ListBy.added: 'تازه اضافه‌شده'};
 
@@ -36,7 +38,14 @@ class _ListAllScreenState extends ConsumerState<ListAllScreen> {
     return Scaffold(
       body: SafeArea(
         child: Column(children: [
-          SubHeader(title: _titles[_by]!),
+          SubHeader(
+            title: _titles[_by]!,
+            trailing: MikoIconButton(
+              icon: _cols == 3 ? Icons.grid_view : Icons.view_module_outlined,
+              semanticLabel: _cols == 3 ? 'نمایش دو ستونه' : 'نمایش سه ستونه',
+              onPressed: () => setState(() => _cols = _cols == 3 ? 2 : 3),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: MRSpacing.space4),
             child: Wrap(spacing: MRSpacing.space2, children: [for (final e in _titles.entries) MikoChip(label: e.value, selected: _by == e.key, onTap: () => setState(() => _by = e.key))]),
@@ -44,7 +53,7 @@ class _ListAllScreenState extends ConsumerState<ListAllScreen> {
           if (_by == ListBy.popular)
             Padding(
               padding: const EdgeInsets.fromLTRB(MRSpacing.space4, 0, MRSpacing.space4, MRSpacing.space2),
-              child: Row(children: [
+              child: Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: [
                 Text('بازه:', style: MRText.caption.copyWith(color: c.textMuted)),
                 const SizedBox(width: MRSpacing.space2),
                 for (final (i, l) in ['این هفته', 'این ماه', 'همه زمان‌ها'].indexed) Padding(padding: const EdgeInsetsDirectional.only(end: MRSpacing.space2), child: MikoChip(label: l, selected: _range == i, onTap: () => setState(() => _range = i))),
@@ -66,7 +75,7 @@ class _ListAllScreenState extends ConsumerState<ListAllScreen> {
                 }
                 return GridView.builder(
                   padding: const EdgeInsets.all(MRSpacing.space4),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: MRSpacing.space4, crossAxisSpacing: MRSpacing.space3, childAspectRatio: 0.56),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: _cols, mainAxisSpacing: MRSpacing.space4, crossAxisSpacing: MRSpacing.space3, childAspectRatio: _cols == 3 ? 0.56 : 0.7),
                   itemCount: list.length,
                   itemBuilder: (_, i) {
                     final w = list[i];

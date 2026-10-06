@@ -155,9 +155,8 @@ class _SubscriptionScreenState extends ConsumerState<SubscriptionScreen> {
                   if (_appliedCoupon != null) Padding(padding: const EdgeInsets.only(top: 4), child: Text('کد تخفیف اعمال شد', style: MRText.caption.copyWith(color: c.success))),
                   const SizedBox(height: MRSpacing.space4),
                   Row(children: [
-                    Text('مبلغ قابل پرداخت', style: MRText.body.copyWith(color: c.textMuted)),
-                    const Spacer(),
-                    Text('${priceText(plan)} تومان', style: MRText.h3.copyWith(color: c.textPrimary)),
+                    Expanded(child: Text('مبلغ قابل پرداخت', style: MRText.body.copyWith(color: c.textMuted))),
+                    Flexible(child: Text('${priceText(plan)} تومان', style: MRText.h3.copyWith(color: c.textPrimary))),
                   ]),
                   const SizedBox(height: MRSpacing.space4),
                   MikoButton(label: 'پرداخت از درگاه بانکی', loading: _paying, loadingLabel: 'در حال اتصال به درگاه…', onPressed: _pay),

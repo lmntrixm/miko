@@ -69,11 +69,12 @@ class ProfileScreen extends ConsumerWidget {
               child: sub != null && sub.active
                   ? Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                       Row(children: [
-                        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                          Text('اشتراک فعال', style: MRText.caption.copyWith(color: c.onBrand)),
-                          Text('اشتراک ${plan?.name ?? ''}', style: MRText.h2.copyWith(color: c.onBrand)),
-                        ]),
-                        const Spacer(),
+                        Expanded(
+                          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                            Text('اشتراک فعال', style: MRText.caption.copyWith(color: c.onBrand)),
+                            Text('اشتراک ${plan?.name ?? ''}', style: MRText.h2.copyWith(color: c.onBrand)),
+                          ]),
+                        ),
                         Pressable(
                           onTap: () => context.push('/manage-subscription'),
                           child: Container(
@@ -121,8 +122,8 @@ class ProfileScreen extends ConsumerWidget {
                     padding: const EdgeInsets.symmetric(vertical: MRSpacing.space4),
                     decoration: BoxDecoration(color: c.surface1, borderRadius: BorderRadius.circular(MRRadius.radiusLg), border: Border.all(color: c.border1)),
                     child: Column(children: [
-                      Text(faNumber(n), style: MRText.h1.copyWith(fontSize: 24, color: c.textPrimary)),
-                      Text(l, style: MRText.caption.copyWith(color: c.textMuted)),
+                      FittedBox(fit: BoxFit.scaleDown, child: Text(faNumber(n), style: MRText.h1.copyWith(fontSize: 24, color: c.textPrimary))),
+                      Text(l, textAlign: TextAlign.center, maxLines: 2, style: MRText.caption.copyWith(color: c.textMuted)),
                     ]),
                   ),
                 ),

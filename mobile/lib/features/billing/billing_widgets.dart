@@ -90,15 +90,15 @@ class PlanRow extends StatelessWidget {
                 child: selected ? Center(child: Container(width: 10, height: 10, decoration: BoxDecoration(color: c.red500, shape: BoxShape.circle))) : null,
               ),
               const SizedBox(width: MRSpacing.space3),
-              Text('${priceText(plan)} تومان', style: MRText.h3.copyWith(color: c.textPrimary)),
-              const Spacer(),
-              Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-                Row(mainAxisSize: MainAxisSize.min, children: [
+              Flexible(child: Text('${priceText(plan)} تومان', style: MRText.h3.copyWith(color: c.textPrimary))),
+              const SizedBox(width: MRSpacing.space2),
+              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+                Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: [
                   if (plan.popular) ...[const MikoCountBadge('محبوب'), const SizedBox(width: MRSpacing.space2)],
                   Text(plan.name, style: MRText.h3.copyWith(fontSize: 17, color: c.textPrimary)),
                 ]),
                 Text(plan.note, style: MRText.caption.copyWith(color: c.textMuted)),
-              ]),
+              ])),
             ]),
           ),
         ),

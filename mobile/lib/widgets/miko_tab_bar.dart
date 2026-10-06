@@ -21,7 +21,7 @@ class MikoTabBar extends StatelessWidget {
     MikoTab(Icons.person_outline, 'پروفایل'),
     MikoTab(Icons.search, 'جستجو'),
     MikoTab(Icons.home_outlined, 'خانه'),
-    MikoTab(Icons.bookmark_border, 'کتابخانه'),
+    MikoTab(Icons.history, 'کتابخانه'),
     MikoTab(Icons.add, 'افزودن'),
   ];
 
