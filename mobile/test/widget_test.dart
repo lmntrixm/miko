@@ -1,32 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:miko/core/jalali.dart';
 import 'package:miko/core/persian.dart';
 import 'package:miko/core/validators.dart';
-import 'package:miko/data/auth_repository.dart';
-import 'package:miko/data/providers.dart';
-import 'package:miko/main.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-Future<void> pumpApp(
-  WidgetTester tester, {
-  Map<String, Object> prefs = const {},
-}) async {
-  SharedPreferences.setMockInitialValues(prefs);
-  final p = await SharedPreferences.getInstance();
-  await tester.pumpWidget(
-    ProviderScope(
-      overrides: [
-        sharedPrefsProvider.overrideWithValue(p),
-        authRepositoryProvider.overrideWithValue(
-          MockAuthRepository(latency: Duration.zero),
-        ),
-      ],
-      child: const MikoApp(),
-    ),
-  );
-}
+import 'helpers.dart';
 
 void main() {
   test('Persian digits and grouping', () {
@@ -72,7 +49,7 @@ void main() {
     await tester.enterText(find.byType(TextField).at(1), 'password123');
     await tester.tap(find.text('ورود'));
     await tester.pumpAndSettle();
-    expect(find.text('صفحه خانه به‌زودی'), findsOneWidget);
+    expect(find.text('سلام امیر حسین'), findsOneWidget);
   });
 
   testWidgets('login shows validation and credential errors', (tester) async {
@@ -117,7 +94,7 @@ void main() {
     }
     await tester.tap(find.text('ادامه'));
     await tester.pumpAndSettle();
-    expect(find.text('صفحه خانه به‌زودی'), findsOneWidget);
+    expect(find.text('سلام امیر حسین'), findsOneWidget);
   });
 
   testWidgets('forgot password runs all 3 steps', (tester) async {

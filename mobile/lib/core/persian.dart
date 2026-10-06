@@ -28,3 +28,11 @@ String faCompact(num n) {
   }
   return faDigits(n.round());
 }
+
+/// «۲ ساعت پیش» style relative time from minutes.
+String faRelative(int minutes) {
+  if (minutes < 1) return 'همین الان';
+  if (minutes < 60) return '${faDigits(minutes)} دقیقه پیش';
+  if (minutes < 1440) return '${faDigits(minutes ~/ 60)} ساعت پیش';
+  return '${faDigits(minutes ~/ 1440)} روز پیش';
+}

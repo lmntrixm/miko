@@ -83,7 +83,7 @@ class _IntroScreenState extends ConsumerState<IntroScreen> {
                       clipper: _SlantClipper(),
                       child: Container(
                         width: double.infinity,
-                        height: 190,
+                        constraints: const BoxConstraints(minHeight: 190),
                         padding: const EdgeInsets.fromLTRB(20, 60, 20, 20),
                         decoration: const BoxDecoration(
                           gradient: mrHeroGradient,

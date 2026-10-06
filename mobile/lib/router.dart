@@ -11,7 +11,12 @@ import 'features/auth/otp_screen.dart';
 import 'features/auth/signup_screen.dart';
 import 'features/auth/splash_screen.dart';
 import 'features/gallery/gallery_screen.dart';
-import 'features/home/home_stub_screen.dart';
+import 'features/comments/comments_screen.dart';
+import 'features/common/todo_screen.dart';
+import 'features/detail/title_detail_screen.dart';
+import 'features/home/home_screen.dart';
+import 'features/reader/reader_screen.dart';
+import 'features/shell/app_shell.dart';
 
 /// Routes follow docs/screens.md. Unauthenticated (401) users are sent to login.
 final routerProvider = Provider<GoRouter>((ref) {
@@ -19,7 +24,10 @@ final routerProvider = Provider<GoRouter>((ref) {
   ref.listen(sessionProvider, (_, _) => refresh.value++);
   ref.onDispose(refresh.dispose);
 
+  final rootKey = GlobalKey<NavigatorState>();
+
   return GoRouter(
+    navigatorKey: rootKey,
     initialLocation: '/',
     refreshListenable: refresh,
     redirect: (context, state) {
@@ -46,33 +54,42 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/onboarding-prefs',
         builder: (_, _) => const OnboardingPrefsScreen(),
       ),
-      GoRoute(path: '/home', builder: (_, _) => const HomeStubScreen()),
+      StatefulShellRoute.indexedStack(
+        builder: (_, _, shell) => AppShell(shell: shell),
+        // Branch order = tab order: profile · search · home · library · add.
+        branches: [
+          StatefulShellBranch(routes: [GoRoute(path: '/profile', builder: (_, _) => const TodoScreen('پروفایل'))]),
+          StatefulShellBranch(routes: [GoRoute(path: '/search', builder: (_, _) => const TodoScreen('جستجو'))]),
+          StatefulShellBranch(routes: [
+            GoRoute(
+              path: '/home',
+              builder: (_, _) => const HomeScreen(),
+              routes: [
+                GoRoute(path: 'title/:id', builder: (_, s) => TitleDetailScreen(workId: s.pathParameters['id']!)),
+              ],
+            ),
+          ]),
+          StatefulShellBranch(routes: [GoRoute(path: '/library', builder: (_, _) => const TodoScreen('کتابخانه'))]),
+          StatefulShellBranch(routes: [GoRoute(path: '/request-title', builder: (_, _) => const TodoScreen('درخواست اثر جدید'))]),
+        ],
+      ),
+      GoRoute(parentNavigatorKey: rootKey, path: '/reader/:chapterId', builder: (_, s) => ReaderScreen(chapterId: s.pathParameters['chapterId']!)),
+      GoRoute(parentNavigatorKey: rootKey, path: '/comments/:chapterId', builder: (_, s) => CommentsScreen(chapterId: s.pathParameters['chapterId']!)),
+      GoRoute(parentNavigatorKey: rootKey, path: '/comment-thread/:commentId', builder: (_, s) => CommentThreadScreen(commentId: s.pathParameters['commentId']!)),
       GoRoute(
         path: '/gallery',
-        builder: (context, _) => GalleryScreen(
-          onToggleTheme: () => ref.read(themeModeProvider.notifier).toggle(),
-        ),
+        builder: (context, _) => GalleryScreen(onToggleTheme: () => ref.read(themeModeProvider.notifier).toggle()),
       ),
-      // Not built yet; shared targets from auth screens.
-      GoRoute(
-        path: '/legal',
-        builder: (_, _) => const _Todo('قوانین و حریم خصوصی'),
-      ),
-      GoRoute(path: '/help-center', builder: (_, _) => const _Todo('پشتیبانی')),
+      // Not built yet; targets from the screens above.
+      GoRoute(path: '/paywall', builder: (_, _) => const TodoScreen('اشتراک')),
+      GoRoute(path: '/notifications', builder: (_, _) => const TodoScreen('اعلان‌ها')),
+      GoRoute(path: '/list-all', builder: (_, _) => const TodoScreen('فهرست کامل')),
+      GoRoute(path: '/report-problem', builder: (_, _) => const TodoScreen('گزارش مشکل')),
+      GoRoute(path: '/legal', builder: (_, _) => const TodoScreen('قوانین و حریم خصوصی')),
+      GoRoute(path: '/help-center', builder: (_, _) => const TodoScreen('پشتیبانی')),
     ],
   );
 });
-
-class _Todo extends StatelessWidget {
-  const _Todo(this.title);
-  final String title;
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text(title)),
-    body: const Center(child: Text('به‌زودی')),
-  );
-}
 
 class ThemeModeController extends Notifier<ThemeMode> {
   @override
