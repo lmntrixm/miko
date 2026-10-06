@@ -28,11 +28,14 @@ import 'features/billing/payment_result_screen.dart';
 import 'features/billing/paywall_screen.dart';
 import 'features/billing/subscription_screen.dart';
 import 'features/comments/comments_screen.dart';
-import 'features/common/todo_screen.dart';
 import 'features/detail/title_detail_screen.dart';
 import 'features/downloads/downloads_screen.dart';
 import 'features/home/home_screen.dart';
+import 'features/discovery/author_screen.dart';
+import 'features/discovery/list_all_screen.dart';
+import 'features/discovery/request_title_screen.dart';
 import 'features/library/library_screen.dart';
+import 'features/search/search_screen.dart';
 import 'features/reader/reader_screen.dart';
 import 'features/shell/app_shell.dart';
 
@@ -88,7 +91,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: '/search',
-                builder: (_, _) => const TodoScreen('جستجو'),
+                builder: (_, _) => const SearchScreen(),
               ),
             ],
           ),
@@ -119,7 +122,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: '/request-title',
-                builder: (_, _) => const TodoScreen('درخواست اثر جدید'),
+                builder: (_, s) => RequestTitleScreen(initialName: s.uri.queryParameters['name'] ?? ''),
               ),
             ],
           ),
@@ -190,8 +193,8 @@ final routerProvider = Provider<GoRouter>((ref) {
           lang: s.uri.queryParameters['lang'],
         ),
       ),
-      // Not built yet.
-      GoRoute(path: '/list-all', builder: (_, _) => const TodoScreen('فهرست کامل')),
+      GoRoute(parentNavigatorKey: rootKey, path: '/list-all', builder: (_, _) => const ListAllScreen()),
+      GoRoute(parentNavigatorKey: rootKey, path: '/author/:id', builder: (_, s) => AuthorScreen(authorId: s.pathParameters['id']!)),
     ],
   );
 });

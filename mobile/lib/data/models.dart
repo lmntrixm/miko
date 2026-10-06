@@ -41,6 +41,8 @@ class Work {
     required this.chapterCount,
     required this.updatedAt,
     this.status = WorkStatus.ongoing,
+    this.authorId = 'sample-author',
+    this.langs = const {'fa', 'en'},
   });
 
   final String id;
@@ -55,6 +57,10 @@ class Work {
   final int chapterCount;
   final DateTime updatedAt;
   final WorkStatus status;
+  final String authorId;
+
+  /// Reading languages available: `fa`, `en`.
+  final Set<String> langs;
 }
 
 class Chapter {

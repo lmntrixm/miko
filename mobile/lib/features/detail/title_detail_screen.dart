@@ -13,6 +13,7 @@ import '../../widgets/chapter_row.dart';
 import '../../widgets/cover_placeholder.dart';
 import '../../widgets/miko_badge.dart';
 import '../../widgets/miko_button.dart';
+import '../../widgets/pressable.dart';
 import '../../widgets/miko_chip.dart';
 import '../home/home_screen.dart' show statusBadge;
 
@@ -150,6 +151,22 @@ class _DetailState extends ConsumerState<_Detail> {
                             w.nameFa,
                             style: MRText.bodyLg.copyWith(
                               color: c.textSecondary,
+                            ),
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional.centerStart,
+                            child: Pressable(
+                              onTap: () => context.push('/author/${w.authorId}'),
+                              child: ConstrainedBox(
+                                constraints: const BoxConstraints(minHeight: 44),
+                                child: Center(
+                                  widthFactor: 1,
+                                  child: Text(
+                                    'نویسنده: ${w.author} ›',
+                                    style: MRText.caption.copyWith(fontSize: 13, color: c.red300),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                           const SizedBox(height: MRSpacing.space2),

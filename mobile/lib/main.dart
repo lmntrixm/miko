@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/providers.dart';
 import 'data/account_providers.dart';
+import 'features/status/status_gate.dart';
 import 'router.dart';
 import 'theme/miko_theme.dart';
 
@@ -34,6 +35,10 @@ class MikoApp extends ConsumerWidget {
       supportedLocales: const [Locale('fa', 'IR')],
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
       routerConfig: ref.watch(routerProvider),
+      builder: (context, child) => StatusGate(
+        onOpenDownloads: () => ref.read(routerProvider).go('/downloads'),
+        child: child ?? const SizedBox(),
+      ),
     );
   }
 }

@@ -184,6 +184,7 @@ class MockContentRepository implements ContentRepository {
       chapterCount: 24,
       updatedAt: DateTime(2026, 8, 30),
       status: WorkStatus.finished,
+      langs: const {'fa'},
     ),
   ];
 

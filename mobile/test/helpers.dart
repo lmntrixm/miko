@@ -12,6 +12,8 @@ import 'package:miko/data/content_providers.dart';
 import 'dart:async';
 
 import 'package:miko/data/content_repository.dart';
+import 'package:miko/data/discovery_providers.dart';
+import 'package:miko/data/discovery_repository.dart';
 import 'package:miko/data/downloads.dart';
 import 'package:miko/data/models.dart';
 import 'package:miko/features/billing/payment_pending_screen.dart';
@@ -66,6 +68,7 @@ Future<void> pumpApp(
   FakeConnectivity? net,
   MockAccountRepository? account,
   FakeShare? share,
+  AppStatus appStatus = const AppStatus(),
 }) async {
   await loadFonts();
   tester.view.physicalSize = const Size(390, 844) * 2;
@@ -84,6 +87,7 @@ Future<void> pumpApp(
       downloadAutoTickProvider.overrideWithValue(false),
       accountRepositoryProvider.overrideWithValue(account ?? MockAccountRepository(latency: Duration.zero)),
       shareServiceProvider.overrideWithValue(share ?? FakeShare()),
+      discoveryRepositoryProvider.overrideWith((ref) => MockDiscoveryRepository(ref.watch(contentRepositoryProvider), latency: Duration.zero, status: appStatus)),
     ],
     child: const MikoApp(),
   ));
@@ -100,6 +104,7 @@ Future<void> pumpHome(
   FakeConnectivity? net,
   MockAccountRepository? account,
   FakeShare? share,
+  AppStatus appStatus = const AppStatus(),
 }) async {
   await pumpApp(tester,
       prefs: {'onboarding_seen': true, 'access_token': 't', ...prefs},
@@ -109,7 +114,8 @@ Future<void> pumpHome(
       checkoutResult: checkoutResult,
       net: net,
       account: account,
-      share: share);
+      share: share,
+      appStatus: appStatus);
   await tester.pump(const Duration(seconds: 2));
   await tester.pumpAndSettle();
 }
