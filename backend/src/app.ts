@@ -7,6 +7,8 @@ import type { Db } from './db.js';
 import { ApiError, errors } from './errors.js';
 import { authRoutes } from './routes/auth.js';
 import { catalogRoutes } from './routes/catalog.js';
+import { communityRoutes } from './routes/community.js';
+import { libraryRoutes } from './routes/library.js';
 import { readingRoutes } from './routes/reading.js';
 
 /** Sends one-time codes. Dev: console. Real: email/SMS provider ([ایمیل] sender not decided yet). */
@@ -73,6 +75,8 @@ export async function buildApp(deps: Deps): Promise<FastifyInstance> {
     authRoutes(v1, ctx);
     catalogRoutes(v1, ctx);
     readingRoutes(v1, ctx);
+    communityRoutes(v1, ctx);
+    libraryRoutes(v1, ctx);
   }, { prefix: '/v1' });
   return app;
 }

@@ -159,3 +159,61 @@ describe('free mode', () => {
     await free.close();
   });
 });
+
+describe('library and home', () => {
+  it('bookmarks, reading/history tabs, home continue-reading', async () => {
+    const t = await register('lib@example.test');
+    expect((await call('POST', '/v1/me/bookmarks', { titleId: 'sample-tower', bookmarked: true }, t)).status).toBe(200);
+    expect((await call('POST', '/v1/me/bookmarks', { titleId: 'nope', bookmarked: true }, t)).status).toBe(404);
+    expect((await call('GET', '/v1/me/library?tab=bookmarks', undefined, t)).body.items.map((x: { id: string }) => x.id)).toEqual(['sample-tower']);
+    await call('PUT', '/v1/me/progress/sample-moon-1', { page: 2 }, t);
+    clock += 1000;
+    await call('PUT', '/v1/me/progress/sample-moon-2', { page: 5 }, t);
+    const reading = (await call('GET', '/v1/me/library?tab=reading', undefined, t)).body.items;
+    expect(reading).toHaveLength(1);
+    expect(reading[0]).toMatchObject({ id: 'sample-moon', page: 5 });
+    expect((await call('GET', '/v1/me/library?tab=history', undefined, t)).body.items).toHaveLength(2);
+    const home = (await call('GET', '/v1/home?type=manga', undefined, t)).body;
+    expect(home.banner.id).toBe('sample-moon');
+    expect(home.continueReading[0].chapterId).toBe('sample-moon-2');
+    expect(home.latest[0].chapterNumber).toBe(6);
+    expect((await call('GET', '/v1/home')).body.continueReading).toEqual([]);
+    expect((await call('GET', '/v1/authors/sample-author')).body.works).toHaveLength(3);
+    expect((await call('GET', '/v1/authors/none')).status).toBe(404);
+  });
+});
+
+describe('comments, issues, requests', () => {
+  it('post, reply, like toggle, report, and the rate limit', async () => {
+    const t = await register('com@example.test');
+    const t2 = await register('com2@example.test');
+    const posted = await call('POST', '/v1/chapters/sample-moon-1/comments', { body: 'نظر آزمایشی', spoiler: true }, t);
+    expect(posted.status).toBe(201);
+    const id = posted.body.id;
+    expect((await call('POST', '/v1/chapters/sample-moon-1/comments', { body: 'پاسخ', parentId: id }, t2)).status).toBe(201);
+    expect((await call('POST', `/v1/comments/${id}/like`, undefined, t2)).body).toEqual({ liked: true, likes: 1 });
+    expect((await call('POST', `/v1/comments/${id}/like`, undefined, t2)).body).toEqual({ liked: false, likes: 0 });
+    await call('POST', `/v1/comments/${id}/like`, undefined, t2);
+    const list = (await call('GET', '/v1/chapters/sample-moon-1/comments?sort=top', undefined, t2)).body.items;
+    expect(list[0]).toMatchObject({ id, likes: 1, liked: true, replies: 1, spoiler: true });
+    expect((await call('GET', `/v1/comments/${id}/replies`)).body.items).toHaveLength(1);
+    expect((await call('POST', `/v1/comments/${id}/report`, { reason: 'spam' }, t2)).status).toBe(200);
+    expect((await call('POST', `/v1/comments/${id}/report`, { reason: 'bogus' }, t2)).status).toBe(400);
+    expect((await call('POST', '/v1/chapters/sample-moon-1/comments', { body: '   ' }, t)).status).toBe(400);
+    for (let i = 0; i < 4; i++) await call('POST', '/v1/chapters/sample-moon-1/comments', { body: `x${i}` }, t);
+    expect((await call('POST', '/v1/chapters/sample-moon-1/comments', { body: 'x' }, t)).body.error.code).toBe('slow_down');
+    expect((await call('POST', '/v1/chapters/sample-moon-1/comments', { body: 'x' })).status).toBe(401);
+  });
+
+  it('chapter issues and title requests with votes', async () => {
+    const t = await register('req@example.test');
+    const t2 = await register('req2@example.test');
+    expect((await call('POST', '/v1/chapters/sample-moon-1/issues', { kind: 'missing_page', page: 3 }, t)).status).toBe(201);
+    expect((await call('POST', '/v1/chapters/nope/issues', { kind: 'other' }, t)).status).toBe(404);
+    const r = await call('POST', '/v1/requests', { name: 'اثر درخواستی نمونه', type: 'manga' }, t);
+    expect(r.status).toBe(201);
+    expect((await call('POST', `/v1/requests/${r.body.id}/vote`, undefined, t2)).body).toEqual({ voted: true, votes: 2 });
+    const list = (await call('GET', '/v1/requests', undefined, t2)).body.items;
+    expect(list[0]).toMatchObject({ votes: 2, voted: true });
+  });
+});
