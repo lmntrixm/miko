@@ -100,9 +100,73 @@ class ReadingProgress {
 }
 
 class Subscription {
-  const Subscription({required this.active, this.daysLeft = 0});
+  const Subscription({required this.active, this.daysLeft = 0, this.planId, this.endsAt, this.autoRenew = false});
   final bool active;
   final int daysLeft;
+  final String? planId;
+  final DateTime? endsAt;
+  final bool autoRenew;
+}
+
+/// Chapter ids of the form `workId~number`, shared by the reader, downloads and paywall.
+class ChapterRef {
+  const ChapterRef(this.workId, this.number);
+  final String workId;
+  final int number;
+
+  static ChapterRef? tryParse(String? id) {
+    if (id == null) return null;
+    final i = id.lastIndexOf('~');
+    final n = i < 0 ? null : int.tryParse(id.substring(i + 1));
+    return n == null ? null : ChapterRef(id.substring(0, i), n);
+  }
+
+  String get id => '$workId~$number';
+}
+
+/// Price is unknown until the owner provides it: shown as the `[قیمت]` placeholder.
+const pricePlaceholder = '[قیمت]';
+const amountPlaceholder = '[مبلغ]';
+
+class Plan {
+  const Plan({required this.id, required this.name, required this.days, this.popular = false, this.note = '', this.priceToman});
+  final String id, name, note;
+  final int days;
+  final bool popular;
+
+  /// null → not provided yet.
+  final int? priceToman;
+}
+
+enum PaymentStatus { pending, success, failed, refunded }
+
+class Payment {
+  const Payment({required this.id, required this.title, required this.date, required this.status, required this.trackingCode, this.gateway});
+  final String id, title, trackingCode;
+  final DateTime date;
+  final PaymentStatus status;
+  final String? gateway;
+}
+
+/// Outcome of a checkout once the bank answered.
+class PaymentOutcome {
+  const PaymentOutcome({required this.status, this.payment, this.plan, this.endsAt});
+  final PaymentStatus status;
+  final Payment? payment;
+  final Plan? plan;
+  final DateTime? endsAt;
+}
+
+class CheckoutSession {
+  const CheckoutSession({required this.id, this.gatewayUrl});
+  final String id;
+
+  /// Bank page to open outside the app. null in the mock (no real gateway).
+  final String? gatewayUrl;
+}
+
+class InvalidCouponException implements Exception {
+  const InvalidCouponException();
 }
 
 class Comment {

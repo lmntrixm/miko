@@ -54,7 +54,7 @@ class ReaderScreen extends ConsumerWidget {
     final data = ref.watch(_readerDataProvider(chapterId));
     if (data.hasError && data.error is PaywallException) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (context.mounted) context.pushReplacement('/paywall');
+        if (context.mounted) context.pushReplacement('/paywall?chapter=$chapterId');
       });
     }
     return Scaffold(

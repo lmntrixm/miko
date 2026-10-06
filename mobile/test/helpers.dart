@@ -11,6 +11,8 @@ import 'dart:async';
 
 import 'package:miko/data/content_repository.dart';
 import 'package:miko/data/downloads.dart';
+import 'package:miko/data/models.dart';
+import 'package:miko/features/billing/payment_pending_screen.dart';
 import 'package:miko/data/network.dart';
 import 'package:miko/data/providers.dart';
 import 'package:miko/main.dart';
@@ -52,6 +54,7 @@ Future<void> pumpApp(
   bool subscribed = true,
   bool seedProgress = true,
   bool deviceLimitReached = false,
+  PaymentStatus checkoutResult = PaymentStatus.success,
   FakeConnectivity? net,
 }) async {
   await loadFonts();
@@ -65,7 +68,8 @@ Future<void> pumpApp(
     overrides: [
       sharedPrefsProvider.overrideWithValue(p),
       authRepositoryProvider.overrideWithValue(MockAuthRepository(latency: Duration.zero)),
-      contentRepositoryProvider.overrideWithValue(MockContentRepository(subscribed: subscribed, latency: Duration.zero, seedProgress: seedProgress, deviceLimitReached: deviceLimitReached)),
+      contentRepositoryProvider.overrideWithValue(MockContentRepository(subscribed: subscribed, latency: Duration.zero, seedProgress: seedProgress, deviceLimitReached: deviceLimitReached, checkoutResult: checkoutResult)),
+      paymentPollIntervalProvider.overrideWithValue(const Duration(seconds: 1)),
       connectivitySourceProvider.overrideWithValue(net ?? FakeConnectivity()),
       downloadAutoTickProvider.overrideWithValue(false),
     ],
@@ -80,6 +84,7 @@ Future<void> pumpHome(
   bool subscribed = true,
   bool seedProgress = true,
   bool deviceLimitReached = false,
+  PaymentStatus checkoutResult = PaymentStatus.success,
   FakeConnectivity? net,
 }) async {
   await pumpApp(tester,
@@ -87,6 +92,7 @@ Future<void> pumpHome(
       subscribed: subscribed,
       seedProgress: seedProgress,
       deviceLimitReached: deviceLimitReached,
+      checkoutResult: checkoutResult,
       net: net);
   await tester.pump(const Duration(seconds: 2));
   await tester.pumpAndSettle();

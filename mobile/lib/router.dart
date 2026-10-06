@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import 'data/models.dart';
 import 'data/providers.dart';
 import 'features/auth/forgot_password_screen.dart';
 import 'features/auth/intro_screen.dart';
@@ -11,6 +12,12 @@ import 'features/auth/otp_screen.dart';
 import 'features/auth/signup_screen.dart';
 import 'features/auth/splash_screen.dart';
 import 'features/gallery/gallery_screen.dart';
+import 'features/billing/manage_subscription_screen.dart';
+import 'features/billing/payment_history_screen.dart';
+import 'features/billing/payment_pending_screen.dart';
+import 'features/billing/payment_result_screen.dart';
+import 'features/billing/paywall_screen.dart';
+import 'features/billing/subscription_screen.dart';
 import 'features/comments/comments_screen.dart';
 import 'features/common/todo_screen.dart';
 import 'features/detail/title_detail_screen.dart';
@@ -138,8 +145,28 @@ final routerProvider = Provider<GoRouter>((ref) {
           onToggleTheme: () => ref.read(themeModeProvider.notifier).toggle(),
         ),
       ),
+      // Billing: payment itself happens at the bank, outside the app.
+      GoRoute(parentNavigatorKey: rootKey, path: '/paywall', builder: (_, s) => PaywallScreen(chapterId: s.uri.queryParameters['chapter'])),
+      GoRoute(
+        parentNavigatorKey: rootKey,
+        path: '/subscription',
+        builder: (_, s) => SubscriptionScreen(initialPlan: s.uri.queryParameters['plan'], chapterId: s.uri.queryParameters['chapter']),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootKey,
+        path: '/payment-pending/:session',
+        builder: (_, s) => PaymentPendingScreen(sessionId: s.pathParameters['session']!, chapterId: s.uri.queryParameters['chapter']),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootKey,
+        path: '/payment-result/:session',
+        // The outcome travels as `extra`; after a process restart it is gone, so show the history instead.
+        redirect: (_, s) => s.extra is PaymentOutcome ? null : '/payment-history',
+        builder: (_, s) => PaymentResultScreen(outcome: s.extra! as PaymentOutcome, chapterId: s.uri.queryParameters['chapter']),
+      ),
+      GoRoute(parentNavigatorKey: rootKey, path: '/manage-subscription', builder: (_, _) => const ManageSubscriptionScreen()),
+      GoRoute(parentNavigatorKey: rootKey, path: '/payment-history', builder: (_, _) => const PaymentHistoryScreen()),
       // Not built yet; targets from the screens above.
-      GoRoute(path: '/paywall', builder: (_, _) => const TodoScreen('اشتراک')),
       GoRoute(
         path: '/notifications',
         builder: (_, _) => const TodoScreen('اعلان‌ها'),

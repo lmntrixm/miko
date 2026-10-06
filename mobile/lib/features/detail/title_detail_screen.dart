@@ -369,7 +369,7 @@ class _DetailState extends ConsumerState<_Detail> {
   }
 
   void _open(String chapterId, {required bool locked}) {
-    context.push(locked ? '/paywall' : '/reader/$chapterId');
+    context.push(locked ? '/paywall?chapter=$chapterId' : '/reader/$chapterId');
   }
 }
 

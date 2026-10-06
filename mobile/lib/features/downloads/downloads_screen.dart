@@ -42,7 +42,7 @@ Future<void> startDownload(
         ),
       );
     case EnqueueResult.needsSubscription:
-      context.push('/paywall');
+      context.push('/paywall?chapter=${chapter.id}');
     case EnqueueResult.deviceLimit:
       await showDialog<void>(
         context: context,

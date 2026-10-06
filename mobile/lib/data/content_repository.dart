@@ -27,6 +27,17 @@ abstract class ContentRepository {
   });
   Future<void> toggleLike(String commentId);
 
+  // ---- billing (docs/api.md: پرداخت) ----
+  Future<List<Plan>> plans();
+  Future<void> validateCoupon(String code, String planId); // throws InvalidCouponException
+  Future<CheckoutSession> startCheckout(String planId, {String? coupon});
+
+  /// Polled until the bank confirms (pending → success/failed).
+  Future<PaymentOutcome> paymentStatus(String sessionId);
+  Future<List<Payment>> payments();
+  Future<void> setAutoRenew(bool on);
+  Future<void> restorePurchase();
+
   /// Registers this device for downloads. Throws [DeviceLimitException] (409) past 2 devices.
   Future<void> registerDownloadDevice();
 }
@@ -38,6 +49,8 @@ class MockContentRepository implements ContentRepository {
     this.latency = const Duration(milliseconds: 250),
     bool seedProgress = true,
     this.deviceLimitReached = false,
+    this.checkoutResult = PaymentStatus.success,
+    this.pendingPolls = 1,
   }) {
     _comments.addAll(_seedComments());
     if (seedProgress) _seedProgressList();
@@ -45,6 +58,16 @@ class MockContentRepository implements ContentRepository {
 
   bool subscribed;
   bool deviceLimitReached;
+
+  /// What the fake bank answers, and after how many polls.
+  final PaymentStatus checkoutResult;
+  final int pendingPolls;
+  String _planId = 'month3';
+  DateTime _endsAt = _anchor.add(const Duration(days: 26));
+  bool _autoRenew = true;
+  final _sessions = <String, ({String planId, int polls})>{};
+  final _payments = <Payment>[];
+  var _nextSession = 1;
   final Duration latency;
   final _progress = <String, ReadingProgress>{};
   final _comments = <Comment>[];
@@ -173,8 +196,75 @@ class MockContentRepository implements ContentRepository {
   Future<String> userName() => _wait('امیر حسین');
 
   @override
-  Future<Subscription> subscription() =>
-      _wait(Subscription(active: subscribed, daysLeft: subscribed ? 26 : 0));
+  Future<Subscription> subscription() => _wait(Subscription(
+        active: subscribed,
+        daysLeft: subscribed ? _endsAt.difference(_anchor).inDays : 0,
+        planId: subscribed ? _planId : null,
+        endsAt: subscribed ? _endsAt : null,
+        autoRenew: subscribed && _autoRenew,
+      ));
+
+  static const _plans = [
+    Plan(id: 'month1', name: 'یک ماهه', days: 30, note: '۳۰ روز دسترسی کامل'),
+    Plan(id: 'month3', name: 'سه ماهه', days: 90, popular: true, note: '۹۰ روز · [درصد] تخفیف'),
+    Plan(id: 'year', name: 'سالانه', days: 365, note: '۳۶۵ روز · بیشترین صرفه‌جویی'),
+  ];
+
+  @override
+  Future<List<Plan>> plans() => _wait(_plans);
+
+  @override
+  Future<void> validateCoupon(String code, String planId) async {
+    await _wait(null);
+    if (code.trim().toUpperCase() != 'WELCOME') throw const InvalidCouponException();
+  }
+
+  @override
+  Future<CheckoutSession> startCheckout(String planId, {String? coupon}) async {
+    final id = 's${_nextSession++}';
+    _sessions[id] = (planId: planId, polls: 0);
+    return _wait(CheckoutSession(id: id));
+  }
+
+  @override
+  Future<PaymentOutcome> paymentStatus(String sessionId) async {
+    final s = _sessions[sessionId]!;
+    final polls = s.polls + 1;
+    _sessions[sessionId] = (planId: s.planId, polls: polls);
+    if (polls <= pendingPolls) return _wait(const PaymentOutcome(status: PaymentStatus.pending));
+    final plan = _plans.firstWhere((p) => p.id == s.planId);
+    final payment = Payment(
+      id: sessionId,
+      title: plan.name,
+      date: _anchor,
+      status: checkoutResult,
+      trackingCode: 'A-${(281735 + _payments.length).toString().padLeft(9, '0')}',
+      gateway: '[درگاه]',
+    );
+    if (!_payments.any((p) => p.id == sessionId)) _payments.insert(0, payment);
+    if (checkoutResult == PaymentStatus.success) {
+      subscribed = true;
+      _planId = plan.id;
+      _endsAt = _anchor.add(Duration(days: plan.days));
+      _autoRenew = true;
+      return _wait(PaymentOutcome(status: PaymentStatus.success, payment: payment, plan: plan, endsAt: _endsAt));
+    }
+    return _wait(PaymentOutcome(status: checkoutResult, payment: payment, plan: plan));
+  }
+
+  @override
+  Future<List<Payment>> payments() => _wait([
+        ..._payments,
+        Payment(id: 'h1', title: 'یک ماهه', date: DateTime(2026, 9, 25), status: PaymentStatus.failed, trackingCode: 'A-000281730'),
+        Payment(id: 'h2', title: 'یک ماهه', date: DateTime(2026, 8, 24), status: PaymentStatus.success, trackingCode: 'A-000271102'),
+        Payment(id: 'h3', title: 'یک ماهه', date: DateTime(2026, 7, 23), status: PaymentStatus.refunded, trackingCode: 'A-000262009'),
+      ]);
+
+  @override
+  Future<void> setAutoRenew(bool on) async => _autoRenew = on;
+
+  @override
+  Future<void> restorePurchase() => _wait(null);
 
   @override
   Future<List<Work>> works({WorkType? type}) =>

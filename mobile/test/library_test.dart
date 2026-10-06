@@ -96,7 +96,7 @@ void main() {
   testWidgets('free users are sent to the paywall; 3rd device gets a clear dialog', (tester) async {
     await pumpHome(tester, subscribed: false);
     await downloadFromReader(tester, 'dawn-blade~2');
-    expect(find.text('اشتراک'), findsOneWidget); // paywall stub
+    expect(find.text('ادامه این چپتر با اشتراک'), findsOneWidget);
   });
 
   testWidgets('device limit (409) explains what to do', (tester) async {

@@ -63,11 +63,26 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       ),
                     ),
                     if (sub != null)
-                      Text(
-                        sub.active
-                            ? '${faDigits(sub.daysLeft)} روز از اشتراک باقی مانده'
-                            : 'اشتراک فعال ندارید',
-                        style: MRText.caption.copyWith(color: c.textMuted),
+                      Pressable(
+                        // Temporary entry point until Profile (step 6) links to these.
+                        onTap: () => context.push(
+                          sub.active ? '/manage-subscription' : '/subscription',
+                        ),
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(minHeight: 44),
+                          child: Align(
+                            alignment: AlignmentDirectional.centerStart,
+                            widthFactor: 1,
+                            child: Text(
+                              sub.active
+                                  ? '${faDigits(sub.daysLeft)} روز از اشتراک باقی مانده'
+                                  : 'اشتراک فعال ندارید · خرید اشتراک ›',
+                              style: MRText.caption.copyWith(
+                                color: sub.active ? c.textMuted : c.red300,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                   ],
                 ),

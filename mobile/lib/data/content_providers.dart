@@ -13,6 +13,8 @@ final contentRepositoryProvider = Provider<ContentRepository>(
 final userNameProvider = FutureProvider(
   (ref) => ref.watch(contentRepositoryProvider).userName(),
 );
+final plansProvider = FutureProvider((ref) => ref.watch(contentRepositoryProvider).plans());
+final paymentsProvider = FutureProvider.autoDispose((ref) => ref.watch(contentRepositoryProvider).payments());
 final subscriptionProvider = FutureProvider(
   (ref) => ref.watch(contentRepositoryProvider).subscription(),
 );

@@ -303,3 +303,6 @@ const mrHeroGradient = LinearGradient(
   begin: Alignment.centerLeft,
   end: Alignment.centerRight,
 );
+
+/// Subscription card in profile / manage-subscription (design-system.md: defined in code).
+const mrCardGradient = LinearGradient(colors: [Color(0xFF6E0000), Color(0xFFD00000)], begin: Alignment.centerLeft, end: Alignment.centerRight);

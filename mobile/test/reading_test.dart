@@ -54,11 +54,11 @@ void main() {
     await tester.scrollUntilVisible(find.text('#241'), 300, scrollable: find.byType(Scrollable).first);
     await tester.tap(find.text('#241'));
     await tester.pumpAndSettle();
-    expect(find.text('اشتراک'), findsOneWidget); // paywall stub
+    expect(find.text('ادامه این چپتر با اشتراک'), findsOneWidget);
     // The reader itself also refuses locked chapters (402).
     routerOf(tester).pushReplacement('/reader/dawn-blade~10');
     await tester.pumpAndSettle();
-    expect(find.text('اشتراک'), findsOneWidget);
+    expect(find.text('ادامه این چپتر با اشتراک'), findsOneWidget);
   });
 
   testWidgets('free chapters stay readable without a subscription', (tester) async {
