@@ -11,24 +11,42 @@ abstract class ContentRepository {
   /// Throws [PaywallException] when the chapter is locked for this user.
   Future<Chapter> openChapter(String chapterId);
   Future<ReadingProgress?> lastProgress();
+
+  /// One entry per work, most recent first.
+  Future<List<ReadingProgress>> readingList();
   Future<void> saveProgress(ReadingProgress p);
 
   Future<List<Comment>> comments(String chapterId, CommentSort sort);
   Future<Comment> comment(String id);
   Future<List<Comment>> replies(String commentId);
-  Future<void> postComment(String chapterId, String body, {bool spoiler = false, String? parentId});
+  Future<void> postComment(
+    String chapterId,
+    String body, {
+    bool spoiler = false,
+    String? parentId,
+  });
   Future<void> toggleLike(String commentId);
+
+  /// Registers this device for downloads. Throws [DeviceLimitException] (409) past 2 devices.
+  Future<void> registerDownloadDevice();
 }
 
 /// In-memory fake with invented titles (never real works: copyright).
 class MockContentRepository implements ContentRepository {
-  MockContentRepository({this.subscribed = true, this.latency = const Duration(milliseconds: 250)}) {
+  MockContentRepository({
+    this.subscribed = true,
+    this.latency = const Duration(milliseconds: 250),
+    bool seedProgress = true,
+    this.deviceLimitReached = false,
+  }) {
     _comments.addAll(_seedComments());
+    if (seedProgress) _seedProgressList();
   }
 
   bool subscribed;
+  bool deviceLimitReached;
   final Duration latency;
-  ReadingProgress? _progress;
+  final _progress = <String, ReadingProgress>{};
   final _comments = <Comment>[];
   var _nextId = 100;
 
@@ -68,7 +86,8 @@ class MockContentRepository implements ContentRepository {
       nameEn: 'Star Cafe',
       nameFa: 'کافه ستارگان',
       type: WorkType.manga,
-      description: 'کافه‌ای کوچک که فقط نیمه‌شب‌ها باز می‌شود و مشتری‌هایش آدم نیستند.',
+      description:
+          'کافه‌ای کوچک که فقط نیمه‌شب‌ها باز می‌شود و مشتری‌هایش آدم نیستند.',
       rating: 4.5,
       views: 71000,
       genres: const ['زندگی روزمره', 'کمدی'],
@@ -133,7 +152,8 @@ class MockContentRepository implements ContentRepository {
       nameEn: 'Paper Moon',
       nameFa: 'ماه کاغذی',
       type: WorkType.comic,
-      description: 'مجموعه‌ای کوتاه دربارهٔ آدم‌هایی که شب‌ها در شهر بیدار می‌مانند.',
+      description:
+          'مجموعه‌ای کوتاه دربارهٔ آدم‌هایی که شب‌ها در شهر بیدار می‌مانند.',
       rating: 4.1,
       views: 18000,
       genres: const ['روان‌شناختی'],
@@ -164,14 +184,14 @@ class MockContentRepository implements ContentRepository {
   Future<Work> work(String id) => _wait(_works.firstWhere((w) => w.id == id));
 
   Chapter _chapter(Work w, int n) => Chapter(
-        id: '${w.id}~$n',
-        workId: w.id,
-        number: n,
-        titleEn: 'Sample chapter $n',
-        date: w.updatedAt.subtract(Duration(days: 7 * (w.chapterCount - n))),
-        pageCount: 14 + (n * 7) % 9,
-        commentCount: (n * 37) % 800,
-      );
+    id: '${w.id}~$n',
+    workId: w.id,
+    number: n,
+    titleEn: 'Sample chapter $n',
+    date: w.updatedAt.subtract(Duration(days: 7 * (w.chapterCount - n))),
+    pageCount: 14 + (n * 7) % 9,
+    commentCount: (n * 37) % 800,
+  );
 
   @override
   Future<List<Chapter>> chapters(String workId) {
@@ -189,49 +209,156 @@ class MockContentRepository implements ContentRepository {
   }
 
   @override
-  Future<ReadingProgress?> lastProgress() async => _progress ?? _seedProgress();
-
-  ReadingProgress _seedProgress() {
-    final w = _works.first;
-    final ch = _chapter(w, 242);
-    return ReadingProgress(workId: w.id, chapterId: ch.id, chapterNumber: ch.number, page: 2, pageCount: ch.pageCount);
+  Future<ReadingProgress?> lastProgress() async {
+    final list = _sorted();
+    return list.isEmpty ? null : list.first;
   }
 
   @override
-  Future<void> saveProgress(ReadingProgress p) async => _progress = p;
+  Future<List<ReadingProgress>> readingList() => _wait(_sorted());
+
+  List<ReadingProgress> _sorted() =>
+      _progress.values.toList()
+        ..sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
+
+  void _seedProgressList() {
+    // (work, chapter, page, minutes before the anchor, language)
+    final seeds = [
+      (0, 242, 2, 30, 'fa'),
+      (1, 140, 10, 600, 'fa'),
+      (2, 7, 4, 3000, 'en'),
+    ];
+    for (final (wi, n, page, mins, lang) in seeds) {
+      final w = _works[wi];
+      final ch = _chapter(w, n);
+      _progress[w.id] = ReadingProgress(
+        workId: w.id,
+        chapterId: ch.id,
+        chapterNumber: n,
+        page: page,
+        pageCount: ch.pageCount,
+        updatedAt: _anchor.subtract(Duration(minutes: mins)),
+        lang: lang,
+      );
+    }
+  }
+
+  @override
+  Future<void> saveProgress(ReadingProgress p) async => _progress[p.workId] = p;
+
+  @override
+  Future<void> registerDownloadDevice() async {
+    if (deviceLimitReached) throw const DeviceLimitException();
+  }
 
   List<Comment> _seedComments() => [
-        const Comment(id: 'c1', chapterId: '', author: 'سارا م.', body: 'ترجمه این چپتر خیلی روان بود، مرسی از تیم ترجمه. صحنه آخر فوق‌العاده بود!', minutesAgo: 120, likes: 129, replyCount: 3, likedByMe: true),
-        const Comment(id: 'c2', chapterId: '', author: 'رضا ک.', body: 'مرگ شخصیت اصلی در صفحه ۱۲ اتفاق می‌افته!', minutesAgo: 300, likes: 64, replyCount: 0, spoiler: true),
-        const Comment(id: 'c3', chapterId: '', author: 'Nima', body: 'کسی می‌دونه نسخه انگلیسی چپتر بعدی کی میاد؟', minutesAgo: 1440, likes: 31, replyCount: 0),
-        const Comment(id: 'r1', chapterId: '', author: 'تیم ترجمه', body: 'ممنون از لطفت! چپتر بعدی امشب ساعت ۲۰ منتشر می‌شه.', minutesAgo: 60, likes: 58, isTeam: true, parentId: 'c1'),
-        const Comment(id: 'r2', chapterId: '', author: 'رضا ک.', body: 'موافقم، مخصوصاً دیالوگ صفحه ۱۲.', minutesAgo: 40, likes: 12, parentId: 'c1'),
-        const Comment(id: 'r3', chapterId: '', author: 'Nima', body: 'نسخه انگلیسی هم همین امشب میاد؟', minutesAgo: 10, likes: 3, parentId: 'c1'),
-      ];
+    const Comment(
+      id: 'c1',
+      chapterId: '',
+      author: 'سارا م.',
+      body: 'ترجمه این چپتر خیلی روان بود، مرسی از تیم ترجمه. صحنه آخر فوق‌العاده بود!',
+      minutesAgo: 120,
+      likes: 129,
+      replyCount: 3,
+      likedByMe: true,
+    ),
+    const Comment(
+      id: 'c2',
+      chapterId: '',
+      author: 'رضا ک.',
+      body: 'مرگ شخصیت اصلی در صفحه ۱۲ اتفاق می‌افته!',
+      minutesAgo: 300,
+      likes: 64,
+      replyCount: 0,
+      spoiler: true,
+    ),
+    const Comment(
+      id: 'c3',
+      chapterId: '',
+      author: 'Nima',
+      body: 'کسی می‌دونه نسخه انگلیسی چپتر بعدی کی میاد؟',
+      minutesAgo: 1440,
+      likes: 31,
+      replyCount: 0,
+    ),
+    const Comment(
+      id: 'r1',
+      chapterId: '',
+      author: 'تیم ترجمه',
+      body: 'ممنون از لطفت! چپتر بعدی امشب ساعت ۲۰ منتشر می‌شه.',
+      minutesAgo: 60,
+      likes: 58,
+      isTeam: true,
+      parentId: 'c1',
+    ),
+    const Comment(
+      id: 'r2',
+      chapterId: '',
+      author: 'رضا ک.',
+      body: 'موافقم، مخصوصاً دیالوگ صفحه ۱۲.',
+      minutesAgo: 40,
+      likes: 12,
+      parentId: 'c1',
+    ),
+    const Comment(
+      id: 'r3',
+      chapterId: '',
+      author: 'Nima',
+      body: 'نسخه انگلیسی هم همین امشب میاد؟',
+      minutesAgo: 10,
+      likes: 3,
+      parentId: 'c1',
+    ),
+  ];
 
   // Seed comments belong to every chapter (chapterId '' = shared sample data).
-  bool _in(Comment c, String chapterId) => c.chapterId.isEmpty || c.chapterId == chapterId;
+  bool _in(Comment c, String chapterId) =>
+      c.chapterId.isEmpty || c.chapterId == chapterId;
 
   @override
   Future<List<Comment>> comments(String chapterId, CommentSort sort) {
-    final list = _comments.where((c) => c.parentId == null && _in(c, chapterId)).toList();
-    list.sort(sort == CommentSort.popular ? (a, b) => b.likes.compareTo(a.likes) : (a, b) => a.minutesAgo.compareTo(b.minutesAgo));
+    final list = _comments
+        .where((c) => c.parentId == null && _in(c, chapterId))
+        .toList();
+    list.sort(
+      sort == CommentSort.popular
+          ? (a, b) => b.likes.compareTo(a.likes)
+          : (a, b) => a.minutesAgo.compareTo(b.minutesAgo),
+    );
     return _wait(list);
   }
 
   @override
-  Future<Comment> comment(String id) => _wait(_comments.firstWhere((c) => c.id == id));
+  Future<Comment> comment(String id) =>
+      _wait(_comments.firstWhere((c) => c.id == id));
 
   @override
   Future<List<Comment>> replies(String commentId) =>
       _wait(_comments.where((c) => c.parentId == commentId).toList());
 
   @override
-  Future<void> postComment(String chapterId, String body, {bool spoiler = false, String? parentId}) async {
-    _comments.add(Comment(id: 'n${_nextId++}', chapterId: chapterId, author: 'شما', body: body, minutesAgo: 0, spoiler: spoiler, parentId: parentId));
+  Future<void> postComment(
+    String chapterId,
+    String body, {
+    bool spoiler = false,
+    String? parentId,
+  }) async {
+    _comments.add(
+      Comment(
+        id: 'n${_nextId++}',
+        chapterId: chapterId,
+        author: 'شما',
+        body: body,
+        minutesAgo: 0,
+        spoiler: spoiler,
+        parentId: parentId,
+      ),
+    );
     if (parentId != null) {
       final i = _comments.indexWhere((c) => c.id == parentId);
-      _comments[i] = _comments[i].copyWith(replyCount: _comments[i].replyCount + 1);
+      _comments[i] = _comments[i].copyWith(
+        replyCount: _comments[i].replyCount + 1,
+      );
     }
     await _wait(null);
   }
@@ -240,6 +367,9 @@ class MockContentRepository implements ContentRepository {
   Future<void> toggleLike(String commentId) async {
     final i = _comments.indexWhere((c) => c.id == commentId);
     final c = _comments[i];
-    _comments[i] = c.copyWith(likedByMe: !c.likedByMe, likes: c.likes + (c.likedByMe ? -1 : 1));
+    _comments[i] = c.copyWith(
+      likedByMe: !c.likedByMe,
+      likes: c.likes + (c.likedByMe ? -1 : 1),
+    );
   }
 }

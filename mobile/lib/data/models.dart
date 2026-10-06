@@ -10,17 +10,17 @@ enum WorkType {
   /// Reading direction comes from the work type (CLAUDE.md): manga RTL,
   /// comic LTR, manhwa (webtoon) vertical scroll.
   ReadMode get defaultMode => switch (this) {
-        WorkType.manga => ReadMode.pagedRtl,
-        WorkType.comic => ReadMode.pagedLtr,
-        WorkType.manhwa => ReadMode.webtoon,
-      };
+    WorkType.manga => ReadMode.pagedRtl,
+    WorkType.comic => ReadMode.pagedLtr,
+    WorkType.manhwa => ReadMode.webtoon,
+  };
 
   /// Persian word for one unit: چپتر / ایشو / قسمت.
   String get unit => switch (this) {
-        WorkType.manga => 'چپتر',
-        WorkType.comic => 'ایشو',
-        WorkType.manhwa => 'قسمت',
-      };
+    WorkType.manga => 'چپتر',
+    WorkType.comic => 'ایشو',
+    WorkType.manhwa => 'قسمت',
+  };
 }
 
 enum ReadMode { pagedRtl, pagedLtr, webtoon }
@@ -81,9 +81,21 @@ class Chapter {
 }
 
 class ReadingProgress {
-  const ReadingProgress({required this.workId, required this.chapterId, required this.chapterNumber, required this.page, required this.pageCount});
+  const ReadingProgress({
+    required this.workId,
+    required this.chapterId,
+    required this.chapterNumber,
+    required this.page,
+    required this.pageCount,
+    required this.updatedAt,
+    this.lang = 'fa',
+  });
   final String workId, chapterId;
   final int chapterNumber, page, pageCount;
+  final DateTime updatedAt;
+
+  /// Reading language the user last used: fa / en / both.
+  final String lang;
   double get fraction => pageCount == 0 ? 0 : (page + 1) / pageCount;
 }
 
@@ -114,18 +126,18 @@ class Comment {
   final String? parentId;
 
   Comment copyWith({int? likes, int? replyCount, bool? likedByMe}) => Comment(
-        id: id,
-        chapterId: chapterId,
-        author: author,
-        body: body,
-        minutesAgo: minutesAgo,
-        likes: likes ?? this.likes,
-        replyCount: replyCount ?? this.replyCount,
-        spoiler: spoiler,
-        likedByMe: likedByMe ?? this.likedByMe,
-        isTeam: isTeam,
-        parentId: parentId,
-      );
+    id: id,
+    chapterId: chapterId,
+    author: author,
+    body: body,
+    minutesAgo: minutesAgo,
+    likes: likes ?? this.likes,
+    replyCount: replyCount ?? this.replyCount,
+    spoiler: spoiler,
+    likedByMe: likedByMe ?? this.likedByMe,
+    isTeam: isTeam,
+    parentId: parentId,
+  );
 }
 
 enum CommentSort { popular, newest }
@@ -133,4 +145,14 @@ enum CommentSort { popular, newest }
 /// HTTP 402: chapter needs a subscription → Paywall.
 class PaywallException implements Exception {
   const PaywallException();
+}
+
+/// HTTP 409: downloads are limited to 2 devices.
+class DeviceLimitException implements Exception {
+  const DeviceLimitException();
+}
+
+/// Chapter is not downloaded and there is no connection.
+class OfflineException implements Exception {
+  const OfflineException();
 }

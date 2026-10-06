@@ -14,7 +14,9 @@ import 'features/gallery/gallery_screen.dart';
 import 'features/comments/comments_screen.dart';
 import 'features/common/todo_screen.dart';
 import 'features/detail/title_detail_screen.dart';
+import 'features/downloads/downloads_screen.dart';
 import 'features/home/home_screen.dart';
+import 'features/library/library_screen.dart';
 import 'features/reader/reader_screen.dart';
 import 'features/shell/app_shell.dart';
 
@@ -58,35 +60,106 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (_, _, shell) => AppShell(shell: shell),
         // Branch order = tab order: profile · search · home · library · add.
         branches: [
-          StatefulShellBranch(routes: [GoRoute(path: '/profile', builder: (_, _) => const TodoScreen('پروفایل'))]),
-          StatefulShellBranch(routes: [GoRoute(path: '/search', builder: (_, _) => const TodoScreen('جستجو'))]),
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: '/home',
-              builder: (_, _) => const HomeScreen(),
-              routes: [
-                GoRoute(path: 'title/:id', builder: (_, s) => TitleDetailScreen(workId: s.pathParameters['id']!)),
-              ],
-            ),
-          ]),
-          StatefulShellBranch(routes: [GoRoute(path: '/library', builder: (_, _) => const TodoScreen('کتابخانه'))]),
-          StatefulShellBranch(routes: [GoRoute(path: '/request-title', builder: (_, _) => const TodoScreen('درخواست اثر جدید'))]),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/profile',
+                builder: (_, _) => const TodoScreen('پروفایل'),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/search',
+                builder: (_, _) => const TodoScreen('جستجو'),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/home',
+                builder: (_, _) => const HomeScreen(),
+                routes: [
+                  GoRoute(
+                    path: 'title/:id',
+                    builder: (_, s) =>
+                        TitleDetailScreen(workId: s.pathParameters['id']!),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/library',
+                builder: (_, _) => const LibraryScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/request-title',
+                builder: (_, _) => const TodoScreen('درخواست اثر جدید'),
+              ),
+            ],
+          ),
         ],
       ),
-      GoRoute(parentNavigatorKey: rootKey, path: '/reader/:chapterId', builder: (_, s) => ReaderScreen(chapterId: s.pathParameters['chapterId']!)),
-      GoRoute(parentNavigatorKey: rootKey, path: '/comments/:chapterId', builder: (_, s) => CommentsScreen(chapterId: s.pathParameters['chapterId']!)),
-      GoRoute(parentNavigatorKey: rootKey, path: '/comment-thread/:commentId', builder: (_, s) => CommentThreadScreen(commentId: s.pathParameters['commentId']!)),
+      GoRoute(
+        parentNavigatorKey: rootKey,
+        path: '/downloads',
+        builder: (_, _) => const DownloadsScreen(),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootKey,
+        path: '/reader/:chapterId',
+        builder: (_, s) =>
+            ReaderScreen(chapterId: s.pathParameters['chapterId']!),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootKey,
+        path: '/comments/:chapterId',
+        builder: (_, s) =>
+            CommentsScreen(chapterId: s.pathParameters['chapterId']!),
+      ),
+      GoRoute(
+        parentNavigatorKey: rootKey,
+        path: '/comment-thread/:commentId',
+        builder: (_, s) =>
+            CommentThreadScreen(commentId: s.pathParameters['commentId']!),
+      ),
       GoRoute(
         path: '/gallery',
-        builder: (context, _) => GalleryScreen(onToggleTheme: () => ref.read(themeModeProvider.notifier).toggle()),
+        builder: (context, _) => GalleryScreen(
+          onToggleTheme: () => ref.read(themeModeProvider.notifier).toggle(),
+        ),
       ),
       // Not built yet; targets from the screens above.
       GoRoute(path: '/paywall', builder: (_, _) => const TodoScreen('اشتراک')),
-      GoRoute(path: '/notifications', builder: (_, _) => const TodoScreen('اعلان‌ها')),
-      GoRoute(path: '/list-all', builder: (_, _) => const TodoScreen('فهرست کامل')),
-      GoRoute(path: '/report-problem', builder: (_, _) => const TodoScreen('گزارش مشکل')),
-      GoRoute(path: '/legal', builder: (_, _) => const TodoScreen('قوانین و حریم خصوصی')),
-      GoRoute(path: '/help-center', builder: (_, _) => const TodoScreen('پشتیبانی')),
+      GoRoute(
+        path: '/notifications',
+        builder: (_, _) => const TodoScreen('اعلان‌ها'),
+      ),
+      GoRoute(
+        path: '/list-all',
+        builder: (_, _) => const TodoScreen('فهرست کامل'),
+      ),
+      GoRoute(
+        path: '/report-problem',
+        builder: (_, _) => const TodoScreen('گزارش مشکل'),
+      ),
+      GoRoute(
+        path: '/legal',
+        builder: (_, _) => const TodoScreen('قوانین و حریم خصوصی'),
+      ),
+      GoRoute(
+        path: '/help-center',
+        builder: (_, _) => const TodoScreen('پشتیبانی'),
+      ),
     ],
   );
 });

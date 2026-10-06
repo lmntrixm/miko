@@ -44,6 +44,14 @@ abstract final class MikoTheme {
         elevation: 0,
         scrolledUnderElevation: 0,
       ),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: c.surface3,
+        contentTextStyle: MRText.body.copyWith(color: c.textPrimary),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(MRRadius.radiusLg),
+        ),
+      ),
       splashFactory: NoSplash.splashFactory,
       extensions: [c],
     );

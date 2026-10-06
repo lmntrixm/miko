@@ -5,7 +5,12 @@ import '../theme/miko_tokens.dart';
 
 /// Toggle with 44×44 touch target; announces its label and on/off state.
 class MikoSwitch extends StatelessWidget {
-  const MikoSwitch({super.key, required this.value, required this.onChanged, required this.label});
+  const MikoSwitch({
+    super.key,
+    required this.value,
+    required this.onChanged,
+    required this.label,
+  });
   final bool value;
   final ValueChanged<bool> onChanged;
   final String label;
@@ -30,7 +35,9 @@ class MikoSwitch extends StatelessWidget {
               width: 52,
               height: 30,
               padding: const EdgeInsets.all(3),
-              alignment: value ? AlignmentDirectional.centerEnd : AlignmentDirectional.centerStart,
+              alignment: value
+                  ? AlignmentDirectional.centerEnd
+                  : AlignmentDirectional.centerStart,
               decoration: BoxDecoration(
                 color: value ? c.red500 : c.switchOff,
                 borderRadius: BorderRadius.circular(MRRadius.radiusFull),
@@ -38,7 +45,10 @@ class MikoSwitch extends StatelessWidget {
               child: Container(
                 width: 24,
                 height: 24,
-                decoration: BoxDecoration(color: c.onBrand, shape: BoxShape.circle),
+                decoration: BoxDecoration(
+                  color: c.onBrand,
+                  shape: BoxShape.circle,
+                ),
               ),
             ),
           ),

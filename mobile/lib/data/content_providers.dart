@@ -6,17 +6,38 @@ import 'content_repository.dart';
 import 'models.dart';
 import 'providers.dart';
 
-final contentRepositoryProvider = Provider<ContentRepository>((ref) => MockContentRepository());
+final contentRepositoryProvider = Provider<ContentRepository>(
+  (ref) => MockContentRepository(),
+);
 
-final userNameProvider = FutureProvider((ref) => ref.watch(contentRepositoryProvider).userName());
-final subscriptionProvider = FutureProvider((ref) => ref.watch(contentRepositoryProvider).subscription());
-final worksProvider = FutureProvider.family<List<Work>, WorkType?>((ref, t) => ref.watch(contentRepositoryProvider).works(type: t));
-final workProvider = FutureProvider.family<Work, String>((ref, id) => ref.watch(contentRepositoryProvider).work(id));
-final chaptersProvider = FutureProvider.family<List<Chapter>, String>((ref, id) => ref.watch(contentRepositoryProvider).chapters(id));
-final openChapterProvider = FutureProvider.autoDispose.family<Chapter, String>((ref, id) => ref.watch(contentRepositoryProvider).openChapter(id));
-final lastProgressProvider = FutureProvider((ref) => ref.watch(contentRepositoryProvider).lastProgress());
+final userNameProvider = FutureProvider(
+  (ref) => ref.watch(contentRepositoryProvider).userName(),
+);
+final subscriptionProvider = FutureProvider(
+  (ref) => ref.watch(contentRepositoryProvider).subscription(),
+);
+final worksProvider = FutureProvider.family<List<Work>, WorkType?>(
+  (ref, t) => ref.watch(contentRepositoryProvider).works(type: t),
+);
+final workProvider = FutureProvider.family<Work, String>(
+  (ref, id) => ref.watch(contentRepositoryProvider).work(id),
+);
+final chaptersProvider = FutureProvider.family<List<Chapter>, String>(
+  (ref, id) => ref.watch(contentRepositoryProvider).chapters(id),
+);
+final openChapterProvider = FutureProvider.autoDispose.family<Chapter, String>(
+  (ref, id) => ref.watch(contentRepositoryProvider).openChapter(id),
+);
+final lastProgressProvider = FutureProvider(
+  (ref) => ref.watch(contentRepositoryProvider).lastProgress(),
+);
+final readingListProvider = FutureProvider(
+  (ref) => ref.watch(contentRepositoryProvider).readingList(),
+);
 
-final commentSortProvider = NotifierProvider<_SortNotifier, CommentSort>(_SortNotifier.new);
+final commentSortProvider = NotifierProvider<_SortNotifier, CommentSort>(
+  _SortNotifier.new,
+);
 
 class _SortNotifier extends Notifier<CommentSort> {
   @override
@@ -24,10 +45,19 @@ class _SortNotifier extends Notifier<CommentSort> {
   void set(CommentSort s) => state = s;
 }
 
-final commentsProvider = FutureProvider.autoDispose.family<List<Comment>, String>(
-    (ref, chapterId) => ref.watch(contentRepositoryProvider).comments(chapterId, ref.watch(commentSortProvider)));
-final commentProvider = FutureProvider.autoDispose.family<Comment, String>((ref, id) => ref.watch(contentRepositoryProvider).comment(id));
-final repliesProvider = FutureProvider.autoDispose.family<List<Comment>, String>((ref, id) => ref.watch(contentRepositoryProvider).replies(id));
+final commentsProvider = FutureProvider.autoDispose
+    .family<List<Comment>, String>(
+      (ref, chapterId) => ref
+          .watch(contentRepositoryProvider)
+          .comments(chapterId, ref.watch(commentSortProvider)),
+    );
+final commentProvider = FutureProvider.autoDispose.family<Comment, String>(
+  (ref, id) => ref.watch(contentRepositoryProvider).comment(id),
+);
+final repliesProvider = FutureProvider.autoDispose
+    .family<List<Comment>, String>(
+      (ref, id) => ref.watch(contentRepositoryProvider).replies(id),
+    );
 
 // ---- reader settings (persisted) ----
 
@@ -63,41 +93,44 @@ class ReaderSettings {
     bool? keepScreenOn,
     bool? autoNext,
     double? nightFilter,
-  }) =>
-      ReaderSettings(
-        layout: layout ?? this.layout,
-        rtl: rtl ?? this.rtl,
-        brightness: brightness ?? this.brightness,
-        quality: quality ?? this.quality,
-        keepScreenOn: keepScreenOn ?? this.keepScreenOn,
-        autoNext: autoNext ?? this.autoNext,
-        nightFilter: nightFilter ?? this.nightFilter,
-      );
+  }) => ReaderSettings(
+    layout: layout ?? this.layout,
+    rtl: rtl ?? this.rtl,
+    brightness: brightness ?? this.brightness,
+    quality: quality ?? this.quality,
+    keepScreenOn: keepScreenOn ?? this.keepScreenOn,
+    autoNext: autoNext ?? this.autoNext,
+    nightFilter: nightFilter ?? this.nightFilter,
+  );
 
   /// Effective layout/direction for [type].
   ReaderLayout layoutFor(WorkType type) =>
-      layout ?? (type.defaultMode == ReadMode.webtoon ? ReaderLayout.webtoon : ReaderLayout.paged);
+      layout ??
+      (type.defaultMode == ReadMode.webtoon
+          ? ReaderLayout.webtoon
+          : ReaderLayout.paged);
   bool rtlFor(WorkType type) => rtl ?? (type.defaultMode != ReadMode.pagedLtr);
 
   Map<String, Object?> toJson() => {
-        'layout': layout?.name,
-        'rtl': rtl,
-        'brightness': brightness,
-        'quality': quality.name,
-        'keepScreenOn': keepScreenOn,
-        'autoNext': autoNext,
-        'nightFilter': nightFilter,
-      };
+    'layout': layout?.name,
+    'rtl': rtl,
+    'brightness': brightness,
+    'quality': quality.name,
+    'keepScreenOn': keepScreenOn,
+    'autoNext': autoNext,
+    'nightFilter': nightFilter,
+  };
 
   factory ReaderSettings.fromJson(Map<String, dynamic> j) => ReaderSettings(
-        layout: ReaderLayout.values.asNameMap()[j['layout']],
-        rtl: j['rtl'] as bool?,
-        brightness: (j['brightness'] as num?)?.toDouble() ?? 0.7,
-        quality: ImageQuality.values.asNameMap()[j['quality']] ?? ImageQuality.original,
-        keepScreenOn: j['keepScreenOn'] as bool? ?? false,
-        autoNext: j['autoNext'] as bool? ?? false,
-        nightFilter: (j['nightFilter'] as num?)?.toDouble() ?? 0.35,
-      );
+    layout: ReaderLayout.values.asNameMap()[j['layout']],
+    rtl: j['rtl'] as bool?,
+    brightness: (j['brightness'] as num?)?.toDouble() ?? 0.7,
+    quality:
+        ImageQuality.values.asNameMap()[j['quality']] ?? ImageQuality.original,
+    keepScreenOn: j['keepScreenOn'] as bool? ?? false,
+    autoNext: j['autoNext'] as bool? ?? false,
+    nightFilter: (j['nightFilter'] as num?)?.toDouble() ?? 0.35,
+  );
 }
 
 class ReaderSettingsController extends Notifier<ReaderSettings> {
@@ -120,13 +153,25 @@ class ReaderSettingsController extends Notifier<ReaderSettings> {
   }
 }
 
-final readerSettingsProvider = NotifierProvider<ReaderSettingsController, ReaderSettings>(ReaderSettingsController.new);
+final readerSettingsProvider =
+    NotifierProvider<ReaderSettingsController, ReaderSettings>(
+      ReaderSettingsController.new,
+    );
 
 /// Bookmarked work ids ("نشان کردن").
 class BookmarksController extends Notifier<Set<String>> {
+  static const _key = 'bookmarks';
+
   @override
-  Set<String> build() => {};
-  void toggle(String id) => state = state.contains(id) ? ({...state}..remove(id)) : {...state, id};
+  Set<String> build() =>
+      (ref.watch(sharedPrefsProvider).getStringList(_key) ?? const []).toSet();
+
+  void toggle(String id) {
+    state = state.contains(id) ? ({...state}..remove(id)) : {...state, id};
+    ref.read(sharedPrefsProvider).setStringList(_key, state.toList());
+  }
 }
 
-final bookmarksProvider = NotifierProvider<BookmarksController, Set<String>>(BookmarksController.new);
+final bookmarksProvider = NotifierProvider<BookmarksController, Set<String>>(
+  BookmarksController.new,
+);

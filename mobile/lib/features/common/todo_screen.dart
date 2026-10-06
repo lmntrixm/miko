@@ -6,6 +6,8 @@ class TodoScreen extends StatelessWidget {
   final String title;
 
   @override
-  Widget build(BuildContext context) =>
-      Scaffold(appBar: AppBar(title: Text(title)), body: const Center(child: Text('به‌زودی')));
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(title: Text(title)),
+    body: const Center(child: Text('به‌زودی')),
+  );
 }

@@ -43,15 +43,15 @@ class MikoChip extends StatelessWidget {
               child: Align(
                 widthFactor: 1,
                 child: Text(
-                label,
-                textDirection: ltr ? TextDirection.ltr : null,
-                style: TextStyle(
-                  fontFamily: MRText.family,
-                  fontSize: 13,
-                  fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                  color: selected ? c.onBrand : c.textSecondary,
+                  label,
+                  textDirection: ltr ? TextDirection.ltr : null,
+                  style: TextStyle(
+                    fontFamily: MRText.family,
+                    fontSize: 13,
+                    fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                    color: selected ? c.onBrand : c.textSecondary,
+                  ),
                 ),
-              ),
               ),
             ),
           ),
