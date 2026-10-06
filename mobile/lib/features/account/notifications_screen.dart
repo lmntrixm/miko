@@ -122,6 +122,8 @@ class _NotificationCard extends StatelessWidget {
             padding: const EdgeInsets.all(MRSpacing.space3),
             decoration: BoxDecoration(color: unread ? c.red900 : c.surface1, borderRadius: BorderRadius.circular(MRRadius.radiusLg), border: Border.all(color: unread ? c.red800 : c.border1)),
             child: Row(children: [
+              leading,
+              const SizedBox(width: MRSpacing.space3),
               Expanded(
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(item.title, style: MRText.h3.copyWith(color: c.textPrimary)),
@@ -129,8 +131,6 @@ class _NotificationCard extends StatelessWidget {
                   Text(faRelative(item.minutesAgo), style: MRText.caption.copyWith(color: c.textMuted)),
                 ]),
               ),
-              const SizedBox(width: MRSpacing.space3),
-              leading,
               if (unread) Container(width: 9, height: 9, margin: const EdgeInsetsDirectional.only(start: MRSpacing.space3), decoration: BoxDecoration(color: c.red400, shape: BoxShape.circle)),
             ]),
           ),
