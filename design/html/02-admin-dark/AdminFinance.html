@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>پنل ادمین — گزارش مالی</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap">
+<style>
+
+body{margin:0;font-family:'Vazirmatn',sans-serif;background:#121212;color:#F5F5F5}
+a{color:#FF4D4D;text-decoration:none}a:hover{color:#FF7A7A}
+button,select{font-family:inherit;cursor:pointer}
+.card{border-radius:18px;background:#1A1A1A;border:1px solid #262626;padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+
+
+body{margin:0}
+
+html,body{margin:0;width:1440px;min-height:900px}
+</style>
+</head>
+<body>
+<div class="sc-host" data-sc-name="AdminFinance"><div dir="rtl" style="width: 1440px; height: 900px; display: flex; background: rgb(18, 18, 18); overflow: hidden;">
+  <div class="sc-host" data-sc-name="AdminSidebar"><aside dir="rtl" style="width: 260px; height: 900px; box-sizing: border-box; padding: 24px 16px; display: flex; flex-direction: column; gap: 4px; font-family: Vazirmatn, sans-serif; background: rgb(12, 12, 12); border-left: 1px solid rgb(34, 34, 34); color: rgb(245, 245, 245);">
+  <div style="display: flex; align-items: center; gap: 10px; padding: 0px 8px 18px;">
+    <span style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, rgb(142, 0, 0), rgb(230, 0, 0)); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; color: rgb(255, 255, 255);">م</span>
+    <span style="display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 900;">میکو</span><span style="font-size: 11px; color: rgb(163, 163, 163);">پنل مدیریت</span></span>
+  </div>
+  <nav aria-label="منوی ادمین" style="display: flex; flex-direction: column; gap: 2px;">
+    <a href="AdminDashboard.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"></rect><rect x="14" y="3" width="7" height="5" rx="1.5"></rect><rect x="14" y="12" width="7" height="9" rx="1.5"></rect><rect x="3" y="16" width="7" height="5" rx="1.5"></rect></svg>داشبورد</a>
+    <a href="AdminTitles.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"></path><path d="M5 17a3 3 0 0 1 3-3h11"></path></svg>آثار</a>
+    <a href="AdminTitleEdit.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"></path></svg>آپلود چپتر</a>
+    <a href="AdminTranslations.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="5" height="16" rx="1.5"></rect><rect x="10" y="4" width="5" height="11" rx="1.5"></rect><rect x="17" y="4" width="4" height="7" rx="1.5"></rect></svg>ترجمه و انتشار</a>
+    <a href="AdminRequests.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v8M8 12h8"></path></svg>درخواست آثار<span style="margin-right: auto; font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 10px; background: rgb(224, 0, 0); color: rgb(255, 255, 255);">۲۴</span></a>
+    <a href="AdminUsers.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"></path></svg>کاربران</a>
+    <a href="AdminSubscriptions.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18M7 15h4"></path></svg>اشتراک و پرداخت</a>
+    <a href="AdminFinance.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; font-weight: 700; color: rgb(255, 255, 255); background: linear-gradient(90deg, rgb(142, 0, 0), rgb(216, 0, 0));"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"></path><path d="M9 8h6M9 12h6M9 16h3"></path></svg>گزارش مالی</a>
+    <a href="AdminComments.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"></path><path d="M8 9h8M8 12h5"></path></svg>نظرات و گزارش‌ها<span style="margin-right: auto; font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 10px; background: rgb(224, 0, 0); color: rgb(255, 255, 255);">۱۲</span></a>
+    <a href="AdminAnalytics.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg>تحلیل‌ها</a>
+    <a href="AdminNotify.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 20a2 2 0 0 0 4 0"></path></svg>ارسال اعلان</a>
+    <a href="AdminActivityLog.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>گزارش فعالیت</a>
+    <a href="AdminSettings.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"></path></svg>تنظیمات</a>
+  </nav>
+  <div style="margin-top: auto; padding: 10px 12px; border-radius: 14px; background: rgb(24, 24, 24); display: flex; align-items: center; gap: 10px;">
+    <span style="width: 34px; height: 34px; border-radius: 10px; background: rgb(122, 31, 31); color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-weight: 700;">ا</span>
+    <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 13px; font-weight: 700;">امیر حسین جعفری</span><span style="font-size: 11px; color: rgb(163, 163, 163);">مدیر کل</span></span>
+    <a href="AdminLogin.html" aria-label="خروج" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: rgb(163, 163, 163);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M14 8l4 4-4 4M18 12H8"></path></svg></a>
+  </div></aside></div>
+  <main style="flex-grow: 1; min-width: 0px; padding: 24px 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px;">
+    <header style="display: flex; align-items: center; gap: 12px;">
+      <div style="flex-grow: 1; display: flex; flex-direction: column;"><h1 style="margin: 0px; font-size: 24px; font-weight: 900;">گزارش مالی</h1><span style="font-size: 13px; color: rgb(163, 163, 163);">همه مبالغ به تومان · مقادیر واقعی بعد از اتصال درگاه</span></div>
+      <select aria-label="بازه" style="height: 44px; border-radius: 12px; background: rgb(27, 27, 27); border: 1px solid rgb(46, 46, 46); color: rgb(245, 245, 245); padding: 0px 12px; font-size: 13px;"><option>شهریور ۱۴۰۵</option><option>مرداد ۱۴۰۵</option><option>فصل تابستان</option></select>
+      <button style="height: 44px; padding: 0px 16px; border-radius: 12px; background: rgb(27, 27, 27); border: 1px solid rgb(46, 46, 46); color: rgb(229, 229, 229); font-size: 14px;">خروجی برای حسابداری</button>
+    </header>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0px, 1fr)); gap: 16px;">
+      
+        <div class="card" style="gap: 6px;"><span style="font-size: 13px; color: rgb(163, 163, 163);"><span class="sc-interp">درآمد ناخالص</span></span><span style="font-size: 26px; font-weight: 900;"><span class="sc-interp">[مبلغ]</span></span><span style="font-size: 12px; color: rgb(74, 222, 128);"><span class="sc-interp">▲ ۱۲٪ نسبت به مرداد</span></span></div>
+      
+        <div class="card" style="gap: 6px;"><span style="font-size: 13px; color: rgb(163, 163, 163);"><span class="sc-interp">درآمد خالص</span></span><span style="font-size: 26px; font-weight: 900;"><span class="sc-interp">[مبلغ]</span></span><span style="font-size: 12px; color: rgb(163, 163, 163);"><span class="sc-interp">پس از کارمزد و مالیات</span></span></div>
+      
+        <div class="card" style="gap: 6px;"><span style="font-size: 13px; color: rgb(163, 163, 163);"><span class="sc-interp">میانگین درآمد هر مشترک</span></span><span style="font-size: 26px; font-weight: 900;"><span class="sc-interp">[مبلغ]</span></span><span style="font-size: 12px; color: rgb(163, 163, 163);"><span class="sc-interp">ARPU ماهانه</span></span></div>
+      
+        <div class="card" style="gap: 6px;"><span style="font-size: 13px; color: rgb(163, 163, 163);"><span class="sc-interp">برگشتی‌ها</span></span><span style="font-size: 26px; font-weight: 900;"><span class="sc-interp">۱۸ مورد</span></span><span style="font-size: 12px; color: rgb(250, 204, 21);"><span class="sc-interp">۰.۶٪ تراکنش‌ها</span></span></div>
+      
+    </div>
+    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 18px;">
+      <section class="card">
+        <h2 style="margin: 0px; font-size: 16px; font-weight: 900;">درآمد به تفکیک طرح — ۶ ماه اخیر</h2>
+        <div style="display: flex; align-items: flex-end; gap: 22px; height: 200px; padding: 0px 10px; border-bottom: 1px solid rgb(51, 51, 51);">
+          
+            <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end;">
+              <div style="width: 48px; display: flex; flex-direction: column-reverse; height: 57%; border-radius: 8px 8px 2px 2px; overflow: hidden;"><span style="height: 50%; background: rgb(90, 20, 20);"></span><span style="height: 38%; background: rgb(160, 0, 0);"></span><span style="height: 13%; background: rgb(255, 45, 45);"></span></div>
+              <span style="font-size: 11px; color: rgb(163, 163, 163);"><span class="sc-interp">فروردین</span></span>
+            </div>
+          
+            <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end;">
+              <div style="width: 48px; display: flex; flex-direction: column-reverse; height: 63%; border-radius: 8px 8px 2px 2px; overflow: hidden;"><span style="height: 48%; background: rgb(90, 20, 20);"></span><span style="height: 39%; background: rgb(160, 0, 0);"></span><span style="height: 14%; background: rgb(255, 45, 45);"></span></div>
+              <span style="font-size: 11px; color: rgb(163, 163, 163);"><span class="sc-interp">اردیبهشت</span></span>
+            </div>
+          
+            <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end;">
+              <div style="width: 48px; display: flex; flex-direction: column-reverse; height: 71%; border-radius: 8px 8px 2px 2px; overflow: hidden;"><span style="height: 45%; background: rgb(90, 20, 20);"></span><span style="height: 40%; background: rgb(160, 0, 0);"></span><span style="height: 15%; background: rgb(255, 45, 45);"></span></div>
+              <span style="font-size: 11px; color: rgb(163, 163, 163);"><span class="sc-interp">خرداد</span></span>
+            </div>
+          
+            <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end;">
+              <div style="width: 48px; display: flex; flex-direction: column-reverse; height: 80%; border-radius: 8px 8px 2px 2px; overflow: hidden;"><span style="height: 43%; background: rgb(90, 20, 20);"></span><span style="height: 39%; background: rgb(160, 0, 0);"></span><span style="height: 18%; background: rgb(255, 45, 45);"></span></div>
+              <span style="font-size: 11px; color: rgb(163, 163, 163);"><span class="sc-interp">تیر</span></span>
+            </div>
+          
+            <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end;">
+              <div style="width: 48px; display: flex; flex-direction: column-reverse; height: 89%; border-radius: 8px 8px 2px 2px; overflow: hidden;"><span style="height: 40%; background: rgb(90, 20, 20);"></span><span style="height: 40%; background: rgb(160, 0, 0);"></span><span style="height: 19%; background: rgb(255, 45, 45);"></span></div>
+              <span style="font-size: 11px; color: rgb(163, 163, 163);"><span class="sc-interp">مرداد</span></span>
+            </div>
+          
+            <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end;">
+              <div style="width: 48px; display: flex; flex-direction: column-reverse; height: 100%; border-radius: 8px 8px 2px 2px; overflow: hidden;"><span style="height: 37%; background: rgb(90, 20, 20);"></span><span style="height: 41%; background: rgb(160, 0, 0);"></span><span style="height: 21%; background: rgb(255, 45, 45);"></span></div>
+              <span style="font-size: 11px; color: rgb(163, 163, 163);"><span class="sc-interp">شهریور</span></span>
+            </div>
+          
+        </div>
+        <div style="display: flex; gap: 18px; font-size: 12px; color: rgb(212, 212, 212);"><span style="display: flex; gap: 6px; align-items: center;"><span style="width: 10px; height: 10px; border-radius: 3px; background: rgb(90, 20, 20);"></span>یک ماهه</span><span style="display: flex; gap: 6px; align-items: center;"><span style="width: 10px; height: 10px; border-radius: 3px; background: rgb(160, 0, 0);"></span>سه ماهه</span><span style="display: flex; gap: 6px; align-items: center;"><span style="width: 10px; height: 10px; border-radius: 3px; background: rgb(255, 45, 45);"></span>سالانه</span></div>
+      </section>
+      <section class="card">
+        <h2 style="margin: 0px; font-size: 16px; font-weight: 900;">تسویه درگاه‌ها</h2>
+        
+          <div style="padding: 12px; border-radius: 12px; background: rgb(20, 20, 20); display: flex; flex-direction: column; gap: 4px; font-size: 13px;">
+            <span style="display: flex; justify-content: space-between;"><b><span class="sc-interp">زرین‌پال</span></b><span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 7px; background: rgb(15, 42, 26); color: rgb(74, 222, 128);"><span class="sc-interp">تسویه شد</span></span></span>
+            <span style="color: rgb(163, 163, 163); font-size: 12px;"><span class="sc-interp">آخرین تسویه: ۵ مهر · ۸۲٪ تراکنش‌ها</span></span>
+          </div>
+        
+          <div style="padding: 12px; border-radius: 12px; background: rgb(20, 20, 20); display: flex; flex-direction: column; gap: 4px; font-size: 13px;">
+            <span style="display: flex; justify-content: space-between;"><b><span class="sc-interp">آی‌دی‌پی</span></b><span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 7px; background: rgb(42, 34, 10); color: rgb(250, 204, 21);"><span class="sc-interp">در انتظار</span></span></span>
+            <span style="color: rgb(163, 163, 163); font-size: 12px;"><span class="sc-interp">تسویه بعدی: ۸ مهر · ۱۸٪ تراکنش‌ها</span></span>
+          </div>
+        
+        <span style="font-size: 12px; color: rgb(163, 163, 163); line-height: 1.8;">کارمزد درگاه، مالیات بر ارزش افزوده و برگشتی‌ها از مبلغ ناخالص کسر می‌شوند.</span>
+      </section>
+    </div>
+    <section class="card" style="flex-grow: 1; min-height: 0px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;"><h2 style="margin: 0px; font-size: 16px; font-weight: 900;">فاکتورها</h2><a href="AdminSubscriptions.html" style="font-size: 12px;">همه تراکنش‌ها ›</a></div>
+      <div style="display: grid; grid-template-columns: 1fr 1.6fr 1fr 1fr 1fr 90px; gap: 10px; font-size: 12px; color: rgb(140, 140, 140);"><span>شماره</span><span>کاربر</span><span>طرح</span><span>مبلغ</span><span>تاریخ</span><span></span></div>
+      
+        <div style="display: grid; grid-template-columns: 1fr 1.6fr 1fr 1fr 1fr 90px; gap: 10px; font-size: 13px; padding-top: 8px; border-top: 1px solid rgb(38, 38, 38); align-items: center;"><span dir="ltr" style="text-align: right; color: rgb(163, 163, 163);"><span class="sc-interp">INV-1405-0921</span></span><span style="font-weight: 700;"><span class="sc-interp">امیر حسین جعفری</span></span><span><span class="sc-interp">سه ماهه</span></span><span>[مبلغ]</span><span style="color: rgb(163, 163, 163);"><span class="sc-interp">۶ مهر ۱۴۰۵</span></span><a href="#" style="font-size: 12px;">PDF فاکتور</a></div>
+      
+        <div style="display: grid; grid-template-columns: 1fr 1.6fr 1fr 1fr 1fr 90px; gap: 10px; font-size: 13px; padding-top: 8px; border-top: 1px solid rgb(38, 38, 38); align-items: center;"><span dir="ltr" style="text-align: right; color: rgb(163, 163, 163);"><span class="sc-interp">INV-1405-0920</span></span><span style="font-weight: 700;"><span class="sc-interp">زهرا نوری</span></span><span><span class="sc-interp">یک ماهه</span></span><span>[مبلغ]</span><span style="color: rgb(163, 163, 163);"><span class="sc-interp">۶ مهر ۱۴۰۵</span></span><a href="#" style="font-size: 12px;">PDF فاکتور</a></div>
+      
+        <div style="display: grid; grid-template-columns: 1fr 1.6fr 1fr 1fr 1fr 90px; gap: 10px; font-size: 13px; padding-top: 8px; border-top: 1px solid rgb(38, 38, 38); align-items: center;"><span dir="ltr" style="text-align: right; color: rgb(163, 163, 163);"><span class="sc-interp">INV-1405-0918</span></span><span style="font-weight: 700;"><span class="sc-interp">سارا محمدی</span></span><span><span class="sc-interp">سالانه</span></span><span>[مبلغ]</span><span style="color: rgb(163, 163, 163);"><span class="sc-interp">۵ مهر ۱۴۰۵</span></span><a href="#" style="font-size: 12px;">PDF فاکتور</a></div>
+      
+    </section>
+  </main></div></div>
+</body>
+</html>

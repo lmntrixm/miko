@@ -1,0 +1,188 @@
+{
+  "color": {
+    "red": {
+      "red-900": {
+        "$type": "color",
+        "$value": "#FDECEC",
+        "$description": "Tint behind tags, selected cards and unread notifications."
+      },
+      "red-800": {
+        "$type": "color",
+        "$value": "#F5B8B8",
+        "$description": "Quiet red borders: tag outline, dashed upload zone, danger outline button."
+      },
+      "red-700": {
+        "$type": "color",
+        "$value": "#9E0000",
+        "$description": "Gradient start; pressed state of primary buttons."
+      },
+      "red-600": {
+        "$type": "color",
+        "$value": "#C8102E",
+        "$description": "Outline of text fields and the auth card; chapter-row border."
+      },
+      "red-500": {
+        "$type": "color",
+        "$value": "#D00000",
+        "$description": "Primary brand red: solid buttons, active tab, selected chip. White text on it passes 4.5:1."
+      },
+      "red-400": {
+        "$type": "color",
+        "$value": "#D00000",
+        "$description": "Active tab-bar icon, star rating, liked heart, unread dot."
+      },
+      "red-300": {
+        "$type": "color",
+        "$value": "#B00000",
+        "$description": "Text links and text-only actions (بیشتر ›)."
+      },
+      "red-200": {
+        "$type": "color",
+        "$value": "#9E0000",
+        "$description": "Text on red-900 tint (genre tags, spoiler warning)."
+      }
+    },
+    "bg": {
+      "bg-base": {
+        "$type": "color",
+        "$value": "#FFFFFF",
+        "$description": "Reader background and splash."
+      },
+      "bg-nav": {
+        "$type": "color",
+        "$value": "#FFFFFF",
+        "$description": "Bottom tab bar and admin sidebar."
+      },
+      "bg-page": {
+        "$type": "color",
+        "$value": "#F6F4F4",
+        "$description": "Default page background in app and admin."
+      }
+    },
+    "surface": {
+      "surface-sunken": {
+        "$type": "color",
+        "$value": "#EFECEC",
+        "$description": "Admin inputs and inset panels inside cards."
+      },
+      "surface-1": {
+        "$type": "color",
+        "$value": "#FFFFFF",
+        "$description": "Cards, table containers, list items."
+      },
+      "surface-2": {
+        "$type": "color",
+        "$value": "#F1EEEE",
+        "$description": "Search field, unselected chips, secondary buttons."
+      },
+      "surface-3": {
+        "$type": "color",
+        "$value": "#E7E3E3",
+        "$description": "Icon buttons inside cards, hover of surface-2."
+      }
+    },
+    "border": {
+      "border-1": {
+        "$type": "color",
+        "$value": "#E4E0E0",
+        "$description": "Hairline dividers and card borders."
+      },
+      "border-2": {
+        "$type": "color",
+        "$value": "#D6D0D0",
+        "$description": "Borders of fields and chips."
+      }
+    },
+    "switch": {
+      "switch-off": {
+        "$type": "color",
+        "$value": "#C9C3C3",
+        "$description": "Track of an off switch; unselected chapter-range pill."
+      }
+    },
+    "text": {
+      "text-primary": {
+        "$type": "color",
+        "$value": "#1A1414",
+        "$description": "Headings and body text on bg-page and surface-1."
+      },
+      "text-secondary": {
+        "$type": "color",
+        "$value": "#3D3535",
+        "$description": "Subtitles, Persian title under an English title."
+      },
+      "text-muted": {
+        "$type": "color",
+        "$value": "#6B6262",
+        "$description": "Dates, counts, helper text. 7.6:1 on bg-page (dark)."
+      },
+      "text-hint": {
+        "$type": "color",
+        "$value": "#7A7171",
+        "$description": "Placeholders and disabled labels. Not for body copy."
+      }
+    },
+    "on": {
+      "on-brand": {
+        "$type": "color",
+        "$value": "#FFFFFF",
+        "$description": "Text and icons on red-500 or the brand gradient."
+      }
+    },
+    "success": {
+      "success": {
+        "$type": "color",
+        "$value": "#15803D",
+        "$description": "Ongoing / active / paid status text."
+      },
+      "success-bg": {
+        "$type": "color",
+        "$value": "#DCFCE7",
+        "$description": "Background of success badges."
+      }
+    },
+    "warning": {
+      "warning": {
+        "$type": "color",
+        "$value": "#A16207",
+        "$description": "Pending / expiring status text."
+      },
+      "warning-bg": {
+        "$type": "color",
+        "$value": "#FEF3C7",
+        "$description": "Background of warning badges."
+      }
+    },
+    "info": {
+      "info": {
+        "$type": "color",
+        "$value": "#1D4ED8",
+        "$description": "Completed series / informational status text."
+      },
+      "info-bg": {
+        "$type": "color",
+        "$value": "#DBEAFE",
+        "$description": "Background of info badges."
+      }
+    },
+    "danger": {
+      "danger": {
+        "$type": "color",
+        "$value": "#B91C1C",
+        "$description": "Errors, banned users, destructive actions."
+      },
+      "danger-bg": {
+        "$type": "color",
+        "$value": "#FEE2E2",
+        "$description": "Background of danger badges and error banners."
+      }
+    },
+    "scrim": {
+      "scrim": {
+        "$type": "color",
+        "$value": "rgba(20,10,10,0.55)",
+        "$description": "Overlay behind bottom sheets and dialogs."
+      }
+    }
+  }
+}

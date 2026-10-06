@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>نقشه API صفحات</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap">
+<style>
+
+body{margin:0;font-family:'Vazirmatn',sans-serif;background:#121212;color:#F5F5F5}
+code{font-family:ui-monospace,Menlo,monospace;font-size:12px}
+
+html,body{margin:0;width:1440px;min-height:1700px}
+</style>
+</head>
+<body>
+<div class="sc-host" data-sc-name="APIMap"><div dir="rtl" style="width: 1440px; height: 1700px; box-sizing: border-box; padding: 56px 64px; background: rgb(18, 18, 18); display: flex; flex-direction: column; gap: 24px;">
+  <header style="border-bottom: 1px solid rgb(38, 38, 38); padding-bottom: 22px; display: flex; flex-direction: column; gap: 6px;">
+    <span style="font-size: 13px; color: rgb(255, 77, 77); font-weight: 700;">تحویل به برنامه‌نویس · ۳</span>
+    <h1 style="margin: 0px; font-size: 36px; font-weight: 900;">نقشه API — هر صفحه چه داده‌ای لازم دارد</h1>
+    <p style="margin: 0px; font-size: 14px; color: rgb(163, 163, 163);">پیشنهاد REST · نسخه v1 · احراز هویت با توکن JWT · همه پاسخ‌ها صفحه‌بندی cursor-based · نام‌ها پیشنهادی‌اند و تیم بک‌اند نهایی می‌کند</p>
+  </header>
+  <div style="display: flex; gap: 10px;">
+    <button style="height: 40px; padding: 0px 16px; border-radius: 12px; font-family: inherit; font-size: 13px; cursor: pointer; background: rgb(27, 27, 27); border: 1px solid rgb(46, 46, 46); color: rgb(212, 212, 212);"><span class="sc-interp">ورود و حساب</span></button><button style="height: 40px; padding: 0px 16px; border-radius: 12px; font-family: inherit; font-size: 13px; cursor: pointer; background: rgb(224, 0, 0); border: 0px; color: rgb(255, 255, 255); font-weight: 700;"><span class="sc-interp">خواندن و کشف</span></button><button style="height: 40px; padding: 0px 16px; border-radius: 12px; font-family: inherit; font-size: 13px; cursor: pointer; background: rgb(27, 27, 27); border: 1px solid rgb(46, 46, 46); color: rgb(212, 212, 212);"><span class="sc-interp">نظرات و درخواست</span></button><button style="height: 40px; padding: 0px 16px; border-radius: 12px; font-family: inherit; font-size: 13px; cursor: pointer; background: rgb(27, 27, 27); border: 1px solid rgb(46, 46, 46); color: rgb(212, 212, 212);"><span class="sc-interp">پرداخت</span></button><button style="height: 40px; padding: 0px 16px; border-radius: 12px; font-family: inherit; font-size: 13px; cursor: pointer; background: rgb(27, 27, 27); border: 1px solid rgb(46, 46, 46); color: rgb(212, 212, 212);"><span class="sc-interp">پنل ادمین</span></button>
+  </div>
+  <section style="border-radius: 18px; background: rgb(26, 26, 26); border: 1px solid rgb(38, 38, 38); overflow: hidden;">
+    <div style="display: grid; grid-template-columns: 200px 80px 1.6fr 1.4fr 110px; gap: 12px; padding: 12px 22px; font-size: 12px; color: rgb(140, 140, 140); background: rgb(21, 21, 21);"><span>صفحه</span><span>متد</span><span>مسیر</span><span>توضیح</span><span>کش</span></div>
+    
+      <div style="display: grid; grid-template-columns: 200px 80px 1.6fr 1.4fr 110px; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36); align-items: center;">
+        <b><span class="sc-interp">خانه</span></b>
+        <span dir="ltr" style="justify-self: start; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgb(16, 34, 53); color: rgb(96, 165, 250);"><span class="sc-interp">GET</span></span>
+        <code dir="ltr" style="text-align: right; color: rgb(229, 229, 229);"><span class="sc-interp">/v1/home?type=manga</span></code>
+        <span style="color: rgb(212, 212, 212); font-size: 12px;"><span class="sc-interp">بنر، ادامه خواندن، رتبه‌ها، بروزترین‌ها</span></span>
+        <span style="color: rgb(163, 163, 163); font-size: 12px;"><span class="sc-interp">۵ دقیقه</span></span>
+      </div>
+    
+      <div style="display: grid; grid-template-columns: 200px 80px 1.6fr 1.4fr 110px; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36); align-items: center;">
+        <b><span class="sc-interp">کشف</span></b>
+        <span dir="ltr" style="justify-self: start; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgb(16, 34, 53); color: rgb(96, 165, 250);"><span class="sc-interp">GET</span></span>
+        <code dir="ltr" style="text-align: right; color: rgb(229, 229, 229);"><span class="sc-interp">/v1/genres</span></code>
+        <span style="color: rgb(212, 212, 212); font-size: 12px;"><span class="sc-interp">ژانرها و تعداد آثار</span></span>
+        <span style="color: rgb(163, 163, 163); font-size: 12px;"><span class="sc-interp">۱ ساعت</span></span>
+      </div>
+    
+      <div style="display: grid; grid-template-columns: 200px 80px 1.6fr 1.4fr 110px; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36); align-items: center;">
+        <b><span class="sc-interp">جستجو</span></b>
+        <span dir="ltr" style="justify-self: start; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgb(16, 34, 53); color: rgb(96, 165, 250);"><span class="sc-interp">GET</span></span>
+        <code dir="ltr" style="text-align: right; color: rgb(229, 229, 229);"><span class="sc-interp">/v1/titles?q=&amp;type=&amp;lang=&amp;status=</span></code>
+        <span style="color: rgb(212, 212, 212); font-size: 12px;"><span class="sc-interp">نتایج + پیشنهاد املایی</span></span>
+        <span style="color: rgb(163, 163, 163); font-size: 12px;"><span class="sc-interp">—</span></span>
+      </div>
+    
+      <div style="display: grid; grid-template-columns: 200px 80px 1.6fr 1.4fr 110px; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36); align-items: center;">
+        <b><span class="sc-interp">فهرست کامل</span></b>
+        <span dir="ltr" style="justify-self: start; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgb(16, 34, 53); color: rgb(96, 165, 250);"><span class="sc-interp">GET</span></span>
+        <code dir="ltr" style="text-align: right; color: rgb(229, 229, 229);"><span class="sc-interp">/v1/titles/ranked?by=popular&amp;range=week</span></code>
+        <span style="color: rgb(212, 212, 212); font-size: 12px;"><span class="sc-interp">رتبه‌بندی</span></span>
+        <span style="color: rgb(163, 163, 163); font-size: 12px;"><span class="sc-interp">۱۰ دقیقه</span></span>
+      </div>
+    
+      <div style="display: grid; grid-template-columns: 200px 80px 1.6fr 1.4fr 110px; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36); align-items: center;">
+        <b><span class="sc-interp">جزئیات اثر</span></b>
+        <span dir="ltr" style="justify-self: start; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgb(16, 34, 53); color: rgb(96, 165, 250);"><span class="sc-interp">GET</span></span>
+        <code dir="ltr" style="text-align: right; color: rgb(229, 229, 229);"><span class="sc-interp">/v1/titles/{id}</span></code>
+        <span style="color: rgb(212, 212, 212); font-size: 12px;"><span class="sc-interp">اطلاعات، نویسنده، ژانرها</span></span>
+        <span style="color: rgb(163, 163, 163); font-size: 12px;"><span class="sc-interp">۱۰ دقیقه</span></span>
+      </div>
+    
+      <div style="display: grid; grid-template-columns: 200px 80px 1.6fr 1.4fr 110px; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36); align-items: center;">
+        <b><span class="sc-interp">لیست چپترها</span></b>
+        <span dir="ltr" style="justify-self: start; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgb(16, 34, 53); color: rgb(96, 165, 250);"><span class="sc-interp">GET</span></span>
+        <code dir="ltr" style="text-align: right; color: rgb(229, 229, 229);"><span class="sc-interp">/v1/titles/{id}/chapters?range=200-250</span></code>
+        <span style="color: rgb(212, 212, 212); font-size: 12px;"><span class="sc-interp">چپترها + قفل/خوانده‌شده</span></span>
+        <span style="color: rgb(163, 163, 163); font-size: 12px;"><span class="sc-interp">۱ دقیقه</span></span>
+      </div>
+    
+      <div style="display: grid; grid-template-columns: 200px 80px 1.6fr 1.4fr 110px; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36); align-items: center;">
+        <b><span class="sc-interp">خواننده</span></b>
+        <span dir="ltr" style="justify-self: start; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgb(16, 34, 53); color: rgb(96, 165, 250);"><span class="sc-interp">GET</span></span>
+        <code dir="ltr" style="text-align: right; color: rgb(229, 229, 229);"><span class="sc-interp">/v1/chapters/{id}/pages?lang=fa</span></code>
+        <span style="color: rgb(212, 212, 212); font-size: 12px;"><span class="sc-interp">آدرس صفحات (امضاشده)</span></span>
+        <span style="color: rgb(163, 163, 163); font-size: 12px;"><span class="sc-interp">—</span></span>
+      </div>
+    
+      <div style="display: grid; grid-template-columns: 200px 80px 1.6fr 1.4fr 110px; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36); align-items: center;">
+        <b><span class="sc-interp">پیشرفت خواندن</span></b>
+        <span dir="ltr" style="justify-self: start; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgb(42, 34, 10); color: rgb(250, 204, 21);"><span class="sc-interp">PUT</span></span>
+        <code dir="ltr" style="text-align: right; color: rgb(229, 229, 229);"><span class="sc-interp">/v1/me/progress/{chapterId}</span></code>
+        <span style="color: rgb(212, 212, 212); font-size: 12px;"><span class="sc-interp">صفحه فعلی؛ همگام بین دستگاه‌ها</span></span>
+        <span style="color: rgb(163, 163, 163); font-size: 12px;"><span class="sc-interp">—</span></span>
+      </div>
+    
+      <div style="display: grid; grid-template-columns: 200px 80px 1.6fr 1.4fr 110px; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36); align-items: center;">
+        <b><span class="sc-interp">نشان کردن</span></b>
+        <span dir="ltr" style="justify-self: start; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgb(15, 42, 26); color: rgb(74, 222, 128);"><span class="sc-interp">POST</span></span>
+        <code dir="ltr" style="text-align: right; color: rgb(229, 229, 229);"><span class="sc-interp">/v1/me/bookmarks</span></code>
+        <span style="color: rgb(212, 212, 212); font-size: 12px;"><span class="sc-interp">افزودن/حذف</span></span>
+        <span style="color: rgb(163, 163, 163); font-size: 12px;"><span class="sc-interp">—</span></span>
+      </div>
+    
+      <div style="display: grid; grid-template-columns: 200px 80px 1.6fr 1.4fr 110px; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36); align-items: center;">
+        <b><span class="sc-interp">کتابخانه</span></b>
+        <span dir="ltr" style="justify-self: start; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgb(16, 34, 53); color: rgb(96, 165, 250);"><span class="sc-interp">GET</span></span>
+        <code dir="ltr" style="text-align: right; color: rgb(229, 229, 229);"><span class="sc-interp">/v1/me/library?tab=reading</span></code>
+        <span style="color: rgb(212, 212, 212); font-size: 12px;"><span class="sc-interp">در حال خواندن، نشان‌شده، تاریخچه</span></span>
+        <span style="color: rgb(163, 163, 163); font-size: 12px;"><span class="sc-interp">—</span></span>
+      </div>
+    
+      <div style="display: grid; grid-template-columns: 200px 80px 1.6fr 1.4fr 110px; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36); align-items: center;">
+        <b><span class="sc-interp">دانلود</span></b>
+        <span dir="ltr" style="justify-self: start; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgb(15, 42, 26); color: rgb(74, 222, 128);"><span class="sc-interp">POST</span></span>
+        <code dir="ltr" style="text-align: right; color: rgb(229, 229, 229);"><span class="sc-interp">/v1/chapters/{id}/download</span></code>
+        <span style="color: rgb(212, 212, 212); font-size: 12px;"><span class="sc-interp">مجوز دانلود دستگاه</span></span>
+        <span style="color: rgb(163, 163, 163); font-size: 12px;"><span class="sc-interp">—</span></span>
+      </div>
+    
+      <div style="display: grid; grid-template-columns: 200px 80px 1.6fr 1.4fr 110px; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36); align-items: center;">
+        <b><span class="sc-interp">نویسنده</span></b>
+        <span dir="ltr" style="justify-self: start; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgb(16, 34, 53); color: rgb(96, 165, 250);"><span class="sc-interp">GET</span></span>
+        <code dir="ltr" style="text-align: right; color: rgb(229, 229, 229);"><span class="sc-interp">/v1/authors/{id}</span></code>
+        <span style="color: rgb(212, 212, 212); font-size: 12px;"><span class="sc-interp">معرفی و آثار</span></span>
+        <span style="color: rgb(163, 163, 163); font-size: 12px;"><span class="sc-interp">۱ ساعت</span></span>
+      </div>
+    
+  </section>
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 18px;">
+    <section style="border-radius: 18px; background: rgb(26, 26, 26); border: 1px solid rgb(38, 38, 38); padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;"><b>رویدادهای لحظه‌ای (Push/WebSocket)</b><span style="font-size: 12px; line-height: 1.9; color: rgb(212, 212, 212);">chapter.published · comment.reply · subscription.expiring · payment.confirmed · download.completed (محلی)</span></section>
+    <section style="border-radius: 18px; background: rgb(26, 26, 26); border: 1px solid rgb(38, 38, 38); padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;"><b>کدهای خطای مشترک</b><span dir="ltr" style="font-size: 12px; line-height: 1.9; color: rgb(212, 212, 212);">401 نشست منقضی ← ورود · 402 نیاز به اشتراک ← Paywall · 409 بیش از ۲ دستگاه · 426 نسخه قدیمی ← به‌روزرسانی · 503 تعمیر و نگهداری</span></section>
+    <section style="border-radius: 18px; background: rgb(26, 26, 26); border: 1px solid rgb(38, 38, 38); padding: 18px 20px; display: flex; flex-direction: column; gap: 8px;"><b>تصاویر صفحات</b><span style="font-size: 12px; line-height: 1.9; color: rgb(212, 212, 212);">آدرس امضاشده با انقضای ۱۰ دقیقه، WEBP در دو کیفیت، واترمارک نامرئی شناسه کاربر؛ صفحه بعدی از قبل بارگذاری شود.</span></section>
+  </div></div></div>
+</body>
+</html>

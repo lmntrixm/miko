@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>دیزاین سیستم — کامپوننت‌های پایه</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap">
+<style>
+
+body{margin:0;font-family:'Vazirmatn',sans-serif;background:#121212;color:#F5F5F5}
+a{color:#FF4D4D;text-decoration:none}a:hover{color:#FF7A7A}
+button,input{font-family:inherit}
+button{cursor:pointer}
+input::placeholder{color:#8C8C8C}
+
+html,body{margin:0;width:1440px;min-height:1640px}
+</style>
+</head>
+<body>
+<div class="sc-host" data-sc-name="DSComponents"><div dir="rtl" style="width: 1440px; height: 1640px; box-sizing: border-box; padding: 56px 64px; background: rgb(18, 18, 18); display: flex; flex-direction: column; gap: 36px;">
+  <header style="border-bottom: 1px solid rgb(38, 38, 38); padding-bottom: 24px; display: flex; flex-direction: column; gap: 6px;">
+    <span style="font-size: 13px; color: rgb(255, 77, 77); font-weight: 700;">دیزاین سیستم · ۲ · <a href="LightDSComponents.html" style="text-decoration: underline;">نسخه روشن ›</a></span>
+    <h1 style="margin: 0px; font-size: 36px; font-weight: 900;">کامپوننت‌های پایه و حالت‌ها</h1>
+  </header>
+
+  <section style="display: flex; flex-direction: column; gap: 16px;">
+    <h2 style="margin: 0px; font-size: 20px; font-weight: 900;">دکمه‌ها</h2>
+    <div style="display: grid; grid-template-columns: 160px repeat(5, minmax(0px, 1fr)); gap: 14px; align-items: center; font-size: 12px; color: rgb(163, 163, 163);">
+      <span></span><span>پیش‌فرض</span><span>هاور</span><span>فشرده</span><span>غیرفعال</span><span>در حال بارگذاری</span>
+
+      <span style="color: rgb(245, 245, 245); font-weight: 700;">Primary</span>
+      <button style="height: 52px; border-radius: 16px; border: 0px; background: linear-gradient(90deg, rgb(142, 0, 0), rgb(230, 0, 0)); color: rgb(255, 255, 255); font-size: 15px; font-weight: 900;">ورود</button>
+      <button style="height: 52px; border-radius: 16px; border: 0px; background: linear-gradient(90deg, rgb(160, 0, 0), rgb(255, 26, 26)); color: rgb(255, 255, 255); font-size: 15px; font-weight: 900;">ورود</button>
+      <button style="height: 52px; border-radius: 16px; border: 0px; background: rgb(142, 0, 0); color: rgb(255, 255, 255); font-size: 15px; font-weight: 900;">ورود</button>
+      <button disabled="" style="height: 52px; border-radius: 16px; border: 0px; background: rgb(58, 26, 26); color: rgb(140, 140, 140); font-size: 15px; font-weight: 900;">ورود</button>
+      <button style="height: 52px; border-radius: 16px; border: 0px; background: linear-gradient(90deg, rgb(142, 0, 0), rgb(230, 0, 0)); color: rgb(255, 255, 255); font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 8px;"><span style="width: 18px; height: 18px; border-radius: 50%; border-width: 2.5px; border-style: solid; border-color: rgb(255, 255, 255) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.35); border-image: initial; box-sizing: border-box;"></span>در حال ورود…</button>
+
+      <span style="color: rgb(245, 245, 245); font-weight: 700;">Secondary</span>
+      <button style="height: 52px; border-radius: 16px; background: rgb(30, 30, 30); border: 1px solid rgb(46, 46, 46); color: rgb(245, 245, 245); font-size: 15px;">ذخیره پیش‌نویس</button>
+      <button style="height: 52px; border-radius: 16px; background: rgb(38, 38, 38); border: 1px solid rgb(58, 58, 58); color: rgb(245, 245, 245); font-size: 15px;">ذخیره پیش‌نویس</button>
+      <button style="height: 52px; border-radius: 16px; background: rgb(20, 20, 20); border: 1px solid rgb(46, 46, 46); color: rgb(212, 212, 212); font-size: 15px;">ذخیره پیش‌نویس</button>
+      <button disabled="" style="height: 52px; border-radius: 16px; background: rgb(26, 26, 26); border: 1px solid rgb(36, 36, 36); color: rgb(107, 107, 107); font-size: 15px;">ذخیره پیش‌نویس</button>
+      <span></span>
+
+      <span style="color: rgb(245, 245, 245); font-weight: 700;">Outline / Danger</span>
+      <button style="height: 52px; border-radius: 16px; background: none; border: 1px solid rgb(90, 20, 20); color: rgb(255, 107, 107); font-size: 15px;">خروج از حساب</button>
+      <button style="height: 52px; border-radius: 16px; background: rgb(31, 11, 11); border: 1px solid rgb(142, 0, 0); color: rgb(255, 138, 138); font-size: 15px;">خروج از حساب</button>
+      <button style="height: 52px; border-radius: 16px; background: rgb(42, 10, 10); border: 1px solid rgb(142, 0, 0); color: rgb(255, 138, 138); font-size: 15px;">خروج از حساب</button>
+      <button disabled="" style="height: 52px; border-radius: 16px; background: none; border: 1px solid rgb(46, 46, 46); color: rgb(107, 107, 107); font-size: 15px;">خروج از حساب</button>
+      <span></span>
+
+      <span style="color: rgb(245, 245, 245); font-weight: 700;">Text / Link</span>
+      <a href="#" style="font-size: 14px;">بیشتر ›</a>
+      <a href="#" style="font-size: 14px; color: rgb(255, 122, 122);">بیشتر ›</a>
+      <a href="#" style="font-size: 14px; color: rgb(224, 0, 0);">بیشتر ›</a>
+      <span style="font-size: 14px; color: rgb(107, 107, 107);">بیشتر ›</span>
+      <span></span>
+    </div>
+    <div style="display: flex; gap: 24px; align-items: center; padding-top: 6px;">
+      <span style="font-size: 12px; color: rgb(163, 163, 163); width: 160px;">اندازه‌ها و آیکونی</span>
+      <button style="height: 60px; padding: 0px 40px; border-radius: 26px; border: 0px; background: linear-gradient(90deg, rgb(160, 0, 0), rgb(255, 0, 0)); color: rgb(255, 255, 255); font-size: 19px; font-weight: 900;">L · ۶۰</button>
+      <button style="height: 52px; padding: 0px 32px; border-radius: 16px; border: 0px; background: linear-gradient(90deg, rgb(142, 0, 0), rgb(230, 0, 0)); color: rgb(255, 255, 255); font-size: 15px; font-weight: 900;">M · ۵۲</button>
+      <button style="height: 44px; padding: 0px 20px; border-radius: 12px; border: 0px; background: linear-gradient(90deg, rgb(142, 0, 0), rgb(230, 0, 0)); color: rgb(255, 255, 255); font-size: 14px; font-weight: 700;">S · ۴۴ (ادمین)</button>
+      <button style="height: 32px; padding: 0px 12px; border-radius: 8px; border: 0px; background: rgb(224, 0, 0); color: rgb(255, 255, 255); font-size: 12px; font-weight: 700;">XS · ۳۲</button>
+      <button aria-label="فیلتر" style="width: 52px; height: 52px; border-radius: 16px; border: 0px; background: linear-gradient(135deg, rgb(142, 0, 0), rgb(230, 0, 0)); color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"></path></svg></button>
+      <button aria-label="بیشتر" style="width: 56px; height: 56px; border-radius: 16px; border: 0px; background: linear-gradient(rgb(255, 26, 26), rgb(160, 0, 0)); box-shadow: rgba(230, 0, 0, 0.45) 0px 8px 28px; color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m6 9 6 6 6-6"></path></svg></button>
+      <button aria-label="ویرایش" style="width: 44px; height: 44px; border-radius: 14px; background: rgb(30, 30, 30); border: 1px solid rgb(46, 46, 46); color: rgb(229, 229, 229); display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"></path></svg></button>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 16px;">
+    <h2 style="margin: 0px; font-size: 20px; font-weight: 900;">فیلدها — برچسب روی مرز (امضای بصری اپ)</h2>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0px, 1fr)); gap: 22px; padding-top: 12px;">
+      
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <label style="position: relative; height: 64px; border-radius: 26px; border: 1px solid rgb(200, 16, 46); display: flex; align-items: center; gap: 12px; padding: 0px 20px; background: rgb(18, 14, 14);">
+            <span style="position: absolute; top: -11px; right: 22px; padding: 0px 8px; background: rgb(18, 18, 18); font-size: 13px; color: rgb(245, 245, 245);"><span class="sc-interp">ایمیل</span></span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="4"></rect><path d="m4 7 8 6 8-6"></path></svg>
+            <input dir="ltr" placeholder="you@example.com" value="" style="flex-grow: 1; min-width: 0px; background: transparent; border: 0px; outline: none; color: rgb(189, 189, 189); font-size: 14px;">
+          </label>
+          <span style="font-size: 12px; color: rgb(163, 163, 163); padding-right: 16px;"><span class="sc-interp">پیش‌فرض</span></span>
+        </div>
+      
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <label style="position: relative; height: 64px; border-radius: 26px; border: 2px solid rgb(255, 45, 45); display: flex; align-items: center; gap: 12px; padding: 0px 20px; background: rgb(18, 14, 14);">
+            <span style="position: absolute; top: -11px; right: 22px; padding: 0px 8px; background: rgb(18, 18, 18); font-size: 13px; color: rgb(255, 77, 77);"><span class="sc-interp">ایمیل</span></span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF4D4D" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="4"></rect><path d="m4 7 8 6 8-6"></path></svg>
+            <input dir="ltr" placeholder="you@example.com" value="jafari@gmail.co" style="flex-grow: 1; min-width: 0px; background: transparent; border: 0px; outline: none; color: rgb(245, 245, 245); font-size: 14px;">
+          </label>
+          <span style="font-size: 12px; color: rgb(163, 163, 163); padding-right: 16px;"><span class="sc-interp">فوکوس · مرز ۲px</span></span>
+        </div>
+      
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <label style="position: relative; height: 64px; border-radius: 26px; border: 1px solid rgb(255, 107, 107); display: flex; align-items: center; gap: 12px; padding: 0px 20px; background: rgb(18, 14, 14);">
+            <span style="position: absolute; top: -11px; right: 22px; padding: 0px 8px; background: rgb(18, 18, 18); font-size: 13px; color: rgb(255, 107, 107);"><span class="sc-interp">ایمیل</span></span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FF6B6B" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="4"></rect><path d="m4 7 8 6 8-6"></path></svg>
+            <input dir="ltr" placeholder="you@example.com" value="jafari@" style="flex-grow: 1; min-width: 0px; background: transparent; border: 0px; outline: none; color: rgb(245, 245, 245); font-size: 14px;">
+          </label>
+          <span style="font-size: 12px; color: rgb(255, 107, 107); padding-right: 16px;"><span class="sc-interp">ایمیل معتبر نیست</span></span>
+        </div>
+      
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <label style="position: relative; height: 64px; border-radius: 26px; border: 1px solid rgb(51, 51, 51); display: flex; align-items: center; gap: 12px; padding: 0px 20px; background: rgb(18, 14, 14);">
+            <span style="position: absolute; top: -11px; right: 22px; padding: 0px 8px; background: rgb(18, 18, 18); font-size: 13px; color: rgb(107, 107, 107);"><span class="sc-interp">ایمیل</span></span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B6B6B" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="4"></rect><path d="m4 7 8 6 8-6"></path></svg>
+            <input dir="ltr" placeholder="you@example.com" disabled="" value="jafari@gmail.com" style="flex-grow: 1; min-width: 0px; background: transparent; border: 0px; outline: none; color: rgb(107, 107, 107); font-size: 14px;">
+          </label>
+          <span style="font-size: 12px; color: rgb(107, 107, 107); padding-right: 16px;"><span class="sc-interp">غیرفعال</span></span>
+        </div>
+      
+    </div>
+    <div style="display: flex; gap: 32px; align-items: flex-start;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <span style="font-size: 12px; color: rgb(163, 163, 163);">کد تأیید (OTP)</span>
+        <div dir="ltr" style="height: 64px; width: 420px; border-radius: 26px; border: 1px solid rgb(200, 16, 46); display: flex; align-items: flex-end; justify-content: center; gap: 12px; padding-bottom: 16px; box-sizing: border-box;">
+          <span style="width: 40px; text-align: center; font-size: 20px; font-weight: 700; border-bottom: 3px solid rgb(224, 0, 0);">4</span>
+          <span style="width: 40px; text-align: center; font-size: 20px; font-weight: 700; border-bottom: 3px solid rgb(224, 0, 0);">8</span>
+          <span style="width: 40px; text-align: center; font-size: 20px; font-weight: 700; border-bottom: 3px solid rgb(255, 45, 45);">2</span>
+          <span style="width: 40px; border-bottom: 3px solid rgb(90, 90, 90); height: 24px;"></span>
+          <span style="width: 40px; border-bottom: 3px solid rgb(90, 90, 90); height: 24px;"></span>
+          <span style="width: 40px; border-bottom: 3px solid rgb(90, 90, 90); height: 24px;"></span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <span style="font-size: 12px; color: rgb(163, 163, 163);">جستجو (موبایل)</span>
+        <label style="height: 52px; width: 340px; border-radius: 16px; background: rgb(30, 30, 30); border: 1px solid rgb(46, 46, 46); display: flex; align-items: center; gap: 10px; padding: 0px 14px; box-sizing: border-box;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A3A3A3" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+          <input placeholder="جستجوی نام اثر، نویسنده یا ژانر…" style="flex-grow: 1; min-width: 0px; background: transparent; border: 0px; outline: none; color: rgb(245, 245, 245); font-size: 14px;">
+        </label>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <span style="font-size: 12px; color: rgb(163, 163, 163);">فیلد ادمین</span>
+        <label style="display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: rgb(163, 163, 163); width: 280px;">شماره چپتر<input value="۲۴۳" style="height: 42px; border-radius: 10px; background: rgb(20, 20, 20); border: 1px solid rgb(46, 46, 46); color: rgb(245, 245, 245); padding: 0px 12px; font-size: 13px; outline: none;"></label>
+      </div>
+    </div>
+  </section>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0px, 1fr)); gap: 40px;">
+    <section style="display: flex; flex-direction: column; gap: 16px;">
+      <h2 style="margin: 0px; font-size: 20px; font-weight: 900;">انتخابگرها</h2>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        
+          <button style="height: 36px; padding: 0px 14px; border-radius: 12px; font-size: 13px; background: rgb(224, 0, 0); border: 1px solid rgb(224, 0, 0); color: rgb(255, 255, 255); font-weight: 700;"><span class="sc-interp">مانگا</span></button>
+        
+          <button style="height: 36px; padding: 0px 14px; border-radius: 12px; font-size: 13px; background: rgb(30, 30, 30); border: 1px solid rgb(51, 51, 51); color: rgb(212, 212, 212);"><span class="sc-interp">مانهوا</span></button>
+        
+          <button style="height: 36px; padding: 0px 14px; border-radius: 12px; font-size: 13px; background: rgb(30, 30, 30); border: 1px solid rgb(51, 51, 51); color: rgb(212, 212, 212);"><span class="sc-interp">اکشن</span></button>
+        
+          <button style="height: 36px; padding: 0px 14px; border-radius: 12px; font-size: 13px; background: rgb(30, 30, 30); border: 1px solid rgb(51, 51, 51); color: rgb(212, 212, 212);"><span class="sc-interp">فارسی</span></button>
+        
+          <button style="height: 36px; padding: 0px 14px; border-radius: 12px; font-size: 13px; background: rgb(30, 30, 30); border: 1px solid rgb(51, 51, 51); color: rgb(212, 212, 212);"><span class="sc-interp">در حال انتشار</span></button>
+        
+      </div>
+      <div style="display: flex; gap: 6px; background: rgb(27, 27, 27); padding: 4px; border-radius: 14px; width: 380px;">
+        
+          <button style="flex-grow: 1; height: 40px; border-radius: 10px; border: 0px; font-size: 14px; background: transparent; color: rgb(189, 189, 189);"><span class="sc-interp">همه</span></button>
+        
+          <button style="flex-grow: 1; height: 40px; border-radius: 10px; border: 0px; font-size: 14px; background: linear-gradient(90deg, rgb(142, 0, 0), rgb(230, 0, 0)); color: rgb(255, 255, 255); font-weight: 700;"><span class="sc-interp">مانگا</span></button>
+        
+          <button style="flex-grow: 1; height: 40px; border-radius: 10px; border: 0px; font-size: 14px; background: transparent; color: rgb(189, 189, 189);"><span class="sc-interp">مانهوا</span></button>
+        
+          <button style="flex-grow: 1; height: 40px; border-radius: 10px; border: 0px; font-size: 14px; background: transparent; color: rgb(189, 189, 189);"><span class="sc-interp">کامیک</span></button>
+        
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <span dir="ltr" style="height: 36px; padding: 0px 12px; border-radius: 10px; background: linear-gradient(90deg, rgb(142, 0, 0), rgb(230, 0, 0)); color: rgb(255, 255, 255); font-size: 14px; display: flex; align-items: center;">#200 – #250</span>
+        <span dir="ltr" style="height: 36px; padding: 0px 12px; border-radius: 10px; background: rgb(58, 58, 58); color: rgb(229, 229, 229); font-size: 14px; display: flex; align-items: center;">#150 – #200</span>
+        <span dir="ltr" style="height: 36px; padding: 0px 12px; border-radius: 10px; background: rgb(58, 58, 58); color: rgb(229, 229, 229); font-size: 14px; display: flex; align-items: center;">#100 – #150</span>
+        <span style="font-size: 12px; color: rgb(163, 163, 163); align-self: center;">← محدوده چپتر (طرح شما)</span>
+      </div>
+      <div style="display: flex; gap: 6px; border-bottom: 1px solid rgb(38, 38, 38); width: 420px;">
+        <span style="height: 44px; padding: 0px 8px; font-size: 14px; color: rgb(255, 255, 255); font-weight: 700; border-bottom: 2px solid rgb(224, 0, 0); display: flex; align-items: center; margin-bottom: -1px;">در حال خواندن</span>
+        <span style="height: 44px; padding: 0px 8px; font-size: 14px; color: rgb(163, 163, 163); display: flex; align-items: center;">نشان‌شده</span>
+        <span style="height: 44px; padding: 0px 8px; font-size: 14px; color: rgb(163, 163, 163); display: flex; align-items: center;">دانلودها</span>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-direction: column; gap: 16px;">
+      <h2 style="margin: 0px; font-size: 20px; font-weight: 900;">کنترل‌ها، بج و پیشرفت</h2>
+      <div style="display: flex; gap: 28px; align-items: center;">
+        
+          <button role="switch" aria-checked="true" style="display: flex; align-items: center; gap: 10px; background: none; border: 0px; color: rgb(229, 229, 229); font-size: 13px; min-height: 44px; padding: 0px;">
+            <span style="width: 46px; height: 26px; border-radius: 13px; position: relative; flex-shrink: 0; background: rgb(224, 0, 0);"><span style="position: absolute; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: rgb(255, 255, 255); left: 3px;"></span></span><span class="sc-interp">روشن</span>
+          </button>
+        
+          <button role="switch" aria-checked="false" style="display: flex; align-items: center; gap: 10px; background: none; border: 0px; color: rgb(229, 229, 229); font-size: 13px; min-height: 44px; padding: 0px;">
+            <span style="width: 46px; height: 26px; border-radius: 13px; position: relative; flex-shrink: 0; background: rgb(58, 58, 58);"><span style="position: absolute; top: 3px; width: 20px; height: 20px; border-radius: 50%; background: rgb(255, 255, 255); right: 3px;"></span></span><span class="sc-interp">خاموش</span>
+          </button>
+        
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgb(229, 229, 229);"><span style="width: 20px; height: 20px; border-radius: 6px; background: rgb(224, 0, 0); display: flex; align-items: center; justify-content: center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span>چک‌باکس</span>
+        <span style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgb(229, 229, 229);"><span style="width: 20px; height: 20px; border-radius: 50%; border: 6px solid rgb(224, 0, 0); background: rgb(255, 255, 255); box-sizing: border-box;"></span>رادیو</span>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+        <span style="font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 8px; background: rgb(15, 42, 26); color: rgb(74, 222, 128);">در حال انتشار</span>
+        <span style="font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 8px; background: rgb(16, 34, 53); color: rgb(96, 165, 250);">تمام‌شده</span>
+        <span style="font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 8px; background: rgb(42, 34, 10); color: rgb(250, 204, 21);">در انتظار</span>
+        <span style="font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 8px; background: rgb(42, 10, 10); color: rgb(255, 138, 138); border: 1px solid rgb(90, 20, 20);">مانگا</span>
+        <span style="font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 8px; background: rgb(224, 0, 0); color: rgb(255, 255, 255);">محبوب</span>
+        <span dir="ltr" style="font-size: 11px; padding: 3px 10px; border-radius: 8px; background: rgb(38, 38, 38); color: rgb(212, 212, 212);">FA · EN</span>
+        <span style="font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 10px; background: rgb(224, 0, 0); color: rgb(255, 255, 255);">۱۲</span>
+        <span style="width: 9px; height: 9px; border-radius: 50%; background: rgb(255, 42, 42);"></span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; width: 420px;">
+        <div style="height: 6px; border-radius: 3px; background: rgb(51, 51, 51); position: relative; overflow: hidden;"><div style="position: absolute; right: 0px; top: 0px; bottom: 0px; width: 62%; background: linear-gradient(270deg, rgb(142, 0, 0), rgb(255, 26, 26));"></div></div>
+        <span style="font-size: 11px; color: rgb(163, 163, 163);">نوار پیشرفت · از راست پر می‌شود</span>
+      </div>
+      <div style="display: flex; gap: 6px; align-items: center;">
+        <span style="width: 26px; height: 10px; border-radius: 5px; background: rgb(255, 255, 255);"></span>
+        <span style="width: 10px; height: 10px; border-radius: 50%; background: rgb(255, 255, 255); opacity: 0.9;"></span>
+        <span style="width: 10px; height: 10px; border-radius: 50%; background: rgb(255, 255, 255); opacity: 0.9;"></span>
+        <span style="font-size: 11px; color: rgb(163, 163, 163); margin-right: 8px;">نشانگر صفحه معرفی (طرح شما)</span>
+      </div>
+    </section>
+  </div>
+
+  <section style="display: flex; flex-direction: column; gap: 16px;">
+    <h2 style="margin: 0px; font-size: 20px; font-weight: 900;">آیکون‌ها — خطی، ضخامت ۱.۶ تا ۱.۸، ۲۴×۲۴</h2>
+    <div style="display: grid; grid-template-columns: repeat(12, minmax(0px, 1fr)); gap: 10px;">
+      <div style="height: 84px; border-radius: 14px; background: rgb(26, 26, 26); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: rgb(163, 163, 163);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="1.6" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"></path><path d="M10 16h4"></path></svg>خانه</div>
+      <div style="height: 84px; border-radius: 14px; background: rgb(26, 26, 26); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: rgb(163, 163, 163);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>جستجو</div>
+      <div style="height: 84px; border-radius: 14px; background: rgb(26, 26, 26); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: rgb(163, 163, 163);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="1.6"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>پروفایل</div>
+      <div style="height: 84px; border-radius: 14px; background: rgb(26, 26, 26); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: rgb(163, 163, 163);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9" stroke-dasharray="2 2.6"></circle><path d="M12 7v5l3 2"></path></svg>تاریخچه</div>
+      <div style="height: 84px; border-radius: 14px; background: rgb(26, 26, 26); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: rgb(163, 163, 163);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v8M8 12h8"></path></svg>افزودن</div>
+      <div style="height: 84px; border-radius: 14px; background: rgb(26, 26, 26); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: rgb(163, 163, 163);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 20a2 2 0 0 0 4 0"></path></svg>اعلان</div>
+      <div style="height: 84px; border-radius: 14px; background: rgb(26, 26, 26); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: rgb(163, 163, 163);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="1.6" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"></path></svg>نشان</div>
+      <div style="height: 84px; border-radius: 14px; background: rgb(26, 26, 26); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: rgb(163, 163, 163);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="1.6" stroke-linecap="round"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"></path></svg>دانلود</div>
+      <div style="height: 84px; border-radius: 14px; background: rgb(26, 26, 26); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: rgb(163, 163, 163);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="1.6" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"></path><path d="M8 9h8M8 12h5"></path></svg>نظر</div>
+      <div style="height: 84px; border-radius: 14px; background: rgb(26, 26, 26); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: rgb(163, 163, 163);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5F5F5" stroke-width="1.6"><circle cx="18" cy="5" r="2.5"></circle><circle cx="6" cy="12" r="2.5"></circle><circle cx="18" cy="19" r="2.5"></circle><path d="m8.2 10.8 7.6-4.4M8.2 13.2l7.6 4.4"></path></svg>اشتراک‌گذاری</div>
+      <div style="height: 84px; border-radius: 14px; background: rgb(26, 26, 26); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: rgb(163, 163, 163);"><svg width="26" height="26" viewBox="0 0 24 24" fill="#FF2D2D"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg>امتیاز</div>
+      <div style="height: 84px; border-radius: 14px; background: rgb(26, 26, 26); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: rgb(163, 163, 163);"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF2D2D" stroke-width="1.8"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>بازدید</div>
+    </div>
+  </section></div></div>
+</body>
+</html>

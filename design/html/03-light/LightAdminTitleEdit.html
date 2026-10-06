@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>پنل ادمین — ویرایش اثر و آپلود چپتر — روشن</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap">
+<style>
+
+body{margin:0;font-family:'Vazirmatn',sans-serif;background:#F6F4F4;color:#1A1414}
+a{color:#B00000;text-decoration:none}a:hover{color:#8E0000}
+button,input,select,textarea{font-family:inherit}
+button{cursor:pointer}
+input::placeholder,textarea::placeholder{color:#7A7171}
+.ph{background-color:#E4E0E0;background-image:repeating-linear-gradient(135deg,rgba(0,0,0,.05) 0 5px,transparent 5px 11px);display:flex;align-items:center;justify-content:center;color:#7A7171;font-size:11px}
+.fld{height:42px;border-radius:10px;background:#EFECEC;border:1px solid #D6D0D0;color:#1A1414;padding:0 12px;font-size:13px;outline:none;box-sizing:border-box;width:100%}
+.lb{display:flex;flex-direction:column;gap:6px;font-size:12px;color:#6B6262}
+
+
+body{margin:0}
+
+html,body{margin:0;width:1440px;min-height:900px}
+</style>
+</head>
+<body>
+<div class="sc-host" data-sc-name="LightAdminTitleEdit"><div dir="rtl" style="width: 1440px; height: 900px; display: flex; background: rgb(246, 244, 244); overflow: hidden;">
+  <div class="sc-host" data-sc-name="AdminSidebar"><aside dir="rtl" style="width: 260px; height: 900px; box-sizing: border-box; padding: 24px 16px; display: flex; flex-direction: column; gap: 4px; font-family: Vazirmatn, sans-serif; background: rgb(255, 255, 255); border-left: 1px solid rgb(228, 224, 224); color: rgb(26, 20, 20);">
+  <div style="display: flex; align-items: center; gap: 10px; padding: 0px 8px 18px;">
+    <span style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, rgb(142, 0, 0), rgb(230, 0, 0)); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; color: rgb(255, 255, 255);">م</span>
+    <span style="display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 900;">میکو</span><span style="font-size: 11px; color: rgb(107, 98, 98);">پنل مدیریت</span></span>
+  </div>
+  <nav aria-label="منوی ادمین" style="display: flex; flex-direction: column; gap: 2px;">
+    <a href="LightAdminDashboard.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(61, 53, 53);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"></rect><rect x="14" y="3" width="7" height="5" rx="1.5"></rect><rect x="14" y="12" width="7" height="9" rx="1.5"></rect><rect x="3" y="16" width="7" height="5" rx="1.5"></rect></svg>داشبورد</a>
+    <a href="LightAdminTitles.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(61, 53, 53);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"></path><path d="M5 17a3 3 0 0 1 3-3h11"></path></svg>آثار</a>
+    <a href="LightAdminTitleEdit.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; font-weight: 700; color: rgb(255, 255, 255); background: linear-gradient(90deg, rgb(142, 0, 0), rgb(216, 0, 0));"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"></path></svg>آپلود چپتر</a>
+    <a href="LightAdminTranslations.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(61, 53, 53);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="5" height="16" rx="1.5"></rect><rect x="10" y="4" width="5" height="11" rx="1.5"></rect><rect x="17" y="4" width="4" height="7" rx="1.5"></rect></svg>ترجمه و انتشار</a>
+    <a href="LightAdminRequests.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(61, 53, 53);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v8M8 12h8"></path></svg>درخواست آثار<span style="margin-right: auto; font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 10px; background: rgb(224, 0, 0); color: rgb(255, 255, 255);">۲۴</span></a>
+    <a href="LightAdminUsers.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(61, 53, 53);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"></path></svg>کاربران</a>
+    <a href="LightAdminSubscriptions.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(61, 53, 53);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18M7 15h4"></path></svg>اشتراک و پرداخت</a>
+    <a href="LightAdminFinance.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(61, 53, 53);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"></path><path d="M9 8h6M9 12h6M9 16h3"></path></svg>گزارش مالی</a>
+    <a href="LightAdminComments.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(61, 53, 53);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"></path><path d="M8 9h8M8 12h5"></path></svg>نظرات و گزارش‌ها<span style="margin-right: auto; font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 10px; background: rgb(224, 0, 0); color: rgb(255, 255, 255);">۱۲</span></a>
+    <a href="LightAdminAnalytics.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(61, 53, 53);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg>تحلیل‌ها</a>
+    <a href="LightAdminNotify.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(61, 53, 53);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 20a2 2 0 0 0 4 0"></path></svg>ارسال اعلان</a>
+    <a href="LightAdminActivityLog.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(61, 53, 53);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>گزارش فعالیت</a>
+    <a href="LightAdminSettings.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(61, 53, 53);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"></path></svg>تنظیمات</a>
+  </nav>
+  <div style="margin-top: auto; padding: 10px 12px; border-radius: 14px; background: rgb(243, 240, 240); display: flex; align-items: center; gap: 10px;">
+    <span style="width: 34px; height: 34px; border-radius: 10px; background: rgb(122, 31, 31); color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-weight: 700;">ا</span>
+    <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 13px; font-weight: 700;">امیر حسین جعفری</span><span style="font-size: 11px; color: rgb(107, 98, 98);">مدیر کل</span></span>
+    <a href="LightAdminLogin.html" aria-label="خروج" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: rgb(107, 98, 98);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M14 8l4 4-4 4M18 12H8"></path></svg></a>
+  </div></aside></div>
+
+  <main style="flex-grow: 1; min-width: 0px; padding: 24px 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px;">
+    <header style="display: flex; align-items: center; gap: 12px;">
+      <div style="flex-grow: 1; display: flex; flex-direction: column;">
+        <span style="font-size: 12px; color: rgb(107, 98, 98);"><a href="LightAdminTitles.html" style="color: rgb(107, 98, 98);">آثار</a> › جوجوتسو کایسن</span>
+        <h1 style="margin: 0px; font-size: 24px; font-weight: 900;">ویرایش اثر و آپلود چپتر</h1>
+      </div>
+      <button style="height: 44px; padding: 0px 18px; border-radius: 12px; background: rgb(255, 255, 255); border: 1px solid rgb(214, 208, 208); color: rgb(42, 34, 34); font-size: 14px;">ذخیره پیش‌نویس</button>
+      <button style="height: 44px; padding: 0px 22px; border-radius: 12px; background: linear-gradient(90deg, rgb(142, 0, 0), rgb(230, 0, 0)); border: 0px; color: rgb(255, 255, 255); font-size: 14px; font-weight: 700;"><span class="sc-interp">زمان‌بندی انتشار</span></button>
+    </header>
+
+    <div style="display: flex; gap: 18px; flex-grow: 1; min-height: 0px;">
+      <section style="width: 400px; flex-shrink: 0; padding: 20px; border-radius: 18px; background: rgb(255, 255, 255); border: 1px solid rgb(228, 224, 224); display: flex; flex-direction: column; gap: 14px; box-sizing: border-box;">
+        <h2 style="margin: 0px; font-size: 16px; font-weight: 900;">اطلاعات اثر</h2>
+        <div style="display: flex; gap: 14px;">
+          <div class="ph" style="width: 110px; height: 150px; border-radius: 12px; flex-shrink: 0; flex-direction: column; gap: 6px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7A7171" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="m21 16-5-5-9 9"></path></svg>
+            تغییر کاور
+          </div>
+          <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 10px;">
+            <label class="lb">نام فارسی<input class="fld" value="جوجوتسو کایسن"></label>
+            <label class="lb">نام انگلیسی<input class="fld" dir="ltr" value="Jujutsu Kaisen"></label>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0px, 1fr)); gap: 10px;">
+          <label class="lb">نوع<select class="fld"><option>مانگا</option><option>مانهوا</option><option>کامیک</option></select></label>
+          <label class="lb">وضعیت<select class="fld"><option>در حال انتشار</option><option>تمام‌شده</option><option>پیش‌نویس</option></select></label>
+          <label class="lb">نویسنده / تصویرگر<input class="fld" value="گگه آکوتامی"></label>
+          <label class="lb">روز انتشار هفتگی<select class="fld"><option>دوشنبه</option><option>یکشنبه</option></select></label>
+        </div>
+        <div class="lb">ژانرها
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span style="font-size: 12px; padding: 4px 10px; border-radius: 8px; background: rgb(253, 236, 236); color: rgb(158, 0, 0); border: 1px solid rgb(245, 184, 184);">اکشن ×</span>
+            <span style="font-size: 12px; padding: 4px 10px; border-radius: 8px; background: rgb(253, 236, 236); color: rgb(158, 0, 0); border: 1px solid rgb(245, 184, 184);">فانتزی ×</span>
+            <span style="font-size: 12px; padding: 4px 10px; border-radius: 8px; background: rgb(253, 236, 236); color: rgb(158, 0, 0); border: 1px solid rgb(245, 184, 184);">ماوراء طبیعی ×</span>
+            <button style="font-size: 12px; padding: 4px 10px; border-radius: 8px; background: none; color: rgb(74, 66, 66); border: 1px dashed rgb(201, 195, 195);">+ افزودن</button>
+          </div>
+        </div>
+        <label class="lb" style="flex-grow: 1;">خلاصه داستان
+          <textarea style="flex-grow: 1; min-height: 110px; border-radius: 10px; background: rgb(239, 236, 236); border: 1px solid rgb(214, 208, 208); color: rgb(42, 34, 34); padding: 10px 12px; font-size: 13px; line-height: 1.9; resize: none; outline: none;">جوجوتسو کایسن یک مجموعه مانگای ژاپنی است که توسط گگه آکوتامی نوشته و مصورسازی شده است…</textarea>
+        </label>
+      </section>
+
+      <div style="flex-grow: 1; min-width: 0px; display: flex; flex-direction: column; gap: 18px;">
+        <section style="padding: 20px; border-radius: 18px; background: rgb(255, 255, 255); border: 1px solid rgb(228, 224, 224); display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin: 0px; font-size: 16px; font-weight: 900;">آپلود چپتر جدید</h2>
+            <div role="group" aria-label="زبان چپتر" style="display: flex; gap: 4px; background: rgb(239, 236, 236); padding: 4px; border-radius: 10px;">
+              <button style="height: 32px; padding: 0px 14px; border: 0px; border-radius: 8px; font-size: 12px; cursor: pointer; background: rgb(224, 0, 0); color: rgb(255, 255, 255); font-weight: 700;">فارسی</button>
+              <button style="height: 32px; padding: 0px 14px; border: 0px; border-radius: 8px; font-size: 12px; cursor: pointer; background: transparent; color: rgb(107, 98, 98);">انگلیسی</button>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 120px 1fr 180px 160px; gap: 10px;">
+            <label class="lb">شماره چپتر<input class="fld" value="۲۴۳"></label>
+            <label class="lb">عنوان چپتر<input class="fld" placeholder="مثلاً: Inhuman Makyo"></label>
+            <label class="lb">زمان انتشار<input class="fld" value="۱۴۰۵/۰۷/۰۶ — ۲۰:۰۰"></label>
+            <label class="lb">دسترسی<select class="fld"><option>فقط مشترکین</option><option>رایگان</option></select></label>
+          </div>
+          <div style="height: 110px; border-radius: 14px; border: 1.5px dashed rgb(245, 184, 184); background: rgb(253, 242, 242); display: flex; align-items: center; justify-content: center; gap: 14px; color: rgb(61, 53, 53); font-size: 14px;">
+            <span style="width: 48px; height: 48px; border-radius: 14px; background: rgb(253, 236, 236); color: rgb(176, 0, 0); display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"></path></svg></span>
+            <span style="display: flex; flex-direction: column; gap: 2px;"><span style="font-weight: 700;">تصاویر صفحات یا فایل ZIP را اینجا رها کنید</span><span style="font-size: 12px; color: rgb(107, 98, 98);">JPG، PNG، WEBP · ترتیب بر اساس نام فایل · حداکثر ۲۰۰ مگابایت</span></span>
+            <button style="height: 40px; padding: 0px 16px; border-radius: 10px; background: rgb(224, 0, 0); border: 0px; color: rgb(255, 255, 255); font-size: 13px; font-weight: 700;">انتخاب فایل</button>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 12px; color: rgb(107, 98, 98);"><span><span class="sc-interp">۹</span> صفحه بارگذاری شد — برای تغییر ترتیب بکشید</span><span>۴۸ مگابایت</span></div>
+          <div style="display: grid; grid-template-columns: repeat(9, minmax(0px, 1fr)); gap: 10px;">
+            
+              <div style="position: relative;">
+                <div class="ph" style="height: 110px; border-radius: 10px; border: 1px solid rgb(214, 208, 208);"><span class="sc-interp">۱</span></div>
+                <button aria-label="حذف صفحه ۱" style="position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; border-radius: 7px; background: rgba(0, 0, 0, 0.75); border: 0px; color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+                
+              </div>
+            
+              <div style="position: relative;">
+                <div class="ph" style="height: 110px; border-radius: 10px; border: 1px solid rgb(214, 208, 208);"><span class="sc-interp">۲</span></div>
+                <button aria-label="حذف صفحه ۲" style="position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; border-radius: 7px; background: rgba(0, 0, 0, 0.75); border: 0px; color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+                
+              </div>
+            
+              <div style="position: relative;">
+                <div class="ph" style="height: 110px; border-radius: 10px; border: 1px solid rgb(214, 208, 208);"><span class="sc-interp">۳</span></div>
+                <button aria-label="حذف صفحه ۳" style="position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; border-radius: 7px; background: rgba(0, 0, 0, 0.75); border: 0px; color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+                
+              </div>
+            
+              <div style="position: relative;">
+                <div class="ph" style="height: 110px; border-radius: 10px; border: 1px solid rgb(214, 208, 208);"><span class="sc-interp">۴</span></div>
+                <button aria-label="حذف صفحه ۴" style="position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; border-radius: 7px; background: rgba(0, 0, 0, 0.75); border: 0px; color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+                
+              </div>
+            
+              <div style="position: relative;">
+                <div class="ph" style="height: 110px; border-radius: 10px; border: 1px solid rgb(214, 208, 208);"><span class="sc-interp">۵</span></div>
+                <button aria-label="حذف صفحه ۵" style="position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; border-radius: 7px; background: rgba(0, 0, 0, 0.75); border: 0px; color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+                
+              </div>
+            
+              <div style="position: relative;">
+                <div class="ph" style="height: 110px; border-radius: 10px; border: 1px solid rgb(214, 208, 208);"><span class="sc-interp">۶</span></div>
+                <button aria-label="حذف صفحه ۶" style="position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; border-radius: 7px; background: rgba(0, 0, 0, 0.75); border: 0px; color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+                
+              </div>
+            
+              <div style="position: relative;">
+                <div class="ph" style="height: 110px; border-radius: 10px; border: 1px solid rgb(214, 208, 208);"><span class="sc-interp">۷</span></div>
+                <button aria-label="حذف صفحه ۷" style="position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; border-radius: 7px; background: rgba(0, 0, 0, 0.75); border: 0px; color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+                
+              </div>
+            
+              <div style="position: relative;">
+                <div class="ph" style="height: 110px; border-radius: 10px; border: 1px solid rgb(214, 208, 208);"><span class="sc-interp">۸</span></div>
+                <button aria-label="حذف صفحه ۸" style="position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; border-radius: 7px; background: rgba(0, 0, 0, 0.75); border: 0px; color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+                
+              </div>
+            
+              <div style="position: relative;">
+                <div class="ph" style="height: 110px; border-radius: 10px; border: 1px solid rgb(214, 208, 208);"><span class="sc-interp">۹</span></div>
+                <button aria-label="حذف صفحه ۹" style="position: absolute; top: 4px; left: 4px; width: 24px; height: 24px; border-radius: 7px; background: rgba(0, 0, 0, 0.75); border: 0px; color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+                
+                  <div style="position: absolute; bottom: 6px; left: 6px; right: 6px; height: 4px; border-radius: 2px; background: rgb(214, 208, 208); overflow: hidden;"><div style="width: 60%; height: 100%; background: rgb(224, 0, 0);"></div></div>
+                
+              </div>
+            
+          </div>
+        </section>
+
+        <section style="flex-grow: 1; padding: 18px 20px; border-radius: 18px; background: rgb(255, 255, 255); border: 1px solid rgb(228, 224, 224); display: flex; flex-direction: column; gap: 6px; min-height: 0px;">
+          <h2 style="margin: 0px 0px 6px; font-size: 16px; font-weight: 900;">چپترهای این اثر</h2>
+          <div style="display: grid; grid-template-columns: 70px 2fr 1fr 1fr 1fr 1fr 80px; font-size: 12px; color: rgb(122, 113, 113);"><span>شماره</span><span>عنوان</span><span>زبان‌ها</span><span>تاریخ</span><span>بازدید</span><span>نظرات</span><span></span></div>
+          
+            <div style="display: grid; grid-template-columns: 70px 2fr 1fr 1fr 1fr 1fr 80px; align-items: center; font-size: 13px; padding: 7px 0px; border-top: 1px solid rgb(228, 224, 224);">
+              <span style="font-weight: 700; color: rgb(176, 0, 0);"><span class="sc-interp">#۲۴۲</span></span><span dir="ltr" style="text-align: right;"><span class="sc-interp">Flying High</span></span><span><span class="sc-interp">FA · EN</span></span><span style="color: rgb(107, 98, 98);"><span class="sc-interp">۱۴۰۵/۰۶/۳۰</span></span><span><span class="sc-interp">۵۵٬۷۸۶</span></span><span><span class="sc-interp">۳۴۵</span></span>
+              <a href="LightAdminTranslations.html" style="font-size: 12px;">ویرایش</a>
+            </div>
+          
+            <div style="display: grid; grid-template-columns: 70px 2fr 1fr 1fr 1fr 1fr 80px; align-items: center; font-size: 13px; padding: 7px 0px; border-top: 1px solid rgb(228, 224, 224);">
+              <span style="font-weight: 700; color: rgb(176, 0, 0);"><span class="sc-interp">#۲۴۱</span></span><span dir="ltr" style="text-align: right;"><span class="sc-interp">Win and Remain</span></span><span><span class="sc-interp">FA · EN</span></span><span style="color: rgb(107, 98, 98);"><span class="sc-interp">۱۴۰۵/۰۶/۲۳</span></span><span><span class="sc-interp">۴۸٬۲۱۰</span></span><span><span class="sc-interp">۱۵۶</span></span>
+              <a href="LightAdminTranslations.html" style="font-size: 12px;">ویرایش</a>
+            </div>
+          
+            <div style="display: grid; grid-template-columns: 70px 2fr 1fr 1fr 1fr 1fr 80px; align-items: center; font-size: 13px; padding: 7px 0px; border-top: 1px solid rgb(228, 224, 224);">
+              <span style="font-weight: 700; color: rgb(176, 0, 0);"><span class="sc-interp">#۲۴۰</span></span><span dir="ltr" style="text-align: right;"><span class="sc-interp">Live On</span></span><span><span class="sc-interp">FA</span></span><span style="color: rgb(107, 98, 98);"><span class="sc-interp">۱۴۰۵/۰۶/۱۶</span></span><span><span class="sc-interp">۴۶٬۹۰۲</span></span><span><span class="sc-interp">۷۵۸</span></span>
+              <a href="LightAdminTranslations.html" style="font-size: 12px;">ویرایش</a>
+            </div>
+          
+        </section>
+      </div>
+    </div>
+  </main></div></div>
+</body>
+</html>

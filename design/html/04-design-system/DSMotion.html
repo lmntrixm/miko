@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>دیزاین سیستم — حرکت و آیکون اپ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap">
+<style>
+
+body{margin:0;font-family:'Vazirmatn',sans-serif;background:#121212;color:#F5F5F5}
+a{color:#FF4D4D;text-decoration:none}
+.stage{height:180px;border-radius:18px;background:#0E0E0E;border:1px solid #262626;position:relative;overflow:hidden}
+@keyframes turn{0%,20%{transform:translateX(0)}50%,70%{transform:translateX(-100%)}100%{transform:translateX(0)}}
+@keyframes sheet{0%,15%{transform:translateY(100%)}45%,80%{transform:translateY(0)}100%{transform:translateY(100%)}}
+@keyframes sh{from{background-position:200% 0}to{background-position:-200% 0}}
+@keyframes press{0%,40%,100%{transform:scale(1)}50%{transform:scale(.96)}}
+@keyframes toast{0%,10%{transform:translateY(-120%);opacity:0}25%,75%{transform:translateY(0);opacity:1}90%,100%{transform:translateY(-120%);opacity:0}}
+@keyframes like{0%,40%,100%{transform:scale(1)}50%{transform:scale(1.35)}60%{transform:scale(.9)}}
+.a-turn{animation:turn 3.2s cubic-bezier(.2,.8,.2,1) infinite}
+.a-sheet{animation:sheet 3.2s cubic-bezier(.2,.8,.2,1) infinite}
+.a-sh{background:linear-gradient(90deg,#1E1E1E 0%,#2E2E2E 50%,#1E1E1E 100%);background-size:200% 100%;animation:sh 1.4s linear infinite}
+.a-press{animation:press 1.6s ease-out infinite}
+.a-toast{animation:toast 3.2s cubic-bezier(.2,.8,.2,1) infinite}
+.a-like{animation:like 1.6s cubic-bezier(.3,1.6,.5,1) infinite}
+@media (prefers-reduced-motion: reduce){.a-turn,.a-sheet,.a-sh,.a-press,.a-toast,.a-like{animation:none}}
+
+html,body{margin:0;width:1440px;min-height:1320px}
+</style>
+</head>
+<body>
+<div class="sc-host" data-sc-name="DSMotion"><div dir="rtl" style="width: 1440px; height: 1320px; box-sizing: border-box; padding: 56px 64px; background: rgb(18, 18, 18); display: flex; flex-direction: column; gap: 32px;">
+  <header style="border-bottom: 1px solid rgb(38, 38, 38); padding-bottom: 24px; display: flex; flex-direction: column; gap: 6px;">
+    <span style="font-size: 13px; color: rgb(255, 77, 77); font-weight: 700;">دیزاین سیستم · ۵ · <a href="LightDSMotion.html" style="text-decoration: underline;">نسخه روشن ›</a></span>
+    <h1 style="margin: 0px; font-size: 36px; font-weight: 900;">حرکت، انیمیشن و آیکون اپ</h1>
+    <p style="margin: 0px; font-size: 14px; color: rgb(163, 163, 163);">حرکت برای نشان دادن رابطه و وضعیت است، نه تزئین · همه انیمیشن‌ها با «کاهش حرکت» سیستم خاموش می‌شوند</p>
+  </header>
+
+  <section style="display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 24px;">
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="stage"><div class="a-turn" style="position: absolute; inset: 0px; display: flex;"><span style="width: 100%; flex-shrink: 0; background: rgb(239, 239, 239); display: flex; align-items: center; justify-content: center; color: rgb(107, 107, 107);">صفحه ۳</span><span style="width: 100%; flex-shrink: 0; background: rgb(220, 220, 220); display: flex; align-items: center; justify-content: center; color: rgb(107, 107, 107);">صفحه ۴</span></div></div>
+      <b style="font-size: 15px;">ورق زدن صفحه</b><span style="font-size: 12px; color: rgb(163, 163, 163);">۲۸۰ms · emphasized · راست‌به‌چپ برای مانگا، برعکس برای کامیک</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="stage"><div style="position: absolute; inset: 0px; background: rgba(0, 0, 0, 0.4);"></div><div class="a-sheet" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 110px; border-radius: 22px 22px 0px 0px; background: rgb(30, 30, 30); border-top: 1px solid rgb(90, 20, 20); display: flex; justify-content: center; padding-top: 10px;"><span style="width: 40px; height: 5px; border-radius: 3px; background: rgb(58, 58, 58);"></span></div></div>
+      <b style="font-size: 15px;">باز شدن باتم‌شیت</b><span style="font-size: 12px; color: rgb(163, 163, 163);">ورود ۳۲۰ms emphasized · خروج ۲۰۰ms standard · پس‌زمینه ۱۵۰ms fade</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="stage" style="padding: 20px; display: flex; flex-direction: column; gap: 12px; box-sizing: border-box;"><span class="a-sh" style="height: 56px; border-radius: 14px;"></span><span class="a-sh" style="height: 14px; width: 70%; border-radius: 6px;"></span><span class="a-sh" style="height: 14px; width: 45%; border-radius: 6px;"></span></div>
+      <b style="font-size: 15px;">اسکلتون بارگذاری</b><span style="font-size: 12px; color: rgb(163, 163, 163);">۱۴۰۰ms linear loop · بعد از ۳۰۰ms تأخیر نمایش داده شود تا بارگذاری سریع چشمک نزند</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="stage" style="display: flex; align-items: center; justify-content: center;"><span class="a-press" style="height: 52px; padding: 0px 40px; border-radius: 16px; background: linear-gradient(90deg, rgb(142, 0, 0), rgb(230, 0, 0)); display: flex; align-items: center; font-weight: 900;">ورود</span></div>
+      <b style="font-size: 15px;">فشردن دکمه</b><span style="font-size: 12px; color: rgb(163, 163, 163);">scale ۰.۹۶ · ۱۰۰ms · بازگشت ۲۰۰ms standard</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="stage"><div class="a-toast" style="position: absolute; top: 16px; left: 16px; right: 16px; height: 48px; border-radius: 14px; background: rgb(30, 30, 30); border: 1px solid rgb(38, 38, 38); display: flex; align-items: center; gap: 8px; padding: 0px 12px; font-size: 13px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: rgb(74, 222, 128);"></span>دانلود چپتر ۲۴۳ کامل شد</div></div>
+      <b style="font-size: 15px;">پیام موقت (Toast)</b><span style="font-size: 12px; color: rgb(163, 163, 163);">ورود از بالا ۲۴۰ms · ماندن ۳ ثانیه · اعلام با aria-live</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="stage" style="display: flex; align-items: center; justify-content: center;"><svg class="a-like" width="56" height="56" viewBox="0 0 24 24" fill="#FF2D2D"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"></path></svg></div>
+      <b style="font-size: 15px;">لایک و نشان کردن</b><span style="font-size: 12px; color: rgb(163, 163, 163);">۳۰۰ms spring · تنها جایی که حرکت «شاد» مجاز است</span>
+    </div>
+  </section>
+
+  <section style="border-radius: 20px; background: rgb(26, 26, 26); border: 1px solid rgb(38, 38, 38); overflow: hidden;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 12px; padding: 12px 22px; font-size: 12px; color: rgb(140, 140, 140); background: rgb(21, 21, 21);"><span>توکن</span><span>مقدار</span><span>کاربرد</span></div>
+    
+      <div style="display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36);"><span dir="ltr" style="text-align: right; font-weight: 700; color: rgb(255, 138, 138);"><span class="sc-interp">duration-fast</span></span><span dir="ltr" style="text-align: right;"><span class="sc-interp">100ms</span></span><span style="color: rgb(212, 212, 212);"><span class="sc-interp">فشردن دکمه، تغییر رنگ هاور</span></span></div>
+    
+      <div style="display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36);"><span dir="ltr" style="text-align: right; font-weight: 700; color: rgb(255, 138, 138);"><span class="sc-interp">duration-base</span></span><span dir="ltr" style="text-align: right;"><span class="sc-interp">200ms</span></span><span style="color: rgb(212, 212, 212);"><span class="sc-interp">تب، سوییچ، چیپ، خروج شیت</span></span></div>
+    
+      <div style="display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36);"><span dir="ltr" style="text-align: right; font-weight: 700; color: rgb(255, 138, 138);"><span class="sc-interp">duration-slow</span></span><span dir="ltr" style="text-align: right;"><span class="sc-interp">320ms</span></span><span style="color: rgb(212, 212, 212);"><span class="sc-interp">ورود شیت و دیالوگ، ورق زدن صفحه</span></span></div>
+    
+      <div style="display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36);"><span dir="ltr" style="text-align: right; font-weight: 700; color: rgb(255, 138, 138);"><span class="sc-interp">ease-standard</span></span><span dir="ltr" style="text-align: right;"><span class="sc-interp">cubic-bezier(.2,0,0,1)</span></span><span style="color: rgb(212, 212, 212);"><span class="sc-interp">بیشتر تغییرات حالت</span></span></div>
+    
+      <div style="display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36);"><span dir="ltr" style="text-align: right; font-weight: 700; color: rgb(255, 138, 138);"><span class="sc-interp">ease-emphasized</span></span><span dir="ltr" style="text-align: right;"><span class="sc-interp">cubic-bezier(.2,.8,.2,1)</span></span><span style="color: rgb(212, 212, 212);"><span class="sc-interp">ورود عناصر بزرگ (شیت، صفحه)</span></span></div>
+    
+      <div style="display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 12px; padding: 11px 22px; font-size: 13px; border-top: 1px solid rgb(36, 36, 36);"><span dir="ltr" style="text-align: right; font-weight: 700; color: rgb(255, 138, 138);"><span class="sc-interp">ease-spring</span></span><span dir="ltr" style="text-align: right;"><span class="sc-interp">cubic-bezier(.3,1.6,.5,1)</span></span><span style="color: rgb(212, 212, 212);"><span class="sc-interp">لایک و نشان کردن</span></span></div>
+    
+  </section>
+
+  <section style="display: flex; gap: 40px; align-items: center;">
+    <div style="display: flex; gap: 24px; align-items: flex-end;">
+      <span style="width: 180px; height: 180px; border-radius: 42px; background: linear-gradient(135deg, rgb(142, 0, 0), rgb(230, 0, 0)); display: flex; align-items: center; justify-content: center; font-size: 120px; font-weight: 900; color: rgb(255, 255, 255); line-height: 1;">م</span>
+      <span style="width: 96px; height: 96px; border-radius: 22px; background: rgb(10, 10, 10); border: 1px solid rgb(38, 38, 38); display: flex; align-items: center; justify-content: center; font-size: 64px; font-weight: 900; color: rgb(224, 0, 0); line-height: 1;">م</span>
+      <span style="width: 56px; height: 56px; border-radius: 13px; background: linear-gradient(135deg, rgb(142, 0, 0), rgb(230, 0, 0)); display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 900; color: rgb(255, 255, 255); line-height: 1;">م</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px; max-width: 520px;">
+      <b style="font-size: 18px;">آیکون اپ — نسخه موقت</b>
+      <span style="font-size: 13px; line-height: 1.9; color: rgb(212, 212, 212);">حرف «م» (میکو) با وزن ۹۰۰ Vazirmatn روی گرادیان برند؛ نسخه تک‌رنگ برای اعلان‌ها و پس‌زمینه تیره. لوگوتایپ و آیکون نهایی میکو از روی همین شبکه طراحی می‌شود.</span>
+      <span style="font-size: 12px; color: rgb(163, 163, 163);">اندازه‌ها: ۱۰۲۴ فروشگاه · ۱۸۰ iOS · ۹۶ اندروید · ۵۶ تنظیمات</span>
+    </div>
+  </section></div></div>
+</body>
+</html>

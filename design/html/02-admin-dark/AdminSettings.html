@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>پنل ادمین — تنظیمات</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap">
+<style>
+
+body{margin:0;font-family:'Vazirmatn',sans-serif;background:#121212;color:#F5F5F5}
+a{color:#FF4D4D;text-decoration:none}a:hover{color:#FF7A7A}
+button,input,select{font-family:inherit}
+button{cursor:pointer}
+.fld{height:42px;border-radius:10px;background:#141414;border:1px solid #2E2E2E;color:#F5F5F5;padding:0 12px;font-size:13px;outline:none;box-sizing:border-box;width:100%}
+.lb{display:flex;flex-direction:column;gap:6px;font-size:12px;color:#A3A3A3}
+
+
+body{margin:0}
+
+html,body{margin:0;width:1440px;min-height:900px}
+</style>
+</head>
+<body>
+<div class="sc-host" data-sc-name="AdminSettings"><div dir="rtl" style="width: 1440px; height: 900px; display: flex; background: rgb(18, 18, 18); overflow: hidden;">
+  <div class="sc-host" data-sc-name="AdminSidebar"><aside dir="rtl" style="width: 260px; height: 900px; box-sizing: border-box; padding: 24px 16px; display: flex; flex-direction: column; gap: 4px; font-family: Vazirmatn, sans-serif; background: rgb(12, 12, 12); border-left: 1px solid rgb(34, 34, 34); color: rgb(245, 245, 245);">
+  <div style="display: flex; align-items: center; gap: 10px; padding: 0px 8px 18px;">
+    <span style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, rgb(142, 0, 0), rgb(230, 0, 0)); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; color: rgb(255, 255, 255);">م</span>
+    <span style="display: flex; flex-direction: column;"><span style="font-size: 16px; font-weight: 900;">میکو</span><span style="font-size: 11px; color: rgb(163, 163, 163);">پنل مدیریت</span></span>
+  </div>
+  <nav aria-label="منوی ادمین" style="display: flex; flex-direction: column; gap: 2px;">
+    <a href="AdminDashboard.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"></rect><rect x="14" y="3" width="7" height="5" rx="1.5"></rect><rect x="14" y="12" width="7" height="9" rx="1.5"></rect><rect x="3" y="16" width="7" height="5" rx="1.5"></rect></svg>داشبورد</a>
+    <a href="AdminTitles.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"></path><path d="M5 17a3 3 0 0 1 3-3h11"></path></svg>آثار</a>
+    <a href="AdminTitleEdit.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"></path><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"></path></svg>آپلود چپتر</a>
+    <a href="AdminTranslations.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="5" height="16" rx="1.5"></rect><rect x="10" y="4" width="5" height="11" rx="1.5"></rect><rect x="17" y="4" width="4" height="7" rx="1.5"></rect></svg>ترجمه و انتشار</a>
+    <a href="AdminRequests.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v8M8 12h8"></path></svg>درخواست آثار<span style="margin-right: auto; font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 10px; background: rgb(224, 0, 0); color: rgb(255, 255, 255);">۲۴</span></a>
+    <a href="AdminUsers.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"></path></svg>کاربران</a>
+    <a href="AdminSubscriptions.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 10h18M7 15h4"></path></svg>اشتراک و پرداخت</a>
+    <a href="AdminFinance.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"></path><path d="M9 8h6M9 12h6M9 16h3"></path></svg>گزارش مالی</a>
+    <a href="AdminComments.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"></path><path d="M8 9h8M8 12h5"></path></svg>نظرات و گزارش‌ها<span style="margin-right: auto; font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 10px; background: rgb(224, 0, 0); color: rgb(255, 255, 255);">۱۲</span></a>
+    <a href="AdminAnalytics.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg>تحلیل‌ها</a>
+    <a href="AdminNotify.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"></path><path d="M10 20a2 2 0 0 0 4 0"></path></svg>ارسال اعلان</a>
+    <a href="AdminActivityLog.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; color: rgb(189, 189, 189);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>گزارش فعالیت</a>
+    <a href="AdminSettings.html" style="height: 42px; border-radius: 12px; padding: 0px 14px; display: flex; align-items: center; gap: 12px; font-size: 14px; text-decoration: none; font-weight: 700; color: rgb(255, 255, 255); background: linear-gradient(90deg, rgb(142, 0, 0), rgb(216, 0, 0));"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"></path></svg>تنظیمات</a>
+  </nav>
+  <div style="margin-top: auto; padding: 10px 12px; border-radius: 14px; background: rgb(24, 24, 24); display: flex; align-items: center; gap: 10px;">
+    <span style="width: 34px; height: 34px; border-radius: 10px; background: rgb(122, 31, 31); color: rgb(255, 255, 255); display: flex; align-items: center; justify-content: center; font-weight: 700;">ا</span>
+    <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 13px; font-weight: 700;">امیر حسین جعفری</span><span style="font-size: 11px; color: rgb(163, 163, 163);">مدیر کل</span></span>
+    <a href="AdminLogin.html" aria-label="خروج" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: rgb(163, 163, 163);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M14 8l4 4-4 4M18 12H8"></path></svg></a>
+  </div></aside></div>
+
+  <main style="flex-grow: 1; min-width: 0px; padding: 24px 28px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px;">
+    <header style="display: flex; align-items: center; gap: 12px;">
+      <h1 style="margin: 0px; font-size: 24px; font-weight: 900; flex-grow: 1;">تنظیمات</h1>
+      <button style="height: 44px; padding: 0px 22px; border-radius: 12px; background: linear-gradient(90deg, rgb(142, 0, 0), rgb(230, 0, 0)); border: 0px; color: rgb(255, 255, 255); font-size: 14px; font-weight: 700;">ذخیره تغییرات</button>
+    </header>
+
+    <div role="tablist" aria-label="بخش‌های تنظیمات" style="display: flex; gap: 6px; border-bottom: 1px solid rgb(38, 38, 38);">
+      
+        <button role="tab" style="height: 44px; padding: 0px 14px; background: none; border-width: 0px 0px 2px; border-top-style: initial; border-right-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-left-color: initial; border-image: initial; font-size: 14px; margin-bottom: -1px; color: rgb(163, 163, 163); border-bottom-style: solid; border-bottom-color: transparent;"><span class="sc-interp">عمومی</span></button>
+      
+        <button role="tab" style="height: 44px; padding: 0px 14px; background: none; border-width: 0px 0px 2px; border-top-style: initial; border-right-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-left-color: initial; border-image: initial; font-size: 14px; margin-bottom: -1px; color: rgb(163, 163, 163); border-bottom-style: solid; border-bottom-color: transparent;"><span class="sc-interp">محتوا و مطالعه</span></button>
+      
+        <button role="tab" style="height: 44px; padding: 0px 14px; background: none; border-width: 0px 0px 2px; border-top-style: initial; border-right-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-left-color: initial; border-image: initial; font-size: 14px; margin-bottom: -1px; color: rgb(163, 163, 163); border-bottom-style: solid; border-bottom-color: transparent;"><span class="sc-interp">درگاه پرداخت</span></button>
+      
+        <button role="tab" style="height: 44px; padding: 0px 14px; background: none; border-width: 0px 0px 2px; border-top-style: initial; border-right-style: initial; border-left-style: initial; border-top-color: initial; border-right-color: initial; border-left-color: initial; border-image: initial; font-size: 14px; margin-bottom: -1px; color: rgb(255, 255, 255); font-weight: 700; border-bottom-style: solid; border-bottom-color: rgb(224, 0, 0);"><span class="sc-interp">مدیران و دسترسی‌ها</span></button>
+      
+    </div>
+
+    
+
+    
+
+    
+
+    
+      <div style="display: flex; gap: 18px; flex-grow: 1; min-height: 0px;">
+        <section style="flex-grow: 1; border-radius: 18px; background: rgb(26, 26, 26); border: 1px solid rgb(38, 38, 38); display: flex; flex-direction: column; overflow: hidden;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 18px;">
+            <h2 style="margin: 0px; font-size: 16px; font-weight: 900;">سطح دسترسی نقش‌ها</h2>
+            <span style="font-size: 12px; color: rgb(163, 163, 163);">برای تغییر، روی هر خانه بزنید</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1.6fr repeat(4, minmax(0px, 1fr)); padding: 10px 18px; font-size: 12px; color: rgb(140, 140, 140); background: rgb(21, 21, 21); border-top: 1px solid rgb(38, 38, 38); border-bottom: 1px solid rgb(38, 38, 38);">
+            <span>دسترسی</span><span style="text-align: center;">مدیر کل</span><span style="text-align: center;">ویراستار محتوا</span><span style="text-align: center;">مترجم</span><span style="text-align: center;">ناظر نظرات</span>
+          </div>
+          
+            <div style="display: grid; grid-template-columns: 1.6fr repeat(4, minmax(0px, 1fr)); align-items: center; padding: 6px 18px; font-size: 13px; border-bottom: 1px solid rgb(34, 34, 34);">
+              <span><span class="sc-interp">افزودن و ویرایش آثار</span></span>
+              
+                <button role="checkbox" aria-checked="true" aria-label="افزودن و ویرایش آثار برای مدیر کل" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+                <button role="checkbox" aria-checked="true" aria-label="افزودن و ویرایش آثار برای ویراستار محتوا" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="افزودن و ویرایش آثار برای مترجم" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="افزودن و ویرایش آثار برای ناظر نظرات" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+            </div>
+          
+            <div style="display: grid; grid-template-columns: 1.6fr repeat(4, minmax(0px, 1fr)); align-items: center; padding: 6px 18px; font-size: 13px; border-bottom: 1px solid rgb(34, 34, 34);">
+              <span><span class="sc-interp">آپلود چپتر</span></span>
+              
+                <button role="checkbox" aria-checked="true" aria-label="آپلود چپتر برای مدیر کل" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+                <button role="checkbox" aria-checked="true" aria-label="آپلود چپتر برای ویراستار محتوا" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+                <button role="checkbox" aria-checked="true" aria-label="آپلود چپتر برای مترجم" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="آپلود چپتر برای ناظر نظرات" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+            </div>
+          
+            <div style="display: grid; grid-template-columns: 1.6fr repeat(4, minmax(0px, 1fr)); align-items: center; padding: 6px 18px; font-size: 13px; border-bottom: 1px solid rgb(34, 34, 34);">
+              <span><span class="sc-interp">انتشار و زمان‌بندی</span></span>
+              
+                <button role="checkbox" aria-checked="true" aria-label="انتشار و زمان‌بندی برای مدیر کل" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+                <button role="checkbox" aria-checked="true" aria-label="انتشار و زمان‌بندی برای ویراستار محتوا" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="انتشار و زمان‌بندی برای مترجم" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="انتشار و زمان‌بندی برای ناظر نظرات" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+            </div>
+          
+            <div style="display: grid; grid-template-columns: 1.6fr repeat(4, minmax(0px, 1fr)); align-items: center; padding: 6px 18px; font-size: 13px; border-bottom: 1px solid rgb(34, 34, 34);">
+              <span><span class="sc-interp">مدیریت کاربران</span></span>
+              
+                <button role="checkbox" aria-checked="true" aria-label="مدیریت کاربران برای مدیر کل" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="مدیریت کاربران برای ویراستار محتوا" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="مدیریت کاربران برای مترجم" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="مدیریت کاربران برای ناظر نظرات" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+            </div>
+          
+            <div style="display: grid; grid-template-columns: 1.6fr repeat(4, minmax(0px, 1fr)); align-items: center; padding: 6px 18px; font-size: 13px; border-bottom: 1px solid rgb(34, 34, 34);">
+              <span><span class="sc-interp">مشاهده پرداخت‌ها</span></span>
+              
+                <button role="checkbox" aria-checked="true" aria-label="مشاهده پرداخت‌ها برای مدیر کل" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="مشاهده پرداخت‌ها برای ویراستار محتوا" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="مشاهده پرداخت‌ها برای مترجم" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="مشاهده پرداخت‌ها برای ناظر نظرات" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+            </div>
+          
+            <div style="display: grid; grid-template-columns: 1.6fr repeat(4, minmax(0px, 1fr)); align-items: center; padding: 6px 18px; font-size: 13px; border-bottom: 1px solid rgb(34, 34, 34);">
+              <span><span class="sc-interp">مدیریت نظرات</span></span>
+              
+                <button role="checkbox" aria-checked="true" aria-label="مدیریت نظرات برای مدیر کل" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+                <button role="checkbox" aria-checked="true" aria-label="مدیریت نظرات برای ویراستار محتوا" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="مدیریت نظرات برای مترجم" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+                <button role="checkbox" aria-checked="true" aria-label="مدیریت نظرات برای ناظر نظرات" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+            </div>
+          
+            <div style="display: grid; grid-template-columns: 1.6fr repeat(4, minmax(0px, 1fr)); align-items: center; padding: 6px 18px; font-size: 13px; border-bottom: 1px solid rgb(34, 34, 34);">
+              <span><span class="sc-interp">ارسال اعلان</span></span>
+              
+                <button role="checkbox" aria-checked="true" aria-label="ارسال اعلان برای مدیر کل" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+                <button role="checkbox" aria-checked="true" aria-label="ارسال اعلان برای ویراستار محتوا" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="ارسال اعلان برای مترجم" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="ارسال اعلان برای ناظر نظرات" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+            </div>
+          
+            <div style="display: grid; grid-template-columns: 1.6fr repeat(4, minmax(0px, 1fr)); align-items: center; padding: 6px 18px; font-size: 13px; border-bottom: 1px solid rgb(34, 34, 34);">
+              <span><span class="sc-interp">تغییر تنظیمات</span></span>
+              
+                <button role="checkbox" aria-checked="true" aria-label="تغییر تنظیمات برای مدیر کل" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: rgb(224, 0, 0);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"></path></svg></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="تغییر تنظیمات برای ویراستار محتوا" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="تغییر تنظیمات برای مترجم" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+                <button role="checkbox" aria-checked="false" aria-label="تغییر تنظیمات برای ناظر نظرات" style="justify-self: center; width: 40px; height: 40px; background: none; border: 0px; display: flex; align-items: center; justify-content: center;"><span style="width: 22px; height: 22px; border-radius: 7px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 1.5px solid rgb(74, 74, 74);"></span></button>
+              
+            </div>
+          
+        </section>
+
+        <section style="width: 380px; flex-shrink: 0; padding: 20px; border-radius: 18px; background: rgb(26, 26, 26); border: 1px solid rgb(38, 38, 38); display: flex; flex-direction: column; gap: 12px; box-sizing: border-box;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin: 0px; font-size: 16px; font-weight: 900;">اعضای تیم</h2>
+            <button style="height: 36px; padding: 0px 12px; border-radius: 10px; background: rgb(224, 0, 0); border: 0px; color: rgb(255, 255, 255); font-size: 12px; font-weight: 700;">+ دعوت عضو</button>
+          </div>
+          
+            <div style="display: flex; align-items: center; gap: 10px; padding: 8px 0px; border-bottom: 1px solid rgb(38, 38, 38);">
+              <span style="width: 36px; height: 36px; border-radius: 10px; background: rgb(122, 31, 31); display: flex; align-items: center; justify-content: center; font-weight: 900; color: rgb(255, 255, 255);"><span class="sc-interp">ا</span></span>
+              <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 13px; font-weight: 700;"><span class="sc-interp">امیر حسین جعفری</span></span><span style="font-size: 11px; color: rgb(163, 163, 163);"><span class="sc-interp">آنلاین</span></span></span>
+              <span style="font-size: 11px; padding: 3px 10px; border-radius: 8px; background: rgb(38, 38, 38); color: rgb(229, 229, 229);"><span class="sc-interp">مدیر کل</span></span>
+            </div>
+          
+            <div style="display: flex; align-items: center; gap: 10px; padding: 8px 0px; border-bottom: 1px solid rgb(38, 38, 38);">
+              <span style="width: 36px; height: 36px; border-radius: 10px; background: rgb(58, 58, 90); display: flex; align-items: center; justify-content: center; font-weight: 900; color: rgb(255, 255, 255);"><span class="sc-interp">س</span></span>
+              <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 13px; font-weight: 700;"><span class="sc-interp">سارا محمدی</span></span><span style="font-size: 11px; color: rgb(163, 163, 163);"><span class="sc-interp">آخرین ورود: ۱ ساعت پیش</span></span></span>
+              <span style="font-size: 11px; padding: 3px 10px; border-radius: 8px; background: rgb(38, 38, 38); color: rgb(229, 229, 229);"><span class="sc-interp">مترجم</span></span>
+            </div>
+          
+            <div style="display: flex; align-items: center; gap: 10px; padding: 8px 0px; border-bottom: 1px solid rgb(38, 38, 38);">
+              <span style="width: 36px; height: 36px; border-radius: 10px; background: rgb(47, 74, 58); display: flex; align-items: center; justify-content: center; font-weight: 900; color: rgb(255, 255, 255);"><span class="sc-interp">م</span></span>
+              <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 13px; font-weight: 700;"><span class="sc-interp">محمد رضایی</span></span><span style="font-size: 11px; color: rgb(163, 163, 163);"><span class="sc-interp">آخرین ورود: امروز</span></span></span>
+              <span style="font-size: 11px; padding: 3px 10px; border-radius: 8px; background: rgb(38, 38, 38); color: rgb(229, 229, 229);"><span class="sc-interp">ویراستار محتوا</span></span>
+            </div>
+          
+            <div style="display: flex; align-items: center; gap: 10px; padding: 8px 0px; border-bottom: 1px solid rgb(38, 38, 38);">
+              <span style="width: 36px; height: 36px; border-radius: 10px; background: rgb(90, 47, 74); display: flex; align-items: center; justify-content: center; font-weight: 900; color: rgb(255, 255, 255);"><span class="sc-interp">ن</span></span>
+              <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 13px; font-weight: 700;"><span class="sc-interp">نگار کاظمی</span></span><span style="font-size: 11px; color: rgb(163, 163, 163);"><span class="sc-interp">آخرین ورود: دیروز</span></span></span>
+              <span style="font-size: 11px; padding: 3px 10px; border-radius: 8px; background: rgb(38, 38, 38); color: rgb(229, 229, 229);"><span class="sc-interp">ناظر نظرات</span></span>
+            </div>
+          
+            <div style="display: flex; align-items: center; gap: 10px; padding: 8px 0px; border-bottom: 1px solid rgb(38, 38, 38);">
+              <span style="width: 36px; height: 36px; border-radius: 10px; background: rgb(74, 58, 47); display: flex; align-items: center; justify-content: center; font-weight: 900; color: rgb(255, 255, 255);"><span class="sc-interp">ح</span></span>
+              <span style="flex-grow: 1; display: flex; flex-direction: column;"><span style="font-size: 13px; font-weight: 700;"><span class="sc-interp">حسین مرادی</span></span><span style="font-size: 11px; color: rgb(163, 163, 163);"><span class="sc-interp">آخرین ورود: ۳ روز پیش</span></span></span>
+              <span style="font-size: 11px; padding: 3px 10px; border-radius: 8px; background: rgb(38, 38, 38); color: rgb(229, 229, 229);"><span class="sc-interp">مترجم</span></span>
+            </div>
+          
+          <div style="margin-top: auto; padding: 12px; border-radius: 12px; background: rgb(31, 17, 17); border: 1px solid rgb(74, 21, 21); font-size: 12px; color: rgb(255, 179, 179); line-height: 1.8;">ورود دومرحله‌ای برای همه اعضای تیم الزامی است.</div>
+        </section>
+      </div>
+    
+  </main></div></div>
+</body>
+</html>
