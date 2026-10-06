@@ -7,12 +7,16 @@ import '../../data/auth_repository.dart';
 import '../../data/providers.dart';
 import '../../theme/miko_colors.dart';
 import '../../theme/miko_tokens.dart';
+import '../../widgets/snack.dart';
 import '../../widgets/miko_button.dart';
 import '../../widgets/miko_chip.dart';
 import '../../widgets/pressable.dart';
 
 class OnboardingPrefsScreen extends ConsumerStatefulWidget {
-  const OnboardingPrefsScreen({super.key});
+  const OnboardingPrefsScreen({super.key, this.edit = false});
+
+  /// Opened from Profile: pre-filled, saves and goes back instead of continuing to home.
+  final bool edit;
 
   @override
   ConsumerState<OnboardingPrefsScreen> createState() =>
@@ -45,6 +49,22 @@ class _OnboardingPrefsScreenState extends ConsumerState<OnboardingPrefsScreen> {
   ReadingLanguage _lang = ReadingLanguage.fa;
   bool _saving = false;
 
+  @override
+  void initState() {
+    super.initState();
+    if (widget.edit) {
+      ref.read(authRepositoryProvider).loadPreferences().then((p) {
+        if (!mounted) return;
+        setState(() {
+          _picked
+            ..clear()
+            ..addAll(p.genres);
+          _lang = p.language;
+        });
+      });
+    }
+  }
+
   Future<void> _finish({bool skip = false}) async {
     setState(() => _saving = true);
     try {
@@ -54,7 +74,15 @@ class _OnboardingPrefsScreenState extends ConsumerState<OnboardingPrefsScreen> {
     } finally {
       if (mounted) setState(() => _saving = false);
     }
-    if (mounted) context.go('/home');
+    if (!mounted) return;
+    if (widget.edit) {
+      if (!skip) {
+        showSnack(context, 'علاقه‌مندی‌ها ذخیره شد');
+      }
+      context.pop();
+    } else {
+      context.go('/home');
+    }
   }
 
   @override
@@ -69,6 +97,17 @@ class _OnboardingPrefsScreenState extends ConsumerState<OnboardingPrefsScreen> {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(20, 24, 20, 16),
                 children: [
+                  if (widget.edit)
+                    Align(
+                      alignment: AlignmentDirectional.centerStart,
+                      child: MikoIconButton(
+                        icon: Icons.arrow_forward,
+                        semanticLabel: 'بازگشت',
+                        filled: false,
+                        onPressed: () => context.pop(),
+                      ),
+                    )
+                  else
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -199,7 +238,7 @@ class _OnboardingPrefsScreenState extends ConsumerState<OnboardingPrefsScreen> {
                       ),
                     ),
                   MikoButton(
-                    label: 'ادامه',
+                    label: widget.edit ? 'ذخیره' : 'ادامه',
                     loading: _saving,
                     loadingLabel: 'در حال ذخیره…',
                     onPressed: missing > 0 ? null : _finish,

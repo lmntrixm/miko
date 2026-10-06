@@ -510,7 +510,7 @@ class _ReaderViewState extends ConsumerState<_ReaderView> {
                 action(
                   Icons.tune,
                   'تنظیمات',
-                  () => showReaderSettings(context, _work.type),
+                  () => showReaderSettings(context, _work.type, reportPath: '/report-problem?chapter=${_ch.id}&page=$_page&lang=${_lang.name}'),
                 ),
               ],
             ),
@@ -525,7 +525,7 @@ class _ReaderViewState extends ConsumerState<_ReaderView> {
                 action(
                   Icons.tune,
                   'تنظیمات',
-                  () => showReaderSettings(context, _work.type),
+                  () => showReaderSettings(context, _work.type, reportPath: '/report-problem?chapter=${_ch.id}&page=$_page&lang=${_lang.name}'),
                 ),
               ],
             ),

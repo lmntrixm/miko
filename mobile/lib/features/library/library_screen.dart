@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/format.dart';
 import '../../core/jalali.dart';
 import '../../core/persian.dart';
+import '../../data/account_providers.dart';
 import '../../data/content_providers.dart';
 import '../../data/downloads.dart';
 import '../../data/models.dart';
@@ -34,6 +35,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
   Widget build(BuildContext context) {
     final c = context.mr;
     final offline = ref.watch(networkStatusProvider).isOffline;
+    final unread = (ref.watch(unreadCountProvider).asData?.value ?? 0) > 0;
     return SafeArea(
       bottom: false,
       child: Column(
@@ -64,6 +66,7 @@ class _LibraryScreenState extends ConsumerState<LibraryScreen> {
                   icon: Icons.notifications_none,
                   semanticLabel: 'اعلان‌ها',
                   filled: false,
+                  badge: unread,
                   onPressed: () => context.push('/notifications'),
                 ),
               ],

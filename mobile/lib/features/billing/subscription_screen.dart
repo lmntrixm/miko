@@ -8,6 +8,7 @@ import '../../data/content_providers.dart';
 import '../../data/models.dart';
 import '../../theme/miko_colors.dart';
 import '../../theme/miko_tokens.dart';
+import '../../widgets/snack.dart';
 import '../../widgets/async_view.dart';
 import '../../widgets/miko_button.dart';
 import 'billing_widgets.dart';
@@ -80,7 +81,7 @@ class _SubscriptionScreenState extends ConsumerState<SubscriptionScreen> {
       context.pushReplacement(Uri(path: '/payment-pending/${session.id}', queryParameters: q.isEmpty ? null : q).toString());
     } catch (_) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('شروع پرداخت ممکن نشد. اتصال اینترنت را بررسی کنید و دوباره امتحان کنید.')));
+        showSnack(context, 'شروع پرداخت ممکن نشد. اتصال اینترنت را بررسی کنید و دوباره امتحان کنید.');
       }
     } finally {
       if (mounted) setState(() => _paying = false);

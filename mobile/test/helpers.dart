@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:miko/data/account_providers.dart';
+import 'package:miko/data/account_repository.dart';
 import 'package:miko/data/auth_repository.dart';
 import 'package:miko/data/content_providers.dart';
 import 'dart:async';
@@ -32,6 +34,12 @@ Future<void> loadFonts() async {
   _fontsLoaded = true;
 }
 
+class FakeShare implements ShareService {
+  final shared = <String>[];
+  @override
+  Future<void> share(String text) async => shared.add(text);
+}
+
 /// Controllable connectivity for tests.
 class FakeConnectivity implements ConnectivitySource {
   FakeConnectivity([this.status = NetworkStatus.wifi]);
@@ -56,6 +64,8 @@ Future<void> pumpApp(
   bool deviceLimitReached = false,
   PaymentStatus checkoutResult = PaymentStatus.success,
   FakeConnectivity? net,
+  MockAccountRepository? account,
+  FakeShare? share,
 }) async {
   await loadFonts();
   tester.view.physicalSize = const Size(390, 844) * 2;
@@ -72,6 +82,8 @@ Future<void> pumpApp(
       paymentPollIntervalProvider.overrideWithValue(const Duration(seconds: 1)),
       connectivitySourceProvider.overrideWithValue(net ?? FakeConnectivity()),
       downloadAutoTickProvider.overrideWithValue(false),
+      accountRepositoryProvider.overrideWithValue(account ?? MockAccountRepository(latency: Duration.zero)),
+      shareServiceProvider.overrideWithValue(share ?? FakeShare()),
     ],
     child: const MikoApp(),
   ));
@@ -86,6 +98,8 @@ Future<void> pumpHome(
   bool deviceLimitReached = false,
   PaymentStatus checkoutResult = PaymentStatus.success,
   FakeConnectivity? net,
+  MockAccountRepository? account,
+  FakeShare? share,
 }) async {
   await pumpApp(tester,
       prefs: {'onboarding_seen': true, 'access_token': 't', ...prefs},
@@ -93,7 +107,9 @@ Future<void> pumpHome(
       seedProgress: seedProgress,
       deviceLimitReached: deviceLimitReached,
       checkoutResult: checkoutResult,
-      net: net);
+      net: net,
+      account: account,
+      share: share);
   await tester.pump(const Duration(seconds: 2));
   await tester.pumpAndSettle();
 }

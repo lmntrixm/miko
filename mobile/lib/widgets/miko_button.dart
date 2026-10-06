@@ -111,8 +111,12 @@ class MikoIconButton extends StatelessWidget {
     this.onPressed,
     this.size = 44,
     this.filled = true,
+    this.badge = false,
   });
   final IconData icon;
+
+  /// Small red dot for unread state.
+  final bool badge;
   final String semanticLabel;
   final VoidCallback? onPressed;
   final double size;
@@ -135,7 +139,23 @@ class MikoIconButton extends StatelessWidget {
             color: filled ? c.surface3 : null,
             borderRadius: BorderRadius.circular(MRRadius.radiusMd),
           ),
-          child: Icon(icon, size: 22, color: c.textPrimary),
+          child: Stack(
+            clipBehavior: Clip.none,
+            alignment: Alignment.center,
+            children: [
+              Icon(icon, size: 22, color: c.textPrimary),
+              if (badge)
+                PositionedDirectional(
+                  top: 8,
+                  end: 8,
+                  child: Container(
+                    width: 9,
+                    height: 9,
+                    decoration: BoxDecoration(color: c.red400, shape: BoxShape.circle, border: Border.all(color: c.bgPage, width: 1.5)),
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );

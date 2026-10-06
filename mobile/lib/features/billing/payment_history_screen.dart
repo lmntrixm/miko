@@ -7,6 +7,7 @@ import '../../data/content_providers.dart';
 import '../../data/models.dart';
 import '../../theme/miko_colors.dart';
 import '../../theme/miko_tokens.dart';
+import '../../widgets/snack.dart';
 import '../../widgets/async_view.dart';
 import '../../widgets/pressable.dart';
 import 'billing_widgets.dart';
@@ -70,7 +71,7 @@ class PaymentHistoryScreen extends ConsumerWidget {
                       ]),
                       Row(children: [
                         Pressable(
-                          onTap: () => ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('فاکتور به‌زودی در دسترس می‌شود'))),
+                          onTap: () => showSnack(context, 'فاکتور به‌زودی در دسترس می‌شود'),
                           child: ConstrainedBox(
                             constraints: const BoxConstraints(minHeight: 44, minWidth: 44),
                             child: Center(widthFactor: 1, child: Text(p.status == PaymentStatus.failed ? 'پیگیری' : p.status == PaymentStatus.refunded ? 'جزئیات' : 'دریافت فاکتور', style: MRText.caption.copyWith(fontSize: 13, color: c.red300))),

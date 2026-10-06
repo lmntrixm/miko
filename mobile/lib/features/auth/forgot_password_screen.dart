@@ -6,6 +6,7 @@ import '../../core/validators.dart';
 import '../../data/providers.dart';
 import '../../theme/miko_colors.dart';
 import '../../theme/miko_tokens.dart';
+import '../../widgets/snack.dart';
 import '../../widgets/miko_button.dart';
 import '../../widgets/miko_text_field.dart';
 import 'auth_copy.dart';
@@ -70,9 +71,7 @@ class _ForgotPasswordScreenState extends ConsumerState<ForgotPasswordScreen> {
         default:
           await repo.confirmReset(email, _code.text, _password.text);
           if (mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('رمز عبور تغییر کرد. وارد شوید.')),
-            );
+            showSnack(context, 'رمز عبور تغییر کرد. وارد شوید.');
             context.go('/auth-login');
           }
           return;

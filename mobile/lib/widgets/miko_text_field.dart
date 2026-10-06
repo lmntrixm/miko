@@ -20,6 +20,7 @@ class MikoTextField extends StatefulWidget {
     this.onChanged,
     this.onSubmitted,
     this.textInputAction,
+    this.labelBackground,
   });
 
   final String label;
@@ -38,6 +39,9 @@ class MikoTextField extends StatefulWidget {
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
   final TextInputAction? textInputAction;
+
+  /// Color behind the label on the border; match the surface the field sits on.
+  final Color? labelBackground;
 
   @override
   State<MikoTextField> createState() => _MikoTextFieldState();
@@ -154,7 +158,7 @@ class _MikoTextFieldState extends State<MikoTextField> {
               top: -10,
               start: MRSpacing.space5,
               child: Container(
-                color: c.bgPage,
+                color: widget.labelBackground ?? c.bgPage,
                 padding: const EdgeInsets.symmetric(
                   horizontal: MRSpacing.space2,
                 ),

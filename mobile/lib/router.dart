@@ -2,11 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import 'data/account_providers.dart' show themeModeProvider;
 import 'data/models.dart';
 import 'data/providers.dart';
 import 'features/auth/forgot_password_screen.dart';
 import 'features/auth/intro_screen.dart';
 import 'features/auth/login_screen.dart';
+import 'features/account/edit_profile_screen.dart';
+import 'features/account/help_center_screen.dart';
+import 'features/account/invite_screen.dart';
+import 'features/account/legal_screen.dart';
+import 'features/account/notification_settings_screen.dart';
+import 'features/account/notifications_screen.dart';
+import 'features/account/profile_screen.dart';
+import 'features/account/report_problem_screen.dart';
 import 'features/auth/onboarding_prefs_screen.dart';
 import 'features/auth/otp_screen.dart';
 import 'features/auth/signup_screen.dart';
@@ -61,7 +70,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/onboarding-prefs',
-        builder: (_, _) => const OnboardingPrefsScreen(),
+        builder: (_, s) => OnboardingPrefsScreen(edit: s.uri.queryParameters['edit'] == '1'),
       ),
       StatefulShellRoute.indexedStack(
         builder: (_, _, shell) => AppShell(shell: shell),
@@ -71,7 +80,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(
                 path: '/profile',
-                builder: (_, _) => const TodoScreen('پروفایل'),
+                builder: (_, _) => const ProfileScreen(),
               ),
             ],
           ),
@@ -166,39 +175,23 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(parentNavigatorKey: rootKey, path: '/manage-subscription', builder: (_, _) => const ManageSubscriptionScreen()),
       GoRoute(parentNavigatorKey: rootKey, path: '/payment-history', builder: (_, _) => const PaymentHistoryScreen()),
-      // Not built yet; targets from the screens above.
+      GoRoute(parentNavigatorKey: rootKey, path: '/notifications', builder: (_, _) => const NotificationsScreen()),
+      GoRoute(parentNavigatorKey: rootKey, path: '/notification-settings', builder: (_, _) => const NotificationSettingsScreen()),
+      GoRoute(parentNavigatorKey: rootKey, path: '/edit-profile', builder: (_, _) => const EditProfileScreen()),
+      GoRoute(parentNavigatorKey: rootKey, path: '/invite', builder: (_, _) => const InviteScreen()),
+      GoRoute(parentNavigatorKey: rootKey, path: '/help-center', builder: (_, _) => const HelpCenterScreen()),
+      GoRoute(parentNavigatorKey: rootKey, path: '/legal', builder: (_, _) => const LegalScreen()),
       GoRoute(
-        path: '/notifications',
-        builder: (_, _) => const TodoScreen('اعلان‌ها'),
-      ),
-      GoRoute(
-        path: '/list-all',
-        builder: (_, _) => const TodoScreen('فهرست کامل'),
-      ),
-      GoRoute(
+        parentNavigatorKey: rootKey,
         path: '/report-problem',
-        builder: (_, _) => const TodoScreen('گزارش مشکل'),
+        builder: (_, s) => ReportProblemScreen(
+          chapterId: s.uri.queryParameters['chapter'],
+          page: int.tryParse(s.uri.queryParameters['page'] ?? ''),
+          lang: s.uri.queryParameters['lang'],
+        ),
       ),
-      GoRoute(
-        path: '/legal',
-        builder: (_, _) => const TodoScreen('قوانین و حریم خصوصی'),
-      ),
-      GoRoute(
-        path: '/help-center',
-        builder: (_, _) => const TodoScreen('پشتیبانی'),
-      ),
+      // Not built yet.
+      GoRoute(path: '/list-all', builder: (_, _) => const TodoScreen('فهرست کامل')),
     ],
   );
 });
-
-class ThemeModeController extends Notifier<ThemeMode> {
-  @override
-  ThemeMode build() => ThemeMode.dark; // dark is the default
-
-  void toggle() =>
-      state = state == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
-}
-
-final themeModeProvider = NotifierProvider<ThemeModeController, ThemeMode>(
-  ThemeModeController.new,
-);

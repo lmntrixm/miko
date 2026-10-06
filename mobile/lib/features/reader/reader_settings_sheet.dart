@@ -12,7 +12,8 @@ import '../../widgets/miko_chip.dart';
 import '../../widgets/miko_switch.dart';
 import '../../widgets/pressable.dart';
 
-Future<void> showReaderSettings(BuildContext context, WorkType type) {
+/// [reportPath] is the report-problem route with chapter/page/lang already attached.
+Future<void> showReaderSettings(BuildContext context, WorkType type, {String reportPath = '/report-problem'}) {
   final c = context.mr;
   return showModalBottomSheet<void>(
     context: context,
@@ -24,14 +25,15 @@ Future<void> showReaderSettings(BuildContext context, WorkType type) {
         top: Radius.circular(MRRadius.radiusSheet),
       ),
     ),
-    builder: (_) => ReaderSettingsSheet(type: type),
+    builder: (_) => ReaderSettingsSheet(type: type, reportPath: reportPath),
   );
 }
 
 /// Settings apply live; «اعمال تنظیمات» just closes the sheet.
 class ReaderSettingsSheet extends ConsumerWidget {
-  const ReaderSettingsSheet({super.key, required this.type});
+  const ReaderSettingsSheet({super.key, required this.type, this.reportPath = '/report-problem'});
   final WorkType type;
+  final String reportPath;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -234,7 +236,7 @@ class ReaderSettingsSheet extends ConsumerWidget {
               child: Pressable(
                 onTap: () {
                   Navigator.of(context).pop();
-                  context.push('/report-problem');
+                  context.push(reportPath);
                 },
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(minHeight: 44),

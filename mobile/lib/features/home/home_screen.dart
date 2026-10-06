@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/persian.dart';
+import '../../data/account_providers.dart';
 import '../../data/content_providers.dart';
 import '../../data/models.dart';
 import '../../data/network.dart';
@@ -35,7 +36,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     if (ref.watch(networkStatusProvider).isOffline) return const OfflineView();
     final works = ref.watch(worksProvider(_type));
     final sub = ref.watch(subscriptionProvider).asData?.value;
-    final name = ref.watch(userNameProvider).asData?.value ?? '';
+    final name = ref.watch(profileProvider).asData?.value.name ?? '';
+    final unread = (ref.watch(unreadCountProvider).asData?.value ?? 0) > 0;
     return SafeArea(
       bottom: false,
       child: ListView(
@@ -91,6 +93,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 icon: Icons.notifications_none,
                 semanticLabel: 'اعلان‌ها',
                 filled: false,
+                badge: unread,
                 onPressed: () => context.push('/notifications'),
               ),
             ],

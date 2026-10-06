@@ -41,6 +41,9 @@ abstract class AuthRepository {
   Future<void> confirmReset(String email, String code, String newPassword);
 
   Future<void> savePreferences(Set<String> genres, ReadingLanguage language);
+
+  /// Current preferences, to pre-fill the edit screen.
+  Future<({Set<String> genres, ReadingLanguage language})> loadPreferences();
 }
 
 /// In-memory fake. Demo account: demo@miko.test / password123. Every code is 123456.
@@ -108,7 +111,17 @@ class MockAuthRepository implements AuthRepository {
     if (_users.containsKey(_key(email))) _users[_key(email)] = newPassword;
   }
 
+  var _prefs = (genres: <String>{'اکشن', 'فانتزی', 'کمدی'}, language: ReadingLanguage.fa);
+
   @override
-  Future<void> savePreferences(Set<String> genres, ReadingLanguage language) =>
-      _wait();
+  Future<void> savePreferences(Set<String> genres, ReadingLanguage language) async {
+    await _wait();
+    _prefs = (genres: {...genres}, language: language);
+  }
+
+  @override
+  Future<({Set<String> genres, ReadingLanguage language})> loadPreferences() async {
+    await _wait();
+    return _prefs;
+  }
 }
