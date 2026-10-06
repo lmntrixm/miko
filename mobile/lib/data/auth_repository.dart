@@ -5,6 +5,7 @@ enum AuthError {
   emailTaken,
   invalidCode,
   codeExpired,
+  tooManyAttempts,
   network,
 }
 

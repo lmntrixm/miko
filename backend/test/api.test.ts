@@ -84,6 +84,25 @@ describe('auth', () => {
   });
 });
 
+describe('auth helpers for the app', () => {
+  it('resend re-issues the signup code; reset code can be checked without being used', async () => {
+    await call('POST', '/v1/auth/signup', { name: 'کاربر', email: 'r@example.test', password: 'password123' });
+    const first = codes.get('signup:r@example.test');
+    codes.delete('signup:r@example.test');
+    expect((await call('POST', '/v1/auth/resend', { email: 'r@example.test' })).status).toBe(200);
+    expect(codes.get('signup:r@example.test')).toBeTruthy();
+    expect(first).toBeTruthy();
+    expect((await call('POST', '/v1/auth/resend', { email: 'unknown@example.test' })).status).toBe(200);
+    expect(codes.has('signup:unknown@example.test')).toBe(false);
+    await register('s@example.test');
+    await call('POST', '/v1/auth/password/reset', { email: 's@example.test' });
+    const code = codes.get('reset:s@example.test');
+    expect((await call('POST', '/v1/auth/password/check', { email: 's@example.test', code: '000000' })).body.error.code).toBe('code_wrong');
+    expect((await call('POST', '/v1/auth/password/check', { email: 's@example.test', code })).status).toBe(200);
+    expect((await call('POST', '/v1/auth/password/reset', { email: 's@example.test', code, password: 'brand-new-pass' })).status).toBe(200);
+  });
+});
+
 describe('catalog', () => {
   it('lists, searches and filters by type with cursor paging', async () => {
     const all = await call('GET', '/v1/titles?limit=2');

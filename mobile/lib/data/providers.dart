@@ -1,7 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../core/app_config.dart';
+import 'api_client.dart';
 import 'auth_repository.dart';
+import 'http_auth_repository.dart';
 import 'token_store.dart';
 
 /// Overridden in `main()` with the loaded instance.
@@ -9,8 +12,13 @@ final sharedPrefsProvider = Provider<SharedPreferences>(
   (ref) => throw UnimplementedError(),
 );
 
+final apiClientProvider = Provider<ApiClient>((ref) => ApiClient(
+      baseUrl: AppConfig.apiUrl,
+      token: () => ref.read(tokenStoreProvider).token,
+    ));
+
 final authRepositoryProvider = Provider<AuthRepository>(
-  (ref) => MockAuthRepository(),
+  (ref) => AppConfig.useApi ? HttpAuthRepository(ref.watch(apiClientProvider)) : MockAuthRepository(),
 );
 
 class SessionState {

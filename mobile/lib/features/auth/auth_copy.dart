@@ -8,6 +8,8 @@ String authErrorMessage(AuthError e) => switch (e) {
     'این ایمیل قبلاً ثبت شده. وارد شوید یا رمز را بازیابی کنید.',
   AuthError.invalidCode => 'کد درست نیست. دوباره وارد کنید یا کد جدید بگیرید.',
   AuthError.codeExpired => 'کد منقضی شده. کد جدید بگیرید.',
+  AuthError.tooManyAttempts =>
+    'تلاش‌های ناموفق زیاد بود. چند دقیقه بعد دوباره امتحان کنید.',
   AuthError.network =>
     'اتصال اینترنت قطع است. اتصال را بررسی کنید و دوباره امتحان کنید.',
 };

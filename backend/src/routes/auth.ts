@@ -22,7 +22,7 @@ export function authRoutes(app: FastifyInstance, c: Ctx) {
   };
 
   /** Checks and consumes a code. Wrong guesses count; the 5th kills the code. */
-  const consumeCode = async (e: string, purpose: 'signup' | 'reset', code: string) => {
+  const consumeCode = async (e: string, purpose: 'signup' | 'reset', code: string, consume = true) => {
     const row = (await c.db.query<{ id: string; code_hash: string; attempts: number; expires_at: string; new_password_hash: string | null }>('SELECT * FROM otp_codes WHERE email = $1 AND purpose = $2', [e, purpose]))[0];
     if (!row || new Date(row.expires_at).getTime() < c.now()) throw new ApiError(400, 'code_expired', 'کد منقضی شده است. کد جدید بگیرید.');
     if (!safeEqual(row.code_hash, codeHash(e, code))) {
@@ -33,7 +33,7 @@ export function authRoutes(app: FastifyInstance, c: Ctx) {
       await c.db.query('UPDATE otp_codes SET attempts = attempts + 1 WHERE id = $1', [row.id]);
       throw new ApiError(400, 'code_wrong', 'کد درست نیست. دوباره امتحان کنید.');
     }
-    await c.db.query('DELETE FROM otp_codes WHERE id = $1', [row.id]);
+    if (consume) await c.db.query('DELETE FROM otp_codes WHERE id = $1', [row.id]);
     return row;
   };
 
@@ -84,6 +84,21 @@ export function authRoutes(app: FastifyInstance, c: Ctx) {
     if (!b.password) throw errors.invalid('رمز جدید را وارد کنید.');
     await consumeCode(b.email, 'reset', b.code);
     await c.db.query('UPDATE users SET password_hash = $2 WHERE email = $1', [b.email, hashPassword(b.password)]);
+    return { ok: true };
+  });
+
+  // Re-sends the signup code to an account that isn't verified yet (never reveals other accounts).
+  app.post('/auth/resend', async (req) => {
+    const b = c.parse(z.object({ email }), req.body);
+    const pending = (await c.db.query('SELECT 1 FROM users WHERE email = $1 AND NOT verified', [b.email])).length > 0;
+    if (pending) await issueCode(b.email, 'signup');
+    return { ok: true };
+  });
+
+  // Checks a reset code without using it, so the app can validate step 2 before asking for the new password.
+  app.post('/auth/password/check', async (req) => {
+    const b = c.parse(z.object({ email, code: z.string().regex(/^\d{6}$/) }), req.body);
+    await consumeCode(b.email, 'reset', b.code, false);
     return { ok: true };
   });
 
