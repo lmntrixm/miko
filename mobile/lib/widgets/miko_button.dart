@@ -37,7 +37,8 @@ class MikoButton extends StatelessWidget {
     final enabled = onPressed != null && !loading;
     final h = height ?? (kind == MikoButtonKind.hero ? 60 : 52);
     final radius = BorderRadius.circular(
-        kind == MikoButtonKind.hero ? MRRadius.radius2xl : MRRadius.radiusLg);
+      kind == MikoButtonKind.hero ? MRRadius.radius2xl : MRRadius.radiusLg,
+    );
 
     Color fg;
     Decoration deco;
@@ -58,7 +59,9 @@ class MikoButton extends StatelessWidget {
       case MikoButtonKind.danger:
         fg = c.danger;
         deco = BoxDecoration(
-            borderRadius: radius, border: Border.all(color: c.red800));
+          borderRadius: radius,
+          border: Border.all(color: c.red800),
+        );
     }
     if (!enabled && !loading) fg = c.textHint;
 
@@ -69,16 +72,19 @@ class MikoButton extends StatelessWidget {
       children: [
         if (loading)
           SizedBox(
-              width: 18,
-              height: 18,
-              child: CircularProgressIndicator(strokeWidth: 2, color: fg))
+            width: 18,
+            height: 18,
+            child: CircularProgressIndicator(strokeWidth: 2, color: fg),
+          )
         else if (icon != null)
           Icon(icon, size: 20, color: fg),
         if (loading || icon != null) const SizedBox(width: MRSpacing.space2),
         Flexible(
-          child: Text(text,
-              overflow: TextOverflow.ellipsis,
-              style: MRText.h3.copyWith(color: fg, fontWeight: FontWeight.w700)),
+          child: Text(
+            text,
+            overflow: TextOverflow.ellipsis,
+            style: MRText.h3.copyWith(color: fg, fontWeight: FontWeight.w700),
+          ),
         ),
       ],
     );

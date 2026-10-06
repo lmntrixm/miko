@@ -16,8 +16,8 @@ class MikoBadge extends StatelessWidget {
 
   /// `FA · EN`, always LTR on surface-3.
   const MikoBadge.language({super.key})
-      : label = 'FA · EN',
-        kind = MikoBadgeKind.language;
+    : label = 'FA · EN',
+      kind = MikoBadgeKind.language;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +37,13 @@ class MikoBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(MRRadius.radiusXs),
         border: border == null ? null : Border.all(color: border),
       ),
-      child: Text(label,
-          textDirection: kind == MikoBadgeKind.language ? TextDirection.ltr : null,
-          style: MRText.label.copyWith(color: fg)),
+      child: Text(
+        label,
+        textDirection: kind == MikoBadgeKind.language
+            ? TextDirection.ltr
+            : null,
+        style: MRText.label.copyWith(color: fg),
+      ),
     );
   }
 }
@@ -57,7 +61,9 @@ class MikoCountBadge extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 5),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-          color: c.red500, borderRadius: BorderRadius.circular(MRRadius.radiusFull)),
+        color: c.red500,
+        borderRadius: BorderRadius.circular(MRRadius.radiusFull),
+      ),
       child: Text(text, style: MRText.label.copyWith(color: c.onBrand)),
     );
   }

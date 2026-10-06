@@ -18,6 +18,7 @@ class MikoTextField extends StatefulWidget {
     this.enabled = true,
     this.keyboardType,
     this.onChanged,
+    this.onSubmitted,
     this.textInputAction,
   });
 
@@ -35,6 +36,7 @@ class MikoTextField extends StatefulWidget {
   final bool enabled;
   final TextInputType? keyboardType;
   final ValueChanged<String>? onChanged;
+  final ValueChanged<String>? onSubmitted;
   final TextInputAction? textInputAction;
 
   @override
@@ -65,17 +67,17 @@ class _MikoTextFieldState extends State<MikoTextField> {
     final Color border = !widget.enabled
         ? c.switchOff
         : hasError
-            ? c.danger
-            : focused
-                ? c.red400
-                : c.red600;
+        ? c.danger
+        : focused
+        ? c.red400
+        : c.red600;
     final Color labelColor = !widget.enabled
         ? c.textHint
         : hasError
-            ? c.danger
-            : focused
-                ? c.red300
-                : c.textMuted;
+        ? c.danger
+        : focused
+        ? c.red300
+        : c.textMuted;
     final ltr = widget.ltr || widget.obscure;
 
     return Column(
@@ -86,67 +88,83 @@ class _MikoTextFieldState extends State<MikoTextField> {
           children: [
             Container(
               height: 64,
-              padding: const EdgeInsetsDirectional.symmetric(horizontal: MRSpacing.space4),
+              padding: const EdgeInsetsDirectional.symmetric(
+                horizontal: MRSpacing.space4,
+              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(MRRadius.radius2xl),
-                border: Border.all(color: border, width: focused || hasError ? 2 : 1),
+                border: Border.all(
+                  color: border,
+                  width: focused || hasError ? 2 : 1,
+                ),
               ),
-              child: Row(children: [
-                if (widget.icon != null) ...[
-                  Icon(widget.icon, size: 22, color: labelColor),
-                  const SizedBox(width: MRSpacing.space3),
-                ],
-                Expanded(
-                  child: TextField(
-                    controller: widget.controller,
-                    focusNode: _focus,
-                    enabled: widget.enabled,
-                    obscureText: _hidden,
-                    keyboardType: widget.keyboardType,
-                    textInputAction: widget.textInputAction,
-                    onChanged: widget.onChanged,
-                    textDirection: ltr ? TextDirection.ltr : null,
-                    textAlign: ltr ? TextAlign.left : TextAlign.start,
-                    cursorColor: c.red400,
-                    style: MRText.bodyLg.copyWith(
-                        color: widget.enabled ? c.textPrimary : c.textHint),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      isCollapsed: true,
-                      hintText: widget.hint,
-                      hintStyle: MRText.bodyLg.copyWith(color: c.textHint),
+              child: Row(
+                children: [
+                  if (widget.icon != null) ...[
+                    Icon(widget.icon, size: 22, color: labelColor),
+                    const SizedBox(width: MRSpacing.space3),
+                  ],
+                  Expanded(
+                    child: TextField(
+                      controller: widget.controller,
+                      focusNode: _focus,
+                      enabled: widget.enabled,
+                      obscureText: _hidden,
+                      keyboardType: widget.keyboardType,
+                      textInputAction: widget.textInputAction,
+                      onChanged: widget.onChanged,
+                      onSubmitted: widget.onSubmitted,
+                      textDirection: ltr ? TextDirection.ltr : null,
+                      textAlign: ltr ? TextAlign.left : TextAlign.start,
+                      cursorColor: c.red400,
+                      style: MRText.bodyLg.copyWith(
+                        color: widget.enabled ? c.textPrimary : c.textHint,
+                      ),
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        isCollapsed: true,
+                        hintText: widget.hint,
+                        hintStyle: MRText.bodyLg.copyWith(color: c.textHint),
+                      ),
                     ),
                   ),
-                ),
-                if (widget.obscure)
-                  Semantics(
-                    button: true,
-                    label: _hidden ? 'نمایش رمز' : 'پنهان کردن رمز',
-                    child: GestureDetector(
-                      onTap: () => setState(() => _hidden = !_hidden),
-                      child: SizedBox(
-                        width: 44,
-                        height: 44,
-                        child: Icon(
+                  if (widget.obscure)
+                    Semantics(
+                      button: true,
+                      label: _hidden ? 'نمایش رمز' : 'پنهان کردن رمز',
+                      child: GestureDetector(
+                        onTap: () => setState(() => _hidden = !_hidden),
+                        child: SizedBox(
+                          width: 44,
+                          height: 44,
+                          child: Icon(
                             _hidden
                                 ? Icons.visibility_outlined
                                 : Icons.visibility_off_outlined,
                             size: 22,
-                            color: c.textMuted),
+                            color: c.textMuted,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-              ]),
+                ],
+              ),
             ),
             PositionedDirectional(
               top: -10,
               start: MRSpacing.space5,
               child: Container(
                 color: c.bgPage,
-                padding: const EdgeInsets.symmetric(horizontal: MRSpacing.space2),
-                child: Text(widget.label,
-                    style: MRText.caption
-                        .copyWith(color: labelColor, fontWeight: FontWeight.w700)),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: MRSpacing.space2,
+                ),
+                child: Text(
+                  widget.label,
+                  style: MRText.caption.copyWith(
+                    color: labelColor,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
             ),
           ],
@@ -154,9 +172,13 @@ class _MikoTextFieldState extends State<MikoTextField> {
         if (hasError)
           Padding(
             padding: const EdgeInsetsDirectional.only(
-                top: MRSpacing.space1, start: MRSpacing.space4),
-            child: Text(widget.errorText!,
-                style: MRText.caption.copyWith(color: c.danger)),
+              top: MRSpacing.space1,
+              start: MRSpacing.space4,
+            ),
+            child: Text(
+              widget.errorText!,
+              style: MRText.caption.copyWith(color: c.danger),
+            ),
           ),
       ],
     );

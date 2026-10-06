@@ -1,37 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'features/gallery/gallery_screen.dart';
+import 'data/providers.dart';
+import 'router.dart';
 import 'theme/miko_theme.dart';
 
-void main() => runApp(const MikoApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  runApp(
+    ProviderScope(
+      overrides: [sharedPrefsProvider.overrideWithValue(prefs)],
+      child: const MikoApp(),
+    ),
+  );
+}
 
-class MikoApp extends StatefulWidget {
+class MikoApp extends ConsumerWidget {
   const MikoApp({super.key});
 
   @override
-  State<MikoApp> createState() => _MikoAppState();
-}
-
-class _MikoAppState extends State<MikoApp> {
-  // Dark is the default theme.
-  ThemeMode _mode = ThemeMode.dark;
-
-  void _toggle() => setState(
-      () => _mode = _mode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MaterialApp.router(
       title: 'میکو',
       debugShowCheckedModeBanner: false,
       theme: MikoTheme.light,
       darkTheme: MikoTheme.dark,
-      themeMode: _mode,
+      themeMode: ref.watch(themeModeProvider),
       locale: const Locale('fa', 'IR'),
       supportedLocales: const [Locale('fa', 'IR')],
       localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      home: GalleryScreen(onToggleTheme: _toggle),
+      routerConfig: ref.watch(routerProvider),
     );
   }
 }

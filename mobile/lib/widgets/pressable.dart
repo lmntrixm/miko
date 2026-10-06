@@ -4,7 +4,12 @@ import '../theme/miko_tokens.dart';
 
 /// Press feedback: scale 0.96 over `duration-fast`; disabled by reduced motion.
 class Pressable extends StatefulWidget {
-  const Pressable({super.key, required this.child, this.onTap, this.semanticLabel});
+  const Pressable({
+    super.key,
+    required this.child,
+    this.onTap,
+    this.semanticLabel,
+  });
   final Widget child;
   final VoidCallback? onTap;
   final String? semanticLabel;
@@ -25,7 +30,9 @@ class _PressableState extends State<Pressable> {
       label: widget.semanticLabel,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onTapDown: widget.onTap == null ? null : (_) => setState(() => _down = true),
+        onTapDown: widget.onTap == null
+            ? null
+            : (_) => setState(() => _down = true),
         onTapCancel: () => setState(() => _down = false),
         onTapUp: (_) => setState(() => _down = false),
         onTap: widget.onTap,

@@ -2,8 +2,10 @@
 /// emails, tracking codes) must NOT go through these helpers.
 const _fa = '۰۱۲۳۴۵۶۷۸۹';
 
-String faDigits(Object value) =>
-    value.toString().replaceAllMapped(RegExp(r'\d'), (m) => _fa[int.parse(m[0]!)]);
+String faDigits(Object value) => value.toString().replaceAllMapped(
+  RegExp(r'\d'),
+  (m) => _fa[int.parse(m[0]!)],
+);
 
 /// 1234567 → ۱٬۲۳۴٬۵۶۷
 String faNumber(num n) {
@@ -18,7 +20,11 @@ String faNumber(num n) {
 
 /// 12400 → ۱۲٫۴K style compact counts.
 String faCompact(num n) {
-  if (n >= 1000000) return '${faDigits((n / 1e6).toStringAsFixed(1).replaceAll('.', '٫'))}M';
-  if (n >= 1000) return '${faDigits((n / 1e3).toStringAsFixed(1).replaceAll('.', '٫'))}K';
+  if (n >= 1000000) {
+    return '${faDigits((n / 1e6).toStringAsFixed(1).replaceAll('.', '٫'))}M';
+  }
+  if (n >= 1000) {
+    return '${faDigits((n / 1e3).toStringAsFixed(1).replaceAll('.', '٫'))}K';
+  }
   return faDigits(n.round());
 }

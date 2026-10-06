@@ -37,33 +37,40 @@ class MikoTabBar extends StatelessWidget {
       ),
       child: Directionality(
         textDirection: TextDirection.ltr,
-        child: Row(children: [
-          for (var i = 0; i < tabs.length; i++)
-            Expanded(
-              child: Semantics(
-                selected: i == index,
-                child: Pressable(
-                  semanticLabel: tabs[i].label,
-                  onTap: () => onChanged(i),
-                  child: SizedBox(
-                    height: 52,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(tabs[i].icon,
-                            size: 24, color: i == index ? c.red400 : c.textPrimary),
-                        if (i == index) ...[
-                          const SizedBox(height: 2),
-                          Text(tabs[i].label,
-                              style: MRText.label.copyWith(color: c.red400)),
+        child: Row(
+          children: [
+            for (var i = 0; i < tabs.length; i++)
+              Expanded(
+                child: Semantics(
+                  selected: i == index,
+                  child: Pressable(
+                    semanticLabel: tabs[i].label,
+                    onTap: () => onChanged(i),
+                    child: SizedBox(
+                      height: 52,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            tabs[i].icon,
+                            size: 24,
+                            color: i == index ? c.red400 : c.textPrimary,
+                          ),
+                          if (i == index) ...[
+                            const SizedBox(height: 2),
+                            Text(
+                              tabs[i].label,
+                              style: MRText.label.copyWith(color: c.red400),
+                            ),
+                          ],
                         ],
-                      ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-        ]),
+          ],
+        ),
       ),
     );
   }

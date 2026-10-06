@@ -40,57 +40,93 @@ class RankCard extends StatelessWidget {
       onTap: onTap,
       child: SizedBox(
         height: 104 + 24,
-        child: Stack(clipBehavior: Clip.none, children: [
-          Positioned.fill(
-            top: 24,
-            child: Container(
-              padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                gradient: LinearGradient(colors: g),
-              ),
-              child: Row(children: [
-                Text(faDigits(rank),
-                    style: MRText.h1.copyWith(
-                        fontSize: 34, color: c.onBrand, fontWeight: FontWeight.w900)),
-                const SizedBox(width: MRSpacing.space3),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: MRText.h3.copyWith(color: c.onBrand)),
-                      const SizedBox(height: 4),
-                      Row(children: [
-                        Icon(Icons.star_rounded, size: 16, color: c.onBrand),
-                        const SizedBox(width: 2),
-                        Text(faDigits(rating.toStringAsFixed(1).replaceAll('.', '٫')),
-                            style: MRText.caption.copyWith(color: c.onBrand)),
-                        const SizedBox(width: MRSpacing.space3),
-                        Icon(Icons.visibility_outlined, size: 16, color: c.onBrand),
-                        const SizedBox(width: 2),
-                        Text(faCompact(views),
-                            style: MRText.caption.copyWith(color: c.onBrand)),
-                      ]),
-                      if (nextChapterIn != null)
-                        Text(nextChapterIn!,
-                            style: MRText.caption.copyWith(color: c.onBrand)),
-                    ],
-                  ),
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Positioned.fill(
+              top: 24,
+              child: Container(
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  gradient: LinearGradient(colors: g),
                 ),
-                const SizedBox(width: 88),
-              ]),
+                child: Row(
+                  children: [
+                    Text(
+                      faDigits(rank),
+                      style: MRText.h1.copyWith(
+                        fontSize: 34,
+                        color: c.onBrand,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    const SizedBox(width: MRSpacing.space3),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: MRText.h3.copyWith(color: c.onBrand),
+                          ),
+                          const SizedBox(height: 4),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.star_rounded,
+                                size: 16,
+                                color: c.onBrand,
+                              ),
+                              const SizedBox(width: 2),
+                              Text(
+                                faDigits(
+                                  rating
+                                      .toStringAsFixed(1)
+                                      .replaceAll('.', '٫'),
+                                ),
+                                style: MRText.caption.copyWith(
+                                  color: c.onBrand,
+                                ),
+                              ),
+                              const SizedBox(width: MRSpacing.space3),
+                              Icon(
+                                Icons.visibility_outlined,
+                                size: 16,
+                                color: c.onBrand,
+                              ),
+                              const SizedBox(width: 2),
+                              Text(
+                                faCompact(views),
+                                style: MRText.caption.copyWith(
+                                  color: c.onBrand,
+                                ),
+                              ),
+                            ],
+                          ),
+                          if (nextChapterIn != null)
+                            Text(
+                              nextChapterIn!,
+                              style: MRText.caption.copyWith(color: c.onBrand),
+                            ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 88),
+                  ],
+                ),
+              ),
             ),
-          ),
-          const PositionedDirectional(
-            end: 16,
-            top: 0,
-            child: CoverPlaceholder(width: 88, height: 128),
-          ),
-        ]),
+            const PositionedDirectional(
+              end: 16,
+              top: 0,
+              child: CoverPlaceholder(width: 88, height: 128),
+            ),
+          ],
+        ),
       ),
     );
   }

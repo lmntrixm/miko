@@ -49,59 +49,79 @@ class ChapterRow extends StatelessWidget {
             border: Border.all(color: borderColor, width: 2),
             color: c.surface1,
           ),
-          child: Stack(children: [
-            Row(children: [
-              const SizedBox(width: MRSpacing.space4),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Directionality(
-                      textDirection: TextDirection.ltr,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('#$number',
-                              style: MRText.h3.copyWith(color: c.textPrimary)),
-                          Text(title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: MRText.caption.copyWith(color: c.textSecondary)),
-                        ],
-                      ),
+          child: Stack(
+            children: [
+              Row(
+                children: [
+                  const SizedBox(width: MRSpacing.space4),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Directionality(
+                          textDirection: TextDirection.ltr,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '#$number',
+                                style: MRText.h3.copyWith(color: c.textPrimary),
+                              ),
+                              Text(
+                                title,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: MRText.caption.copyWith(
+                                  color: c.textSecondary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          dateLabel,
+                          style: MRText.caption.copyWith(color: c.textMuted),
+                        ),
+                      ],
                     ),
-                    Text(dateLabel,
-                        style: MRText.caption.copyWith(color: c.textMuted)),
-                  ],
-                ),
+                  ),
+                  if (state == ChapterState.locked)
+                    Icon(Icons.lock_outline, size: 22, color: c.textMuted)
+                  else
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.chat_bubble_outline,
+                          size: 18,
+                          color: c.textMuted,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          faDigits(commentCount),
+                          style: MRText.caption.copyWith(color: c.textMuted),
+                        ),
+                      ],
+                    ),
+                  const SizedBox(width: MRSpacing.space3),
+                  const CoverPlaceholder(width: 130, height: 104, radius: 0),
+                ],
               ),
-              if (state == ChapterState.locked)
-                Icon(Icons.lock_outline, size: 22, color: c.textMuted)
-              else
-                Row(children: [
-                  Icon(Icons.chat_bubble_outline, size: 18, color: c.textMuted),
-                  const SizedBox(width: 4),
-                  Text(faDigits(commentCount),
-                      style: MRText.caption.copyWith(color: c.textMuted)),
-                ]),
-              const SizedBox(width: MRSpacing.space3),
-              const CoverPlaceholder(width: 130, height: 104, radius: 0),
-            ]),
-            if (state == ChapterState.reading)
-              PositionedDirectional(
-                bottom: 0,
-                start: 0,
-                end: 0,
-                child: Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: FractionallySizedBox(
-                    widthFactor: progress.clamp(0, 1),
-                    child: Container(height: 3, color: c.red500),
+              if (state == ChapterState.reading)
+                PositionedDirectional(
+                  bottom: 0,
+                  start: 0,
+                  end: 0,
+                  child: Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: FractionallySizedBox(
+                      widthFactor: progress.clamp(0, 1),
+                      child: Container(height: 3, color: c.red500),
+                    ),
                   ),
                 ),
-              ),
-          ]),
+            ],
+          ),
         ),
       ),
     );
