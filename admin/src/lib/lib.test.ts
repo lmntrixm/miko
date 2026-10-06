@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { faDigits, faNumber, jalaliDate, jalaliNumeric, relative, toCsv, toJalali } from './format';
-import { addTitle, getState, loginStep1, loginStep2, moderate, moveTask, resetStore, setPermission, addSubscriptionDays } from './store';
+import { addTitle, getState, setSession, moderate, moveTask, resetStore, setPermission, addSubscriptionDays } from './store';
 
 describe('format', () => {
   it('uses Persian digits and grouping', () => {
@@ -23,20 +23,9 @@ describe('format', () => {
 });
 
 describe('store', () => {
-  it('login needs both steps', () => {
-    resetStore();
-    expect(loginStep1('admin@miko.test', 'bad')).toBe(false);
-    expect(loginStep2('123456')).toBe(false); // no first step yet
-    expect(loginStep1('admin@miko.test', 'password123')).toBe(true);
-    expect(loginStep2('000000')).toBe(false);
-    expect(loginStep2('123456')).toBe(true);
-    expect(getState().session?.role).toBe('admin');
-    expect(getState().audit[0].action).toContain('ورود دومرحله‌ای');
-  });
   it('every mutation lands in the audit log', () => {
     resetStore();
-    loginStep1('admin@miko.test', 'password123');
-    loginStep2('123456');
+    setSession({ name: 'مدیر نمونه', email: 'admin@miko.test', role: 'admin' });
     const before = getState().audit.length;
     const id = addTitle({ nameFa: 'آزمون', nameEn: 'Test Item', type: 'manga' });
     moveTask('k5', 'translating');

@@ -34,9 +34,9 @@ npm test                             # vitest (منطق و store)
 npm run build && npm run e2e         # Playwright روی Chromium نصب‌شده (CHROMIUM_PATH)
 ```
 
-- ورود آزمایشی: `admin@miko.test` / `password123`، کد دومرحله‌ای `123456`.
+- ورود آزمایشی (فقط با `ADMIN_DEMO=1` یا `npm run dev`): `admin@miko.test` / `password123`، کد دومرحله‌ای از Authenticator با راز `JBSWY3DPEHPK3PXP`.
 - توکن‌های رنگ از `design/tokens/tokens.json` به `src/styles/tokens.css` تولید می‌شوند (`npm run tokens`).
-- داده در `src/lib/store.ts` (ساختگی، در sessionStorage). **ورود و نشست فعلاً سمت کلاینت و فقط نمونه است؛** نسخهٔ واقعی باید نشست httpOnly و TOTP سمت سرور داشته باشد.
+- داده در `src/lib/store.ts` (ساختگی، در sessionStorage). **ورود و نشست سمت سرور است** (کوکی httpOnly امضاشده، TOTP، قفل بعد از ۵ تلاش)؛ تنظیم محیط‌های واقعی در `admin/.env.example` و `docs/release.md`. CI در `.github/workflows/ci.yml`.
 
 ## جای‌خالی‌ها (از طراحی؛ حدس زده نشده‌اند)
 

@@ -10,11 +10,12 @@ export default defineConfig({
     baseURL: 'http://localhost:3100',
     viewport: { width: 1440, height: 900 },
     locale: 'fa-IR',
-    // Pre-installed browser; never download one.
-    launchOptions: { executablePath: process.env.CHROMIUM_PATH ?? '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' },
+    // Locally: the pre-installed browser (never download one). On CI: the one Playwright installs.
+    launchOptions: { executablePath: process.env.CI ? undefined : (process.env.CHROMIUM_PATH ?? '/opt/pw-browsers/chromium-1194/chrome-linux/chrome') },
   },
   webServer: {
     command: 'npx next start -p 3100',
+    env: { ADMIN_DEMO: '1', INSECURE_COOKIES: '1' },
     url: 'http://localhost:3100/login',
     reuseExistingServer: true,
     timeout: 60_000,

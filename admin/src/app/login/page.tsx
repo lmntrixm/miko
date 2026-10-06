@@ -5,11 +5,11 @@ import { useEffect, useRef, useState } from 'react';
 import { Button, Field } from '@/components/ui';
 import { Icon } from '@/components/Icon';
 import { faNumber } from '@/lib/format';
-import { hydrate, loginStep1, loginStep2, useStore } from '@/lib/store';
+import { hydrate, loadSession, loginStep1, loginStep2, useStore } from '@/lib/store';
 
 export default function LoginPage() {
   const router = useRouter();
-  const pending = useStore((s) => s.pendingLogin);
+  const [pending, setPending] = useState(false);
   const session = useStore((s) => s.session);
   const titles = useStore((s) => s.titles);
   const [email, setEmail] = useState('');
@@ -18,25 +18,34 @@ export default function LoginPage() {
   const [digits, setDigits] = useState<string[]>(Array(6).fill(''));
   const refs = useRef<(HTMLInputElement | null)[]>([]);
 
-  useEffect(() => hydrate(), []);
+  useEffect(() => { hydrate(); loadSession(); }, []);
   useEffect(() => {
     if (session) router.replace('/dashboard');
   }, [session, router]);
 
-  const step1 = (e: React.FormEvent) => {
+  const fail = (r: string) =>
+    r === 'locked' ? 'تلاش‌های ناموفق زیاد بود. ۱۵ دقیقه بعد دوباره امتحان کنید.'
+    : r === 'unavailable' ? 'ورود در دسترس نیست. اتصال یا تنظیمات سرور را بررسی کنید و دوباره امتحان کنید.'
+    : null;
+
+  const step1 = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setError('ایمیل معتبر نیست؛ مثلاً name@company.com');
     if (!password) return setError('رمز عبور را وارد کنید');
-    if (!loginStep1(email, password)) setError('ایمیل یا رمز عبور درست نیست. دوباره امتحان کنید.');
+    const r = await loginStep1(email, password);
+    if (r === 'ok') setPending(true);
+    else setError(fail(r) ?? 'ایمیل یا رمز عبور درست نیست. دوباره امتحان کنید.');
   };
 
-  const step2 = (e: React.FormEvent) => {
+  const step2 = async (e: React.FormEvent) => {
     e.preventDefault();
     const code = digits.join('');
     if (code.length < 6) return setError('کد ۶ رقمی را کامل وارد کنید');
-    if (!loginStep2(code)) {
-      setError('کد درست نیست یا منقضی شده. کد جدید را از اپ Authenticator بگیرید.');
+    const r = await loginStep2(code);
+    if (r !== 'ok') {
+      if (r === 'expired') { setPending(false); return setError('زمان تأیید تمام شد. دوباره با ایمیل و رمز وارد شوید.'); }
+      setError(fail(r) ?? 'کد درست نیست یا منقضی شده. کد جدید را از اپ Authenticator بگیرید.');
       setDigits(Array(6).fill(''));
       refs.current[0]?.focus();
     }

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "admin:hash": "node scripts/hash-password.mjs",
     "tokens": "node scripts/gen-tokens.mjs",
     "dev": "npm run tokens && next dev",
     "build": "npm run tokens && next build",

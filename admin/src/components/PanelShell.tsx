@@ -6,7 +6,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { Icon, type IconName } from './Icon';
 import { Avatar } from './ui';
 import { faDigits } from '@/lib/format';
-import { hydrate, logout, setTheme, useStore } from '@/lib/store';
+import { hydrate, loadSession, logout, setTheme, useStore } from '@/lib/store';
 
 const NAV: { href: string; label: string; icon: IconName; badge?: 'requests' | 'comments' }[] = [
   { href: '/dashboard', label: 'داشبورد', icon: 'grid' },
@@ -36,7 +36,7 @@ export function PanelShell({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     hydrate();
-    setReady(true);
+    loadSession().finally(() => setReady(true));
     setT(document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
   }, []);
 
@@ -95,8 +95,8 @@ export function PanelShell({ children }: { children: ReactNode }) {
           <button
             className="iconbtn"
             aria-label="خروج از پنل"
-            onClick={() => {
-              logout();
+            onClick={async () => {
+              await logout();
               router.replace('/login');
             }}
           >

@@ -45,7 +45,6 @@ export interface State {
   automation: Automation;
   session: Session | null;
   /** First login step passed; waiting for the authenticator code. */
-  pendingLogin: { email: string } | null;
 }
 
 export function initialState(): State {
@@ -66,7 +65,6 @@ export function initialState(): State {
     settings: { freeChapters: 3, maxDevices: 2, autoRenewDefault: true, supportEmail: '[ایمیل پشتیبانی]', twoFactorRequired: true, gateways: [{ name: '[درگاه ۱]', active: true }, { name: '[درگاه ۲]', active: true }] },
     automation: { hideAfterReports: true, blockLinks: true, manualApprove: false, filterWords: ['[کلمه ۱]', '[کلمه ۲]', 'لینک تبلیغاتی'] },
     session: null,
-    pendingLogin: null,
   };
 }
 
@@ -138,28 +136,57 @@ function log(s: State, section: AuditSection, action: string): State {
   return { ...s, audit: [entry, ...s.audit] };
 }
 
-// ---- auth (mock; real auth must be server-side with httpOnly cookies + TOTP) ----
+// ---- auth (real auth lives on the server: see src/server/auth.ts and /api/auth/*) ----
 
-export const DEMO_EMAIL = 'admin@miko.test';
-export const DEMO_PASSWORD = 'password123';
-export const DEMO_TOTP = '123456';
+/** Mirrors the server session into the UI store. Only the server cookie grants access. */
+export function setSession(session: Session | null, audit = false): void {
+  set((s) => {
+    const next = { ...s, session };
+    return audit && session ? log(next, 'settings', 'وارد پنل شد (ورود دومرحله‌ای)') : next;
+  });
+}
 
-export function loginStep1(email: string, password: string): boolean {
-  if (email.trim().toLowerCase() === DEMO_EMAIL && password === DEMO_PASSWORD) {
-    set((s) => ({ ...s, pendingLogin: { email: email.trim() } }));
-    return true;
+export async function loadSession(): Promise<Session | null> {
+  try {
+    const r = await fetch('/api/auth/me', { cache: 'no-store' });
+    const session = r.ok ? ((await r.json()) as { session: Session | null }).session : null;
+    if (JSON.stringify(session) !== JSON.stringify(state.session)) setSession(session);
+    return session;
+  } catch {
+    return state.session;
   }
-  return false;
 }
 
-export function loginStep2(code: string): boolean {
-  if (code !== DEMO_TOTP || !state.pendingLogin) return false;
-  set((s) => log({ ...s, session: { name: 'مدیر نمونه', email: s.pendingLogin!.email, role: 'admin' }, pendingLogin: null }, 'settings', 'وارد پنل شد (ورود دومرحله‌ای)'));
-  return true;
+export type AuthResult = 'ok' | 'invalid' | 'locked' | 'expired' | 'unavailable';
+
+async function post(url: string, body?: unknown): Promise<{ status: number }> {
+  try {
+    const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
+    return { status: r.status };
+  } catch {
+    return { status: 0 };
+  }
 }
 
-export function logout(): void {
-  set((s) => log({ ...s, session: null, pendingLogin: null }, 'settings', 'از پنل خارج شد'));
+const toResult = (status: number): AuthResult => (status === 200 ? 'ok' : status === 401 ? 'invalid' : status === 429 ? 'locked' : status === 410 ? 'expired' : 'unavailable');
+
+export async function loginStep1(email: string, password: string): Promise<AuthResult> {
+  return toResult((await post('/api/auth/login', { email, password })).status);
+}
+
+export async function loginStep2(code: string): Promise<AuthResult> {
+  const { status } = await post('/api/auth/totp', { code });
+  if (status === 200) {
+    await loadSession();
+    setSession(state.session, true);
+    return 'ok';
+  }
+  return toResult(status);
+}
+
+export async function logout(): Promise<void> {
+  set((s) => log({ ...s, session: null }, 'settings', 'از پنل خارج شد'));
+  await post('/api/auth/logout');
 }
 
 // ---- titles ----

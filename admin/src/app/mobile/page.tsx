@@ -6,7 +6,7 @@ import { useToast } from '@/components/Toast';
 import { Badge, Button } from '@/components/ui';
 import { faDigits, faNumber, relative } from '@/lib/format';
 import { dashboardTiles } from '@/lib/stats';
-import { hydrate, moderate, moveTask, useStore } from '@/lib/store';
+import { hydrate, loadSession, moderate, moveTask, useStore } from '@/lib/store';
 
 /** Approval queue for phones: publish, comment moderation and translation sign-off. */
 export default function MobileQueue() {
@@ -18,7 +18,7 @@ export default function MobileQueue() {
   const [ready, setReady] = useState(false);
   const [skipped, setSkipped] = useState<string[]>([]);
 
-  useEffect(() => { hydrate(); setReady(true); }, []);
+  useEffect(() => { hydrate(); loadSession().finally(() => setReady(true)); }, []);
   useEffect(() => { if (ready && !session) router.replace('/login'); }, [ready, session, router]);
   if (!ready || !session) return <div aria-busy="true" />;
 
