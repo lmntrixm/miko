@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/persian.dart';
+import '../../data/api_errors.dart';
 import '../../data/discovery_providers.dart';
 import '../../data/discovery_repository.dart';
 import '../../theme/miko_colors.dart';
@@ -24,7 +25,7 @@ class _StatusGateState extends ConsumerState<StatusGate> {
 
   @override
   Widget build(BuildContext context) {
-    final status = ref.watch(appStatusProvider).asData?.value;
+    final status = ref.watch(effectiveStatusProvider);
     if (status == null) return widget.child;
     if (status.maintenance && !_bypass) {
       return MaintenanceScreen(

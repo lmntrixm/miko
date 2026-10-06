@@ -14,6 +14,8 @@ Future<void> main() async {
   final prefs = await SharedPreferences.getInstance();
   runApp(
     ProviderScope(
+      // Errors are shown with an explicit retry button; no silent auto-retries.
+      retry: (_, _) => null,
       overrides: [sharedPrefsProvider.overrideWithValue(prefs)],
       child: const MikoApp(),
     ),

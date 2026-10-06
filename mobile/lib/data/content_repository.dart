@@ -56,6 +56,8 @@ class MockContentRepository implements ContentRepository {
     if (seedProgress) _seedProgressList();
   }
 
+  /// Test hook: every catalogue call throws this (e.g. UnauthorizedException).
+  Object? failure;
   bool subscribed;
   bool deviceLimitReached;
 
@@ -190,6 +192,8 @@ class MockContentRepository implements ContentRepository {
 
   Future<T> _wait<T>(T v) async {
     if (latency != Duration.zero) await Future<void>.delayed(latency);
+    final f = failure;
+    if (f != null) throw f;
     return v;
   }
 

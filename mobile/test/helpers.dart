@@ -69,6 +69,7 @@ Future<void> pumpApp(
   MockAccountRepository? account,
   FakeShare? share,
   AppStatus appStatus = const AppStatus(),
+  Object? failure,
 }) async {
   await loadFonts();
   tester.view.physicalSize = const Size(390, 844) * 2;
@@ -78,10 +79,11 @@ Future<void> pumpApp(
   SharedPreferences.setMockInitialValues(prefs);
   final p = await SharedPreferences.getInstance();
   await tester.pumpWidget(ProviderScope(
+    retry: (_, _) => null,
     overrides: [
       sharedPrefsProvider.overrideWithValue(p),
       authRepositoryProvider.overrideWithValue(MockAuthRepository(latency: Duration.zero)),
-      contentRepositoryProvider.overrideWithValue(MockContentRepository(subscribed: subscribed, latency: Duration.zero, seedProgress: seedProgress, deviceLimitReached: deviceLimitReached, checkoutResult: checkoutResult)),
+      contentRepositoryProvider.overrideWithValue(MockContentRepository(subscribed: subscribed, latency: Duration.zero, seedProgress: seedProgress, deviceLimitReached: deviceLimitReached, checkoutResult: checkoutResult)..failure = failure),
       paymentPollIntervalProvider.overrideWithValue(const Duration(seconds: 1)),
       connectivitySourceProvider.overrideWithValue(net ?? FakeConnectivity()),
       downloadAutoTickProvider.overrideWithValue(false),
@@ -105,6 +107,7 @@ Future<void> pumpHome(
   MockAccountRepository? account,
   FakeShare? share,
   AppStatus appStatus = const AppStatus(),
+  Object? failure,
 }) async {
   await pumpApp(tester,
       prefs: {'onboarding_seen': true, 'access_token': 't', ...prefs},
@@ -115,7 +118,8 @@ Future<void> pumpHome(
       net: net,
       account: account,
       share: share,
-      appStatus: appStatus);
+      appStatus: appStatus,
+      failure: failure);
   await tester.pump(const Duration(seconds: 2));
   await tester.pumpAndSettle();
 }
