@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'auth_repository.dart';
+import 'token_store.dart';
 
 /// Overridden in `main()` with the loaded instance.
 final sharedPrefsProvider = Provider<SharedPreferences>(
@@ -19,27 +20,26 @@ class SessionState {
 }
 
 /// Login session + "intro seen" flag.
-/// TODO: keep the token in flutter_secure_storage once the real backend exists.
+/// The token is kept in [TokenStore] (Keychain/Keystore); only the intro flag is in prefs.
 class SessionController extends Notifier<SessionState> {
-  static const _tokenKey = 'access_token';
   static const _onbKey = 'onboarding_seen';
 
   @override
   SessionState build() {
     final p = ref.watch(sharedPrefsProvider);
     return SessionState(
-      signedIn: p.getString(_tokenKey) != null,
+      signedIn: ref.watch(tokenStoreProvider).token != null,
       onboardingSeen: p.getBool(_onbKey) ?? false,
     );
   }
 
   Future<void> signIn(String token) async {
-    await ref.read(sharedPrefsProvider).setString(_tokenKey, token);
+    await ref.read(tokenStoreProvider).save(token);
     state = SessionState(signedIn: true, onboardingSeen: state.onboardingSeen);
   }
 
   Future<void> signOut() async {
-    await ref.read(sharedPrefsProvider).remove(_tokenKey);
+    await ref.read(tokenStoreProvider).clear();
     state = SessionState(signedIn: false, onboardingSeen: state.onboardingSeen);
   }
 

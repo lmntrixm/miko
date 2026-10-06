@@ -19,6 +19,7 @@ import 'package:miko/data/models.dart';
 import 'package:miko/features/billing/payment_pending_screen.dart';
 import 'package:miko/data/network.dart';
 import 'package:miko/data/providers.dart';
+import 'package:miko/data/token_store.dart';
 import 'package:miko/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -70,6 +71,7 @@ Future<void> pumpApp(
   FakeShare? share,
   AppStatus appStatus = const AppStatus(),
   Object? failure,
+  String? tokenValue,
 }) async {
   await loadFonts();
   tester.view.physicalSize = const Size(390, 844) * 2;
@@ -82,6 +84,7 @@ Future<void> pumpApp(
     retry: (_, _) => null,
     overrides: [
       sharedPrefsProvider.overrideWithValue(p),
+      tokenStoreProvider.overrideWithValue(MemoryTokenStore(tokenValue)),
       authRepositoryProvider.overrideWithValue(MockAuthRepository(latency: Duration.zero)),
       contentRepositoryProvider.overrideWithValue(MockContentRepository(subscribed: subscribed, latency: Duration.zero, seedProgress: seedProgress, deviceLimitReached: deviceLimitReached, checkoutResult: checkoutResult)..failure = failure),
       paymentPollIntervalProvider.overrideWithValue(const Duration(seconds: 1)),
@@ -110,7 +113,8 @@ Future<void> pumpHome(
   Object? failure,
 }) async {
   await pumpApp(tester,
-      prefs: {'onboarding_seen': true, 'access_token': 't', ...prefs},
+      tokenValue: 't',
+      prefs: {'onboarding_seen': true, ...prefs},
       subscribed: subscribed,
       seedProgress: seedProgress,
       deviceLimitReached: deviceLimitReached,
