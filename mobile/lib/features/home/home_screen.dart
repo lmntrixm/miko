@@ -1,3 +1,4 @@
+import '../../core/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -65,7 +66,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         ),
                       ),
                     ),
-                    if (sub != null)
+                    if (sub != null && !AppConfig.freeMode)
                       Pressable(
                         // Temporary entry point until Profile (step 6) links to these.
                         onTap: () => context.push(

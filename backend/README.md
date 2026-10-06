@@ -9,7 +9,7 @@ SEED=1 npm run dev        # بدون DATABASE_URL از Postgres داخل‌پر�
 DATABASE_URL=postgres://… npm run migrate && npm start
 npm test
 ```
-متغیرها: `PORT`، `DATABASE_URL`، `JWT_SECRET` (در production حداقل ۳۲ نویسه).
+متغیرها: `PORT`، `DATABASE_URL`، `JWT_SECRET` (در production حداقل ۳۲ نویسه)، `FREE_MODE` (پیش‌فرض روشن؛ `FREE_MODE=0` یعنی پولی). در حالت رایگان همهٔ چپترها و دانلود بدون اشتراک باز است؛ سقف ۲ دستگاه می‌ماند. `GET /v1/config` وضعیت را به کلاینت می‌گوید.
 
 ## چه چیزی ساخته شده
 - ورود/ثبت‌نام: `signup` ← `verify` (کد ۶ رقمی، ۱۰ دقیقه، ۵ تلاش) ← توکن؛ `login` (قفل ۱۵ دقیقه بعد از ۵ رمز اشتباه)، `password/reset`، `/me`، ترجیحات، ویرایش و حذف حساب.

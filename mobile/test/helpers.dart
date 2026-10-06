@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:miko/core/app_config.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -72,8 +74,10 @@ Future<void> pumpApp(
   AppStatus appStatus = const AppStatus(),
   Object? failure,
   String? tokenValue,
+  bool freeMode = false,
 }) async {
   await loadFonts();
+  AppConfig.freeMode = freeMode;
   tester.view.physicalSize = const Size(390, 844) * 2;
   tester.view.devicePixelRatio = 2;
   addTearDown(tester.view.reset);
@@ -111,8 +115,10 @@ Future<void> pumpHome(
   FakeShare? share,
   AppStatus appStatus = const AppStatus(),
   Object? failure,
+  bool freeMode = false,
 }) async {
   await pumpApp(tester,
+      freeMode: freeMode,
       tokenValue: 't',
       prefs: {'onboarding_seen': true, ...prefs},
       subscribed: subscribed,

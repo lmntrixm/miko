@@ -1,3 +1,4 @@
+import '../core/app_config.dart';
 import 'models.dart';
 
 /// Catalogue, reading and comments API (docs/api.md). Swap the mock for the real one later.
@@ -299,7 +300,7 @@ class MockContentRepository implements ContentRepository {
     final i = chapterId.lastIndexOf('~');
     final w = _works.firstWhere((w) => w.id == chapterId.substring(0, i));
     final c = _chapter(w, int.parse(chapterId.substring(i + 1)));
-    if (!c.isFree && !subscribed) throw const PaywallException();
+    if (!c.isFree && !subscribed && !AppConfig.freeMode) throw const PaywallException();
     return _wait(c);
   }
 

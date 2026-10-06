@@ -15,7 +15,7 @@ beforeAll(async () => {
   db = await pgliteDb();
   await migrate(db);
   await seed(db);
-  app = await buildApp({ db, config: loadConfig({} as NodeJS.ProcessEnv), mailer, now: () => clock });
+  app = await buildApp({ db, config: loadConfig({ FREE_MODE: '0' } as NodeJS.ProcessEnv), mailer, now: () => clock });
 });
 afterAll(async () => { await app.close(); await db.close(); });
 
@@ -140,5 +140,22 @@ describe('reading rules', () => {
     expect((await dl('device-cccc')).body.error.code).toBe('device_limit');
     expect((await call('DELETE', '/v1/me/devices/device-bbbb', undefined, t)).status).toBe(204);
     expect((await dl('device-cccc')).status).toBe(200);
+  });
+});
+
+describe('free mode', () => {
+  it('is on by default: locked chapters open and downloads need no subscription; /v1/config says so', async () => {
+    const free = await buildApp({ db, config: loadConfig({} as NodeJS.ProcessEnv), mailer, now: () => clock });
+    const t = await register('free@example.test');
+    const h = { authorization: `Bearer ${t}` };
+    expect((await free.inject({ method: 'GET', url: '/v1/config' })).json().freeMode).toBe(true);
+    expect((await free.inject({ method: 'GET', url: '/v1/chapters/sample-moon-6/pages', headers: h })).statusCode).toBe(200);
+    expect((await free.inject({ method: 'POST', url: '/v1/chapters/sample-moon-6/download', headers: h, payload: { deviceId: 'device-free1' } })).statusCode).toBe(200);
+    const list = (await free.inject({ method: 'GET', url: '/v1/titles/sample-moon/chapters', headers: h })).json();
+    expect(list.items.every((c: { locked: boolean }) => !c.locked)).toBe(true);
+    // The 2-device limit still applies for free.
+    await free.inject({ method: 'POST', url: '/v1/chapters/sample-moon-6/download', headers: h, payload: { deviceId: 'device-free2' } });
+    expect((await free.inject({ method: 'POST', url: '/v1/chapters/sample-moon-6/download', headers: h, payload: { deviceId: 'device-free3' } })).statusCode).toBe(409);
+    await free.close();
   });
 });

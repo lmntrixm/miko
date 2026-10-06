@@ -23,8 +23,8 @@ export type UserRow = {
 
 export type Ctx = Deps & { now: () => number; parse: <T>(schema: ZodType<T>, data: unknown) => T; requireUser: (req: FastifyRequest) => Promise<UserRow>; optionalUser: (req: FastifyRequest) => Promise<UserRow | null> };
 
-export function hasSubscription(u: UserRow | null, nowMs: number): boolean {
-  return !!u?.subscription_ends_at && new Date(u.subscription_ends_at).getTime() > nowMs;
+export function hasSubscription(u: UserRow | null, nowMs: number, freeMode = false): boolean {
+  return freeMode || !!u?.subscription_ends_at && new Date(u.subscription_ends_at).getTime() > nowMs;
 }
 
 export function userDto(u: UserRow, nowMs: number) {
@@ -66,6 +66,8 @@ export async function buildApp(deps: Deps): Promise<FastifyInstance> {
   app.setNotFoundHandler((_req, reply) => reply.status(404).send({ error: { code: 'not_found', message: errors.notFound().message } }));
 
   const ctx: Ctx = { ...deps, now, parse, requireUser, optionalUser };
+  // Lets clients hide subscription UI while the service is free.
+  app.get('/v1/config', async () => ({ freeMode: deps.config.freeMode, freeChapters: deps.config.freeChapters, maxDevices: deps.config.maxDevices }));
   app.get('/health', async () => ({ ok: true }));
   await app.register(async (v1) => {
     authRoutes(v1, ctx);

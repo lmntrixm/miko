@@ -18,7 +18,7 @@ export function readingRoutes(app: FastifyInstance, c: Ctx) {
     const { lang } = c.parse(z.object({ lang: z.enum(['fa', 'en']).default('fa') }), req.query);
     const u = await c.requireUser(req);
     const ch = await chapter(id);
-    if (ch.number > c.config.freeChapters && !hasSubscription(u, c.now())) throw errors.paymentRequired();
+    if (ch.number > c.config.freeChapters && !hasSubscription(u, c.now(), c.config.freeMode)) throw errors.paymentRequired();
     const pages = Array.from({ length: ch.pages }, (_, i) => signMediaUrl(c.config.jwtSecret, `/media/${ch.id}/${lang}/${i + 1}.webp`, u.id, c.now()));
     return { pages, expiresInSec: 600 };
   });
@@ -42,7 +42,7 @@ export function readingRoutes(app: FastifyInstance, c: Ctx) {
     const body = c.parse(z.object({ deviceId: z.string().min(8).max(100), deviceName: z.string().max(80).default('') }), req.body);
     await chapter(id);
     // Offline files last until the subscription ends, so downloading needs one.
-    if (!hasSubscription(u, c.now())) throw errors.paymentRequired();
+    if (!hasSubscription(u, c.now(), c.config.freeMode)) throw errors.paymentRequired();
     const known = await c.db.query<{ device_id: string }>('SELECT device_id FROM devices WHERE user_id = $1', [u.id]);
     if (!known.some((d) => d.device_id === body.deviceId)) {
       if (known.length >= c.config.maxDevices) throw errors.deviceLimit();

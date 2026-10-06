@@ -1,3 +1,5 @@
+import '../core/app_config.dart';
+
 /// Domain models. "Work" = اثر (a manga, manhwa or comic series).
 enum WorkType {
   manga('مانگا'),
@@ -83,7 +85,7 @@ class Chapter {
   final int commentCount;
 
   /// The first three chapters of every work are free.
-  bool get isFree => number <= 3;
+  bool get isFree => AppConfig.freeMode || number <= 3;
 }
 
 class ReadingProgress {

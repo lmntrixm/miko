@@ -1,3 +1,4 @@
+import '../../core/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -63,6 +64,7 @@ class ProfileScreen extends ConsumerWidget {
               MikoIconButton(icon: Icons.edit_outlined, semanticLabel: 'ویرایش پروفایل', onPressed: () => context.push('/edit-profile')),
             ]),
             const SizedBox(height: MRSpacing.space4),
+            if (!AppConfig.freeMode) ...[
             Container(
               padding: const EdgeInsets.all(MRSpacing.space4),
               decoration: BoxDecoration(gradient: mrCardGradient, borderRadius: BorderRadius.circular(MRRadius.radiusXl)),
@@ -114,6 +116,7 @@ class ProfileScreen extends ConsumerWidget {
                     ]),
             ),
             const SizedBox(height: MRSpacing.space3),
+            ],
             Row(children: [
               for (final (n, l) in [(p.chaptersRead, 'چپتر خوانده‌شده'), (followed, 'اثر دنبال‌شده'), (p.commentCount, 'نظر')])
                 Expanded(

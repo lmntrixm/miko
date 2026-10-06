@@ -49,7 +49,7 @@ export function catalogRoutes(app: FastifyInstance, c: Ctx) {
       `SELECT c.id, c.number, c.pages, c.published_at, (p.chapter_id IS NOT NULL) AS read FROM chapters c LEFT JOIN progress p ON p.chapter_id = c.id AND p.user_id = $2 WHERE c.title_id = $1 ORDER BY c.number DESC`,
       [id, u?.id ?? null],
     );
-    const subscribed = hasSubscription(u, c.now());
+    const subscribed = hasSubscription(u, c.now(), c.config.freeMode);
     return { items: rows.map((r) => ({ id: r.id, number: r.number, pages: r.pages, publishedAt: r.published_at, read: r.read, locked: r.number > c.config.freeChapters && !subscribed })) };
   });
 

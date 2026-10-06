@@ -1,3 +1,4 @@
+import '../../core/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -189,7 +190,7 @@ class DownloadsBody extends ConsumerWidget {
             padding: const EdgeInsets.only(bottom: MRSpacing.space3),
             child: _DoneRow(
               items: e.value,
-              subscriptionActive: sub?.active ?? true,
+              subscriptionActive: AppConfig.freeMode || (sub?.active ?? true),
               onDelete: () => _confirmDelete(context, ctl, e.value),
             ),
           ),

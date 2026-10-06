@@ -1,3 +1,4 @@
+import '../../core/app_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -94,7 +95,7 @@ class _DetailState extends ConsumerState<_Detail> {
     if (_ascending) visible = visible.reversed.toList();
 
     final resumeNumber = resume?.chapterNumber ?? 1;
-    final resumeLocked = !(sub?.active ?? false) && resumeNumber > 3;
+    final resumeLocked = !AppConfig.freeMode && !(sub?.active ?? false) && resumeNumber > 3;
 
     return Stack(
       children: [

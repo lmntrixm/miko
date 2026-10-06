@@ -1,4 +1,4 @@
-export type Config = { port: number; jwtSecret: string; databaseUrl?: string; freeChapters: number; maxDevices: number };
+export type Config = { port: number; jwtSecret: string; databaseUrl?: string; freeChapters: number; maxDevices: number; freeMode: boolean };
 
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
   const jwtSecret = env.JWT_SECRET ?? '';
@@ -9,5 +9,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     databaseUrl: env.DATABASE_URL,
     freeChapters: 3,
     maxDevices: 2,
+    // Free launch: no paywall, no subscription needed to download. Set FREE_MODE=0 to charge.
+    freeMode: env.FREE_MODE !== '0',
   };
 }
