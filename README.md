@@ -47,4 +47,3 @@ npm run build && npm run e2e         # Playwright روی Chromium نصب‌شد�
 - بک‌اند واقعی، درگاه بانکی و deep link برگشت از درگاه
 - push notification (FCM/APNs)، آپلود تصویر پروفایل و اسکرین‌شات گزارش
 - دانلود واقعی فایل‌ها (موتور دانلود فعلاً شبیه‌سازی است)
-- نگهداری توکن در `flutter_secure_storage`
